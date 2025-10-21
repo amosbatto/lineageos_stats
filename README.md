@@ -26,28 +26,31 @@ provide a complete list of builds, but it does provide a total installs
 number, so any installs that aren't found are tallied at the end of the 
 list under "Other builds". 
 
-The status codes for the builds are: O=active official build, 
-D=discontinued official build, U=unofficial build 
+The status codes for the builds are: **O**=active official build, 
+**D**=discontinued official build, **U**=unofficial build 
  
 INSTALLATION:   
 1. Install the command line interface for PHP 7 or later. 
 2. Download this script from https://github.com/amosbatto/lineageos_stats
    If the ZIP file was downloaded, then decompress it. 
   
-In a Debian/Ubuntu/Mint terminal, these commands should work:  
+In a Debian/Ubuntu/Mint terminal, these commands should work: 
+``` 
   sudo apt install php
   wget -O lineageos_stats.zip https://github.com/amosbatto/lineageos_stats/archive/refs/heads/main.zip
   unzip lineageos_stats.zip -d lineageos_stats
+```
   
 EXECUTION:  
 To run the script in a terminal:  
-  php lineageos_stats.php
+  `php lineageos_stats.php`
   
 Depending on how you installed PHP, you may have to include the path to 
 execute it. For example in Windows:  
-  C:\users\bob\php8.3\php.exe lineageos_stats.php 
+  `C:\users\bob\php8.3\php.exe lineageos_stats.php` 
 
 Command line options:  
+```
   -c , --country   Display the country list.   
                    Ex: php lineageos_stats.php -c  
                    
@@ -75,8 +78,9 @@ Command line options:
                    downloaded and what builds were found. Recommended 
                    for progress on how script is progressing when 
                    getting the build list.  
+```
 
 Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)  
 License: MIT license (for the lineageos_stats script and the included 
          SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom  
-Date:    2025-10-19 (version 0.1)
+Date:    2025-10-19 (version 0.1)  
