@@ -48,35 +48,35 @@ execute it. For example in Windows:
   C:\users\bob\php8.3\php.exe lineageos_stats.php 
 
 Command line options:  
- -c , --country   Display the country list.   
-                  Ex: php lineageos_stats.php -c  
-                  
- -cXX             Can specify an optional two letter country code or a
- --country=XX     country name to display stats for a single country.  
-                  Ex: php lineageos_stats.php -cUS  
-                  Ex: php lineageos_stats.php --country=BR  
-                  Ex: php lineageos_stats.php -c"United Arab Emirates"  
-                  
- -b , --build     Display the build list.  
-                  Ex: php lineageos_stats.php -b  
-  
- -bCODENAME       Can specify a buid codename or a device model name to  
- --build=CODENAME display stats for a single build.  
-                  Ex: php lineageos_stats.php -blavender  
-                  Ex: php lineageos_stats.php --build=lavender  
-                  Ex: php lineageos_stats.php -b"Xiaomi Redmi Note 7"  
-                  Ex: php lineageos_stats.php --build="nOtE 7"  
-                  The search is case insensitive and can find partial   
-                  strings.
+  -c , --country   Display the country list.   
+                   Ex: php lineageos_stats.php -c  
                    
- -i , --installs  Only show the number of installs and not other stats.     
+  -cXX             Can specify an optional two letter country code or a
+  --country=XX     country name to display stats for a single country.  
+                   Ex: php lineageos_stats.php -cUS  
+                   Ex: php lineageos_stats.php --country=BR  
+                   Ex: php lineageos_stats.php -c"United Arab Emirates"  
+                   
+  -b , --build     Display the build list.  
+                   Ex: php lineageos_stats.php -b  
+                   
+  -bCODENAME       Can specify a buid codename or a device model name to  
+  --build=CODENAME display stats for a single build.  
+                   Ex: php lineageos_stats.php -blavender  
+                   Ex: php lineageos_stats.php --build=lavender  
+                   Ex: php lineageos_stats.php -b"Xiaomi Redmi Note 7"  
+                   Ex: php lineageos_stats.php --build="nOtE 7"  
+                   The search is case insensitive and can find partial   
+                   strings.
+                   
+  -i , --installs  Only show the number of installs and not other stats.     
                   
- -v , --verbose   Show information about what countries are being  
-                  downloaded and what builds were found. Recommended for
-                  progress on how script is progressing when getting the
-                  build list.  
+  -v , --verbose   Show information about what countries are being  
+                   downloaded and what builds were found. Recommended 
+                   for progress on how script is progressing when 
+                   getting the build list.  
 
-Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)
+Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)  
 License: MIT license (for the lineageos_stats script and the included 
-         SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom)
+         SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom  
 Date:    2025-10-19 (version 0.1)
