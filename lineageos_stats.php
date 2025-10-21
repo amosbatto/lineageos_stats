@@ -1,77 +1,86 @@
 <?php
 $help = <<<'HELP'
-lineageos_stats.php is a simple script to download LineageOS statistics
+lineageos_stats.php is a command-line script to download LineageOS stats
 about the number of builds and installs from https://stats.lineageos.org
-and display more information than is provided by the LineageOS web page.
+It displays more information than is provided by the LineageOS web page,
+which only displays builds by their code name and countries by their ISO
+codes. This script can search for countries by their English names and 
+for builds by their device model names. It tallies the total builds and 
+installs by country, device manufacturer, processor family, release year
+of devices, build status and LineageOS version number.   
   
-By default the script shows the country list and the build list. 
+By default the script shows the country list and the build list with 
+statistics tables at the end. If information is known about a build 
+(device model, manufacturer, processor family, device release year), 
+that is displayed in the build list. There is normally 1 build per 
+device model, but some builds support multiple device models.
+
 The information in the lists is separated by tabs, so you can copy it 
 from the terminal and paste it into your favorite spreadsheet 
-application. It is much easier to read in a spreadsheet.
-There is normally 1 build per device model, but some builds support 
-multiple device models.
+application. It is much easier to read in a spreadsheet. 
  
 Getting the country list is fast, but getting the build list is
-very slow because the script has to download all the builds for each 
-country to construct the build list, and there are some less popular 
-builds that it won't find because LineageOS only provides the top 250 
-builds for each country. LineageOS doesn't provide a complete list of 
-builds, but it does provide a total installs number, so any installs 
-that aren't found are tallied at the end of the list under "Other 
-builds". 
+very slow because the script has to download roughly 1500 web pages to
+get all the builds for each country to construct the build list, and 
+there are some less popular builds that it won't find because LineageOS 
+only provides the top 250 builds for each country. LineageOS doesn't 
+provide a complete list of builds, but it does provide a total installs 
+number, so any installs that aren't found are tallied at the end of the 
+list under "Other builds". 
 
 The status codes for the builds are: O=active official build, 
 D=discontinued official build, U=unofficial build 
  
-INSTALLATION: 
-1. First install the command line interface for PHP. 
-2. Then download this script and make sure that it is in a file named 
-"lineageos_stats.php"
-3. Download simple_html_dom.php from: 
-https://sourceforge.net/projects/simplehtmldom
-Decompress it and place it in a directory named "simple_html_dom" 
-which is in the same directory as this script.
+INSTALLATION:   
+1. Install the command line interface for PHP 7 or later. 
+2. Download this script from https://github.com/amosbatto/lineageos_stats
+   If the ZIP file was downloaded, then decompress it. 
   
-In a Debian/Ubuntu/Mint terminal this commands should work:
+In a Debian/Ubuntu/Mint terminal, these commands should work:  
   sudo apt install php
-  wget -O simplehtmldom.zip https://sourceforge.net/projects/simplehtmldom/files/latest/download
-  unzip simplehtmldom.zip -d simple_html_dom
+  wget -O lineageos_stats.zip https://github.com/amosbatto/lineageos_stats/archive/refs/heads/main.zip
+  unzip lineageos_stats.zip -d lineageos_stats
   
-EXECUTION:
-To run the script in a terminal: 
+EXECUTION:  
+To run the script in a terminal:  
   php lineageos_stats.php
   
 Depending on how you installed PHP, you may have to include the path to 
-execute it. For example in Windows:
+execute it. For example in Windows:  
   C:\users\bob\php8.3\php.exe lineageos_stats.php 
 
-Command line options:
--c , --country    Display the country list. 
-                  Ex: php lineageos_stats.php -c
+Command line options:  
+ -c , --country   Display the country list.   
+                  Ex: php lineageos_stats.php -c  
                   
-                  Can specify an optional two letter country code or a
-                  country name to just display for a single country.
-                  Ex: php lineageos_stats.php -cUS
-                  Ex: php lineageos_stats.php --country=BR
-                  Ex: php lineageos_stats.php -c"United Arab Emirates"
+ -cXX             Can specify an optional two letter country code or a
+ --country=XX     country name to display stats for a single country.  
+                  Ex: php lineageos_stats.php -cUS  
+                  Ex: php lineageos_stats.php --country=BR  
+                  Ex: php lineageos_stats.php -c"United Arab Emirates"  
                   
--b , --build      Display the build list.
-                  Ex: php lineageos_stats.php -b
-
-                  Can specify a buid codename to display info about that
-                  build.
-                  Ex: php lineageos_stats.php -b dipper
-                  Ex: php lineageos_stats.php --build=dipper
+ -b , --build     Display the build list.  
+                  Ex: php lineageos_stats.php -b  
+  
+ -bCODENAME       Can specify a buid codename or a device model name to  
+ --build=CODENAME display stats for a single build.  
+                  Ex: php lineageos_stats.php -blavender  
+                  Ex: php lineageos_stats.php --build=lavender  
+                  Ex: php lineageos_stats.php -b"Xiaomi Redmi Note 7"  
+                  Ex: php lineageos_stats.php --build="nOtE 7"  
+                  The search is case insensitive and can find partial   
+                  strings.
                    
--i , --installs    Only show the number of installs. 
+ -i , --installs  Only show the number of installs and not other stats.     
                   
--v , --verbose    Show information about what countries are being 
+ -v , --verbose   Show information about what countries are being  
                   downloaded and what builds were found. Recommended for
                   progress on how script is progressing when getting the
                   build list.  
 
-Author:  Amos Batto (amosbatto@yahoo.com, https://amosbbatto.wordpress.com)
-License: public domain
+Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)
+License: MIT license (for the lineageos_stats script and the included 
+         SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom)
 Date:    2025-10-19 (version 0.1)
 
 HELP;
@@ -453,6 +462,31 @@ class LosBuild {
 		}
 		
 		return $this->installs;
+	}
+	
+	//pass info in an associative array to set member variables in the LosBuild object.
+	//This method is used by showOneCountry(), so doesn't need to download the build info
+	public function setInfo($aBuildInfo) {
+		$buildData = $GLOBALS['buildData'];
+		
+		foreach ($aBuildInfo as $varName => $varVal) {
+			$this->{$varName} = $varVal;
+		}
+		
+		$buildCode = $this->codename;
+		
+		//if no data about the build in $buildData, then set it as an unofficial build
+		if (!isset($buildData[$buildCode])) {
+			$this->status = 'U';
+		}
+		else {
+			$this->maker            = $buildData[$buildCode]->maker;
+			$this->modelName        = $buildData[$buildCode]->modelName;
+			$this->altModelNames    = $buildData[$buildCode]->altModelNames;
+			$this->processor        = $buildData[$buildCode]->processor; 
+			$this->modelReleaseDate = $buildData[$buildCode]->modelReleaseDate; 
+			$this->status           = $buildData[$buildCode]->status;
+		}
 	}
 }
 
@@ -1136,26 +1170,31 @@ class Tally {
 		$this->totalInstalls += $oBuild->installs;
 		$this->aBuilds[$oBuild->codename] = $oBuild->installs;
 		
-		foreach ($oBuild->aVersions as $versionNo => $versionInstalls) {
-			if (!isset($this->aVersions[$versionNo])) {
-				$this->aVersions[$versionNo] = ['builds' => 0, 'installs' => 0];
+		if (!empty($oBuild->aVersions)) {
+			foreach ($oBuild->aVersions as $versionNo => $versionInstalls) {
+				if (!isset($this->aVersions[$versionNo])) {
+					$this->aVersions[$versionNo] = ['builds' => 0, 'installs' => 0];
+				}
+				
+				$this->aVersions[$versionNo]['builds']++;
+				$this->aVersions[$versionNo]['installs'] += $versionInstalls;
 			}
-			
-			$this->aVersions[$versionNo]['builds']++;
-			$this->aVersions[$versionNo]['installs'] += $versionInstalls;
 		}
 		
-		foreach ($oBuild->aCountries as $country => $countryInstalls) {
-			if (!isset($this->aCountries[$country])) {
-				$this->aCountries[$country] = ['builds' => 0, 'installs' => 0];
+		if (!empty($oBuild->aCountries)) {
+			foreach ($oBuild->aCountries as $country => $countryInstalls) {
+				if (!isset($this->aCountries[$country])) {
+					$this->aCountries[$country] = ['builds' => 0, 'installs' => 0];
+				}
+				
+				$this->aCountries[$country]['builds']++;
+				$this->aCountries[$country]['installs'] += $countryInstalls;
 			}
-			
-			$this->aCountries[$country]['builds']++;
-			$this->aCountries[$country]['installs'] += $countryInstalls;
 		}
 		
 		if (empty($oBuild->maker)) {
 			$this->aMakers['unknown']['builds']++;
+			$this->aMakers['unknown']['installs'] += $oBuild->installs;
 		} else {
 			if (!isset($this->aMakers[$oBuild->maker])) {
 				$this->aMakers[$oBuild->maker] = ['builds' => 0, 'installs' => 0];
@@ -1167,6 +1206,7 @@ class Tally {
 		
 		if (empty($oBuild->processor)) {
 			$this->aProcessors['unknown']['builds']++;
+			$this->aProcessors['unknown']['installs'] += $oBuild->installs;
 		} else {
 			//Add array index as first letter upperclass and other letters as lowercase. Ex: "OMAP" -> "Omap"
 			if (preg_match('/Snapdragon ([24678S])/i', $oBuild->processor, $match)) {
@@ -1212,30 +1252,41 @@ class Tally {
 			$this->unknownInstalls = $worldInstalls - $this->totalInstalls;
 		}
 		
+		$sumBuilds = $sumInstalls = 0;
 		foreach ($this->aMakers as $makerName => $aMaker) {
 			$this->aMakers[$makerName]['percentBuilds'] = 
-				percentString( $this->aMakers[$makerName]['builds'] / $this->totalBuilds );
+				percentString($this->aMakers[$makerName]['builds'] / $this->totalBuilds, 1);
 			$this->aMakers[$makerName]['percentInstalls'] = 
-				percentString( $this->aMakers[$makerName]['installs'] / $this->totalInstalls );
+				percentString( $this->aMakers[$makerName]['installs'] / $this->totalInstalls);
 		}
+		
+		//if ($this->unknownInstalls) {
+		//	$this->aMakers["others"] = ['builds' = null, 'percentBuilds' = null, "installs" = $this->unknownInstalls];
+		//}  
+		
+		$this->aMakers["Total"] = ['maker'=> 'Total', 'builds' => $this->totalBuilds, 'percentBuilds' => '100%', 
+			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
 		
 		foreach ($this->aProcessors as $processorType => $aProcessor) {
 			$this->aProcessors[$processorType]['percentBuilds'] = 
-				percentString( $this->aProcessors[$processorType]['builds'] / $this->totalBuilds );
+				percentString($this->aProcessors[$processorType]['builds'] / $this->totalBuilds, 1);
 			$this->aProcessors[$processorType]['percentInstalls'] = 
 				percentString( $this->aProcessors[$processorType]['installs'] / $this->totalInstalls );
 		}
 		
+		$this->aProcessors["Total"] = ['name' => 'Total', 'builds' => $this->totalBuilds, 'percentBuilds' => '100%', 
+			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
+		
 		foreach ($this->aStatuses as $statusCode => $aStatus) {
 			$this->aStatuses[$statusCode]['percentBuilds'] = 
-				percentString( $this->aStatuses[$statusCode]['builds'] / $this->totalBuilds );
+				percentString($this->aStatuses[$statusCode]['builds'] / $this->totalBuilds, 1);
 			$this->aStatuses[$statusCode]['percentInstalls'] = 
 				percentString( $this->aStatuses[$statusCode]['installs'] / $this->totalInstalls );
 		}
 		
 		foreach ($this->aVersions as $version => $aVersion) {
 			$this->aVersions[$version]['percentBuilds'] = 
-				percentString( $this->aVersions[$version]['builds'] / $this->totalBuilds );
+				percentString($this->aVersions[$version]['builds'] / $this->totalBuilds, 1);
 			$this->aVersions[$version]['percentInstalls'] = 
 				percentString( $this->aVersions[$version]['installs'] / $this->totalInstalls );
 		}
@@ -1245,7 +1296,7 @@ class Tally {
 			 
 			foreach ($this->aYears[$year] as $status => $aStatus) {
 				$this->aYears[$year][$status]['percentBuilds'] = 
-					percentString( $this->aYears[$year][$status]['builds'] / $this->totalBuilds );
+					percentString( $this->aYears[$year][$status]['builds'] / $this->totalBuilds, 1);
 				$this->aYears[$year][$status]['percentInstalls'] = 
 					percentString( $this->aYears[$year][$status]['installs'] / $this->totalInstalls );
 				$yearBuilds += $this->aYears[$year][$status]['builds'];
@@ -1265,6 +1316,9 @@ class Tally {
 		$aSort = [];
 		
 		foreach ($this->aMakers as $makerName => $aMaker) {
+			if ($makerName == 'Total') {
+				continue;
+			}
 			$aMaker["maker"] = $makerName;
 			$idx = $orderBy ? $aMaker[$orderBy] : $makerName; 
 			$aSort[$idx] = $aMaker;
@@ -1275,6 +1329,7 @@ class Tally {
 		} else {
 			ksort($aSort);
 		}
+		$aSort['Total'] = $this->aMakers['Total'];
 		
 		print "+++==== Manufacturers of devices that run LineageOS ====+++\n";
 		print "Rank\tMaker\tBuilds\t" . 
@@ -1283,7 +1338,7 @@ class Tally {
 		
 		foreach ($aSort as $aMaker) {	
 			$rank++;
-			print "$rank\t{$aMaker['maker']}\t{$aMaker['builds']}\t". 
+			print ($aMaker['maker']=='Total' ? '' : $rank) . "\t{$aMaker['maker']}\t{$aMaker['builds']}\t". 
 				($GLOBALS['onlyShowInstalls'] ? "{$aMaker['installs']}\n" :
 				"{$aMaker['percentBuilds']}\t{$aMaker['installs']}\t{$aMaker['percentInstalls']}\n");
 		}
@@ -1294,6 +1349,9 @@ class Tally {
 		$aSort = [];
 		
 		foreach ($this->aProcessors as $processorType => $aProcessor) {
+			if ($processorType == 'Total') {
+				continue;
+			}
 			$aProcessor["name"] = $processorType;
 			$idx = $orderBy ? $aProcessor[$orderBy] : $processorType; 
 			$aSort[$idx] = $aProcessor;
@@ -1388,10 +1446,11 @@ class Tally {
 }
 
 if ($showCountry) {
-	if ($showCountry == 'default')
+	if ($showCountry == 'default') {
 		showCountryList();
-	else
+	} else {
 		showOneCountry($showCountry);
+	}
 }
 
 if ($showBuild) {
@@ -1402,7 +1461,7 @@ if ($showBuild) {
 }
 
 if (date_default_timezone_get() == 'UTC' and $GLOBALS['OS'] == 'unix-like') {
-	print "Reported on ".system('date')("Y-m-d H:i:s").".\n";
+	print "Reported on ". trim(shell_exec('date')) .".\n";
 } else {
 	print "Reported on ".date("Y-m-d H:i:s").".\n";
 }
@@ -1413,6 +1472,7 @@ $minutes = (int) ($executionTime / 60);
 $seconds = $executionTime % 60;
 echo "Script execution time = ". 
 	($minutes ? "$minutes minutes $seconds" : $executionTime) . " seconds\n";
+	
  
 
 function showBuildList() {
@@ -1642,7 +1702,8 @@ function showOneCountry($country) {
 	global $countryData, $buildData, $onlyShowInstalls;
 	$aProcessors = [];
 	$aMakers = [];
-	
+	$aBuilds = [];
+	$tally = new Tally();
 	$country = trim($country);
 	
 	//if not a 2 letter country code, then search to see if in list of countries. 
@@ -1681,22 +1742,16 @@ function showOneCountry($country) {
 	}
 	
 	if ($onlyShowInstalls) {
-		print "CC\tMaker\tModel\tInstalls\n";
+		print "Build\tMaker\tModel\tInstalls\n";
 	} else {
-		print "CC\tMaker\tModel\tProcessor\tModel released\tStatus\tInstalls\t% of installs\n";
+		print "Build\tMaker\tModel\tProcessor\tModel released\tStatus\tInstalls\t% of installs\n";
 	}
 	
 	foreach ($aDivBuilds as $divBuild) {
 		$codename = $divBuild->find("span.leaderboard-left a", 0)->innertext();
 		$installs = $divBuild->find("span.leaderboard-right", 0)->innertext();
 		$runningTotal += $installs;
-		$percent = ($installs/$countryInstalls)*100;
-		
-		if ($percent < 0.01)
-			$percentInstalls = sprintf('%.3f', $percent) .'%';
-		else
-			$percentInstalls = sprintf('%.2f', $percent) .'%';
-		
+		$percentInstalls = percentString($installs/$countryInstalls, 2);
 		
 		if (isset($buildData[$codename])) {
 			$maker = $buildData[$codename]->maker;
@@ -1716,6 +1771,11 @@ function showOneCountry($country) {
 			$aMakers[$maker]['builds']++;
 			$aMakers[$maker]['installs'] += $installs;
 			
+			$aBuilds[$codename] = new LosBuild($codename);
+			$aBuildInfo = ['codename' => $codename, 'installs' => $installs];
+			$aBuilds[$codename]->setInfo($aBuildInfo);
+			$tally->addBuild($aBuilds[$codename]);
+			/*
 			if (empty($processor)) {
 				$procesfsorKey = null;
 			}
@@ -1732,7 +1792,7 @@ function showOneCountry($country) {
 				
 				$aProcessors[$processorKey]['builds']++;
 				$aProcessors[$processorKey]['installs'] += $installs;
-			}
+			}*/
 		}
 		else {
 			print $codename."\t\t\t". ($onlyShowInstalls ? $installs."\n" : 
@@ -1750,13 +1810,18 @@ function showOneCountry($country) {
 	}
 	
 	if ($onlyShowInstalls) {
-		print "Total\t\t\t$countryInstalls\n";
-		print "\nMaker\tBuilds\tInstalls\n";
+		print "Total\t\t\t$countryInstalls\n\n";
 	} else {
-		print "Total\t\t\t\t\t\t$countryInstalls\t100%\n";
-		print "\nMaker\tBuilds\tInstalls\t% of installs\n";
-	}
+		print "Total\t\t\t\t\t\t$countryInstalls\t100%\n\n";
+	} 
 	
+	$tally->finalize($countryInstalls);
+	$tally->showMakers();
+	$tally->showProcessors();
+	$tally->showStatuses();
+	$tally->showYears();
+	
+	/*
 	foreach ($aMakers as $key => $maker) {
 		$percentInstalls = percentString($maker['installs']/$countryInstalls);
 		
@@ -1771,7 +1836,7 @@ function showOneCountry($country) {
 
 		print $key ."\t". $processor['builds'] ."\t". $processor['installs'] .
 			($onlyShowInstalls ? "\n" : "\t". $percentInstalls ."\n");
-	}
+	} */
 }
 
 
@@ -1871,15 +1936,15 @@ function showOneBuild($buildCode) {
 	if (isset($buildData[$buildCode])) { 
 		$status = $aStatusCodes[ $buildData[$buildCode]->status ]; 
 		
-		print "$buildCode\t" . $buildData[$buildCode]->maker ."\t". 
+		print "Build: $buildCode\tDevice: " . $buildData[$buildCode]->maker ."\t". 
 			$buildData[$buildCode]->modelName . ($buildData[$buildCode]->altModelNames ? 
 			', '.$buildData[$buildCode]->altModelNames : '') ."\n".
-			($onlyShowInstalls ? "installs: " . $buildInstalls ."\n\n":
-			"processsor: ". $buildData[$buildCode]->processor .
-			"\treleased: ". $buildData[$buildCode]->modelReleaseDate .
-			"\tstatus: ". $status ."\n". 
-			"installs: " . $buildInstalls . 
-			"\tglobal installs / million persons: ". $installsPerMillion ."\n\n");
+			($onlyShowInstalls ? "Installs: " . $buildInstalls ."\n\n":
+			"Processsor: ". $buildData[$buildCode]->processor .
+			"\tReleased: ". $buildData[$buildCode]->modelReleaseDate .
+			"\tStatus: ". $status ."\n". 
+			"Installs: " . $buildInstalls . 
+			"\tGlobal installs / million persons: ". $installsPerMillion ."\n\n");
 	}
 	else {
 		print "Report for $buildCode\tInstalls:\t$buildInstalls\n\n";
@@ -1907,6 +1972,7 @@ function showOneBuild($buildCode) {
 				($onlyShowInstalls ? "\n" : "\t". $percentInstalls ."\n");
 		}
 	} 
+	print "\n";
 }
 
 //make string of a percent with the number of decimal digits depending on the number. 
