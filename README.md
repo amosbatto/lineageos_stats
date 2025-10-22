@@ -29,7 +29,7 @@ list under "Unlisted".
 The status codes for the builds are: 
 **O**=active official build,  
 **D**=discontinued official build,  
-**U**=unofficial build 
+**U**=unofficial build  
  
 **Installation:**   
 1. Install the command line interface for PHP 7 or later. 
@@ -84,5 +84,5 @@ execute it. For example in Windows:
 
 **Author:**  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)  
 **License:** MIT license (for the lineageos_stats script and the included 
-         SimpleHtmlDom https://sourceforge.net/projects/simplehtmldom) 
+         SimpleHtmlDom https://sourceforge.net/projects/simplehtmldom)  
 **Date:**    2025-10-19 (version 0.1)  
