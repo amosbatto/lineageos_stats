@@ -26,7 +26,7 @@ there are some less popular builds that it won't find because LineageOS
 only provides the top 250 builds for each country. LineageOS doesn't 
 provide a complete list of builds, but it does provide a total installs 
 number, so any installs that aren't found are tallied at the end of the 
-list under "Other builds". 
+list under "Unlisted". 
 
 The status codes for the builds are: O=active official build, 
 D=discontinued official build, U=unofficial build 
@@ -81,7 +81,7 @@ Command line options:
 Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)
 License: MIT license (for the lineageos_stats script and the included 
          SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom)
-Date:    2025-10-19 (version 0.1)
+Date:    2025-10-21 (version 0.2)
 
 HELP;
 
@@ -404,7 +404,7 @@ class LosBuild {
 	//info about device(s) supported by the build:
 	public $maker, $modelName, $altModelNames, $processor, $modelReleaseDate;
 	public $status;     //status codes: O=active official build, D=discontinued official build, U=unofficial build 
-	public $installs;   //Total number of installs for the different versions of the build
+	public $installs;   //installs for all the different versions of the build
 	public $aVersions; 
 	public $aCountries;
 	
@@ -413,8 +413,8 @@ class LosBuild {
 	{
 		$this->codename         = $codename;    
 		$this->maker            = $maker; 
-		$this->modelName        = $modelName;
-		$this->altModelNames    = $altModelNames;
+		$this->modelName        = $modelName . ($altModelNames ? ', '.$altModelNames : '');
+		$this->altModelNames    = null; //added to modelName, so variable is no longer used
 		$this->processor        = $processor; 
 		$this->modelReleaseDate = $modelReleaseDate; 
 		$this->status           = $status;
@@ -455,7 +455,6 @@ class LosBuild {
 		else {
 			$this->maker            = $buildData[$buildCode]->maker;
 			$this->modelName        = $buildData[$buildCode]->modelName;
-			$this->altModelNames    = $buildData[$buildCode]->altModelNames;
 			$this->processor        = $buildData[$buildCode]->processor; 
 			$this->modelReleaseDate = $buildData[$buildCode]->modelReleaseDate; 
 			$this->status           = $buildData[$buildCode]->status;
@@ -482,7 +481,7 @@ class LosBuild {
 		else {
 			$this->maker            = $buildData[$buildCode]->maker;
 			$this->modelName        = $buildData[$buildCode]->modelName;
-			$this->altModelNames    = $buildData[$buildCode]->altModelNames;
+			//$this->altModelNames  = $buildData[$buildCode]->altModelNames;
 			$this->processor        = $buildData[$buildCode]->processor; 
 			$this->modelReleaseDate = $buildData[$buildCode]->modelReleaseDate; 
 			$this->status           = $buildData[$buildCode]->status;
@@ -1135,13 +1134,13 @@ $GLOBALS['buildData'] = $buildData = [
 	'akershus'		=> new LosBuild('akershus', 'ZTE', 'Axon 9 Pro', '', 'Snapdragon 845', '2018-11-01', 'O'),
 	'ham'		=> new LosBuild('ham', 'ZUK', 'Z1', '', 'Snapdragon 801', '2015-10-14', 'D'),
 	'z2_plus'		=> new LosBuild('z2_plus', 'ZUK', 'Z2 Plus', '', 'Snapdragon 820', '2016-06-01', 'D'),
-	'waydroid_arm64'		=> new LosBuild('waydroid_arm64', '', 'Waydroid on ARM64', '', '', '2021-07-01', 'U'),
-	'waydroid_x86'		=> new LosBuild('waydroid_x86', '', 'Waydroid on i386', '', '', '2021-07-01', 'U'),
-	'waydroid_x86_64'		=> new LosBuild('waydroid_x86_64', '', 'Waydroid on x86_64', '', '', '2021-07-01', 'U'),
-	'android_x86_64'		=> new LosBuild('android_x86_64', '', 'Android on x86_64', '', '', '', 'U'),
-	'x86_64_tv'		=> new LosBuild('x86_64_tv', '', 'Android TV on x86_64', '', '', '', 'U'),
-	'android_x86'		=> new LosBuild('android_x86', '', 'Android on x86', '', '', '', 'U'),
-	'D22AP'		=> new LosBuild('D22AP', '', 'Android 12 (API 22)', '', '', '', 'U') 
+	'waydroid_arm64'		=> new LosBuild('waydroid_arm64', 'virtual machine', 'Waydroid on ARM64', '', 'ARM', '2021-07-01', 'U'),
+	'waydroid_x86'		=> new LosBuild('waydroid_x86', 'virtual machine', 'Waydroid on i386', '', 'x86', '2021-07-01', 'U'),
+	'waydroid_x86_64'		=> new LosBuild('waydroid_x86_64', 'virtual machine', 'Waydroid on x86_64', '', 'x86', '2021-07-01', 'U'),
+	'android_x86_64'		=> new LosBuild('android_x86_64', 'virtual machine', 'Android on x86_64', '', 'x86', '', 'U'),
+	'x86_64_tv'		=> new LosBuild('x86_64_tv', 'virtual machine', 'Android TV on x86_64', '', 'x86', '', 'U'),
+	'android_x86'		=> new LosBuild('android_x86', 'virtual machine', 'Android on x86', '', 'x86', '', 'U'),
+	'D22AP'		=> new LosBuild('D22AP', 'virtual machine', 'Android 12 (API 22)', '', '', '', 'U') 
 ];
 
 //class to tally the number of builds and installs by LOS version, device processor type, manufacturer and statuses
@@ -1149,26 +1148,24 @@ class Tally {
 	public $aBuilds      = [];
 	public $aVersions    = [];
 	public $aCountries   = [];
-	public $aMakers      = ['unknown' => ['builds' => 0, 'installs' => 0]];
-	public $aProcessors  = ['unknown' => ['builds' => 0, 'installs' => 0]];
+	public $aMakers      = [];
+	public $aProcessors  = [];
 	public $aStatuses    = [
 		'O' => ['builds' => 0, 'installs' => 0], //active official builds
 		'D' => ['builds' => 0, 'installs' => 0], //discontinued official builds
 		'U' => ['builds' => 0, 'installs' => 0]  //unofficial builds
 	];
-	//years when devices were originally released
-	public $aYears       = [
-		'unknown' => ['U' => ['builds' => 0, 'installs' => 0] ] //unofficial builds
-	];
-	public $totalBuilds = 0;
-	public $totalInstalls = 0;
-	public $unknownInstalls = null; //installs that weren't counting by script
+	public $aYears       = [];  //years when devices were originally released
+	public $sumBuilds = 0;      //running total of builds
+	public $sumInstalls = 0;    //running total of installs
+	public $unlistedInstalls;   //installs that aren't listed on stats.lineageos.org pages
+	public $totalInstalls;      //total installs shown on stats.lineageos.org pages
 	
 	//add a build to the tally
 	public function addBuild(LosBuild $oBuild) {
-		$this->totalBuilds++;
-		$this->totalInstalls += $oBuild->installs;
-		$this->aBuilds[$oBuild->codename] = $oBuild->installs;
+		$this->sumBuilds++;
+		$this->sumInstalls += $oBuild->installs;
+		$this->aBuilds[$oBuild->codename] = $oBuild;
 		
 		if (!empty($oBuild->aVersions)) {
 			foreach ($oBuild->aVersions as $versionNo => $versionInstalls) {
@@ -1193,6 +1190,9 @@ class Tally {
 		}
 		
 		if (empty($oBuild->maker)) {
+			if (!isset($this->aMakers['unknown'])) {
+				$this->aMakers['unknown'] = ['builds' => 0, 'installs' => 0];
+			}
 			$this->aMakers['unknown']['builds']++;
 			$this->aMakers['unknown']['installs'] += $oBuild->installs;
 		} else {
@@ -1205,6 +1205,9 @@ class Tally {
 		}
 		
 		if (empty($oBuild->processor)) {
+			if (!isset($this->aProcessors['unknown'])) {
+				$this->aProcessors['unknown'] = ['builds' => 0, 'installs' => 0];
+			}
 			$this->aProcessors['unknown']['builds']++;
 			$this->aProcessors['unknown']['installs'] += $oBuild->installs;
 		} else {
@@ -1228,6 +1231,9 @@ class Tally {
 		$this->aStatuses[$status]['installs'] += $oBuild->installs;
 		
 		if (empty($oBuild->modelReleaseDate)) {
+			if (!isset($this->aYears['unknown'])) {
+				$this->aYears['unknown'] = [$status => ['builds' => 0, 'installs' => 0]];
+			}
 			$this->aYears['unknown'][$status]['builds']++;
 			$this->aYears['unknown'][$status]['installs'] += $oBuild->installs;
 		} else {
@@ -1246,77 +1252,170 @@ class Tally {
 		}
 	}
 	
-	//finalize the tally by calculating the percentages of the different categories, plus the number of unknown installs
-	public function finalize($worldInstalls=null) {
-		if ($worldInstalls) {
-			$this->unknownInstalls = $worldInstalls - $this->totalInstalls;
+	//finalize the tally by calculating the percentages of the different categories, plus the number of unlisted installs
+	public function finalize($totalInstalls = null) {
+		
+		if ($totalInstalls) {
+			$this->totalInstalls = $totalInstalls;
+			$this->unlistedInstalls = $totalInstalls - $this->sumInstalls;
+		} else {
+			$this->totalInstalls = $this->sumInstalls;
+			$this->unlistedInstalls = 0;
 		}
 		
-		$sumBuilds = $sumInstalls = 0;
 		foreach ($this->aMakers as $makerName => $aMaker) {
 			$this->aMakers[$makerName]['percentBuilds'] = 
-				percentString($this->aMakers[$makerName]['builds'] / $this->totalBuilds, 1);
+				percentString($this->aMakers[$makerName]['builds'] / $this->sumBuilds, 1);
 			$this->aMakers[$makerName]['percentInstalls'] = 
 				percentString( $this->aMakers[$makerName]['installs'] / $this->totalInstalls);
 		}
 		
-		//if ($this->unknownInstalls) {
-		//	$this->aMakers["others"] = ['builds' = null, 'percentBuilds' = null, "installs" = $this->unknownInstalls];
-		//}  
+		if ($this->unlistedInstalls) {
+			$this->aMakers["Unlisted"] = [
+				'maker' => 'Unlisted', 'builds' => '?', 'percentBuilds' => '?', 'installs' => $this->unlistedInstalls, 
+				'percentInstalls' => percentString($this->unlistedInstalls / $this->totalInstalls)
+			];
+		}  
 		
-		$this->aMakers["Total"] = ['maker'=> 'Total', 'builds' => $this->totalBuilds, 'percentBuilds' => '100%', 
+		$this->aMakers["Total"] = ['maker'=> 'Total', 'builds' => $this->sumBuilds, 'percentBuilds' => '100%', 
 			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
 		
 		foreach ($this->aProcessors as $processorType => $aProcessor) {
 			$this->aProcessors[$processorType]['percentBuilds'] = 
-				percentString($this->aProcessors[$processorType]['builds'] / $this->totalBuilds, 1);
+				percentString($this->aProcessors[$processorType]['builds'] / $this->sumBuilds, 1);
 			$this->aProcessors[$processorType]['percentInstalls'] = 
 				percentString( $this->aProcessors[$processorType]['installs'] / $this->totalInstalls );
 		}
 		
-		$this->aProcessors["Total"] = ['name' => 'Total', 'builds' => $this->totalBuilds, 'percentBuilds' => '100%', 
+		if ($this->unlistedInstalls) {
+			$this->aProcessors["Unlisted"] = [
+				'name' => 'Unlisted', 'builds' => '?', 'percentBuilds' => '?', 'installs' => $this->unlistedInstalls, 
+				'percentInstalls' => percentString($this->unlistedInstalls/$this->totalInstalls)
+			];
+		}  
+		
+		$this->aProcessors["Total"] = ['name' => 'Total', 'builds' => $this->sumBuilds, 'percentBuilds' => '100%', 
 			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
 		
 		foreach ($this->aStatuses as $statusCode => $aStatus) {
 			$this->aStatuses[$statusCode]['percentBuilds'] = 
-				percentString($this->aStatuses[$statusCode]['builds'] / $this->totalBuilds, 1);
+				percentString($this->aStatuses[$statusCode]['builds'] / $this->sumBuilds, 1);
 			$this->aStatuses[$statusCode]['percentInstalls'] = 
 				percentString( $this->aStatuses[$statusCode]['installs'] / $this->totalInstalls );
 		}
 		
+		if ($this->unlistedInstalls) {
+			$this->aStatuses["Unlisted"] = [
+				'name' => 'Unlisted', 'builds' => null, 'percentBuilds' => null, 'installs' => $this->unlistedInstalls, 
+				'percentInstalls' => percentString($this->unlistedInstalls/$this->totalInstalls)
+			];
+		}  
+		
+		$this->aStatuses["Total"] = ['name' => 'Total', 'builds' => $this->sumBuilds, 'percentBuilds' => '100%', 
+			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
+		
 		foreach ($this->aVersions as $version => $aVersion) {
 			$this->aVersions[$version]['percentBuilds'] = 
-				percentString($this->aVersions[$version]['builds'] / $this->totalBuilds, 1);
+				percentString($this->aVersions[$version]['builds'] / $this->sumBuilds, 1);
 			$this->aVersions[$version]['percentInstalls'] = 
 				percentString( $this->aVersions[$version]['installs'] / $this->totalInstalls );
 		}
+		
+		if ($this->unlistedInstalls) {
+			$this->aVersions["Unlisted"] = [
+				'name' => 'Unlisted', 'builds' => null, 'percentBuilds' => null, 'installs' => $this->unlistedInstalls, 
+				'percentInstalls' => percentString($this->unlistedInstalls/$this->totalInstalls)
+			];
+		}  
+		
+		$this->aVersions["Total"] = ['name' => 'Total', 'builds' => $this->sumBuilds, 'percentBuilds' => '100%', 
+			'installs' => $this->totalInstalls, 'percentInstalls' => '100%'];
 		
 		foreach ($this->aYears as $year => $aYear) {
 			$yearBuilds = $yearInstalls = 0; //sum totals for year
 			 
 			foreach ($this->aYears[$year] as $status => $aStatus) {
 				$this->aYears[$year][$status]['percentBuilds'] = 
-					percentString( $this->aYears[$year][$status]['builds'] / $this->totalBuilds, 1);
+					percentString( $this->aYears[$year][$status]['builds'] / $this->sumBuilds, 1);
 				$this->aYears[$year][$status]['percentInstalls'] = 
 					percentString( $this->aYears[$year][$status]['installs'] / $this->totalInstalls );
-				$yearBuilds += $this->aYears[$year][$status]['builds'];
+				$yearBuilds   += $this->aYears[$year][$status]['builds'];
 				$yearInstalls += $this->aYears[$year][$status]['installs'];
 			}
 			
 			$this->aYears[$year]['Total']['builds'] = $yearBuilds;
 			$this->aYears[$year]['Total']['percentBuilds'] = 
-				percentString($yearBuilds / $this->totalBuilds);
+				percentString($yearBuilds / $this->sumBuilds);
 			$this->aYears[$year]['Total']['installs'] = $yearInstalls;
 			$this->aYears[$year]['Total']['percentInstalls'] = 
 				percentString($yearInstalls / $this->totalInstalls);
 		}
+		
+		if ($this->unlistedInstalls) {
+			$this->aYears['Unlisted'] = ['Unlisted' =>
+				['builds' => null, 'percentBuilds' => null, 'installs' => $this->unlistedInstalls, 
+				'percentInstalls' => percentString($this->unlistedInstalls/$this->totalInstalls)]
+			];
+		}  
+		
+		$this->aYears["Total"] = ['Total' => 
+			['builds' => $this->sumBuilds, 'percentBuilds' => '100%', 
+			'installs' => $this->totalInstalls, 'percentInstalls' => '100%']
+		];
+	}
+	
+	public function showBuilds($orderBy="installs", $order="descending") {
+		$onlyShowInstalls = $GLOBALS['onlyShowInstalls'];
+		$aSortBuilds = array();
+
+		foreach ($this->aBuilds as $codename => $oBuild) {
+			$index = sprintf("%07d", $oBuild->installs) ."-". $codename;
+			$percentInstalls = percentString($oBuild->installs / $this->totalInstalls);
+			
+			$aSortBuilds[$index] = 
+				$oBuild->codename . "\t" .
+				$oBuild->maker ."\t". 
+				$oBuild->modelName ."\t".
+				($onlyShowInstalls ? $oBuild->installs : 
+				$oBuild->processor ."\t".
+				$oBuild->modelReleaseDate ."\t".
+				$oBuild->status ."\t".
+				$oBuild->installs ."\t".
+				$percentInstalls);
+		}
+		
+		krsort($aSortBuilds);
+		
+		if ($this->unlistedInstalls) {
+			$percentInstalls = percentString($this->unlistedInstalls / $this->totalInstalls);
+			$aSortBuilds['Unlisted'] = "Unlisted\t\t\t" . 
+				($onlyShowInstalls ? $this->unlistedInstalls : "\t\t\t".$this->unlistedInstalls."\t".$percentInstalls);
+		}
+		
+		$aSortBuilds['Total'] = "Total\t\t\t". 
+			($onlyShowInstalls ? $this->totalInstalls : "\t\t\t".$this->totalInstalls."\t100%");
+		$rank = 0;
+		print "+++==== LineageOS builds by number of installs ====+++\n"; 
+		print "Rank\tBuild\tMaker\tModel\t" . ($onlyShowInstalls ? "Installs\n" : 
+			"Processor\tModel released\tStatus\tInstalls\t% of total\n");
+		
+		foreach ($aSortBuilds as $key => $build) {
+			$rank++;
+			print (in_array($key, ['Unlisted', 'Total']) ? '' : $rank) ."\t". $build ."\n";
+		}
+		
+		if (!$onlyShowInstalls) {
+			print "\nStatus codes: O=active official build, D=discontinued official build, U=unofficial build\n";
+		} 
+		
+		print "\n";
 	}
 	
 	public function showMakers($orderBy="installs", $order="descending") {
 		$aSort = [];
 		
 		foreach ($this->aMakers as $makerName => $aMaker) {
-			if ($makerName == 'Total') {
+			if ($makerName == 'Total' or $makerName == 'Unlisted') {
 				continue;
 			}
 			$aMaker["maker"] = $makerName;
@@ -1329,6 +1428,11 @@ class Tally {
 		} else {
 			ksort($aSort);
 		}
+		
+		if (isset($this->aMakers['Unlisted'])) {
+			$aSort['Unlisted'] = $this->aMakers['Unlisted'];
+		}
+		
 		$aSort['Total'] = $this->aMakers['Total'];
 		
 		print "+++==== Manufacturers of devices that run LineageOS ====+++\n";
@@ -1336,9 +1440,9 @@ class Tally {
 			($GLOBALS['onlyShowInstalls'] ? "Installs" : "% Builds\tInstalls\t% Installs")."\n";
 		$rank = 0;
 		
-		foreach ($aSort as $aMaker) {	
+		foreach ($aSort as $key => $aMaker) {
 			$rank++;
-			print ($aMaker['maker']=='Total' ? '' : $rank) . "\t{$aMaker['maker']}\t{$aMaker['builds']}\t". 
+			print (in_array($key, ['Unlisted', 'Total']) ? '' : $rank) ."\t{$aMaker['maker']}\t{$aMaker['builds']}\t". 
 				($GLOBALS['onlyShowInstalls'] ? "{$aMaker['installs']}\n" :
 				"{$aMaker['percentBuilds']}\t{$aMaker['installs']}\t{$aMaker['percentInstalls']}\n");
 		}
@@ -1349,7 +1453,7 @@ class Tally {
 		$aSort = [];
 		
 		foreach ($this->aProcessors as $processorType => $aProcessor) {
-			if ($processorType == 'Total') {
+			if ($processorType == 'Total' or $processorType == 'Unlisted') {
 				continue;
 			}
 			$aProcessor["name"] = $processorType;
@@ -1363,14 +1467,19 @@ class Tally {
 			ksort($aSort);
 		}
 		
+		if (isset($this->aProcessors['Unlisted'])) {
+			$aSort['Unlisted'] = $this->aProcessors['Unlisted'];
+		}
+		$aSort['Total'] = $this->aProcessors['Total'];
+		
 		print "+++==== Processors of devices that run LineageOS ====+++\n";
 		print "Rank\tProcessor\tBuilds\t" . 
 			($GLOBALS['onlyShowInstalls'] ? "Installs" : "% Builds\tInstalls\t% Installs")."\n";
 		$rank = 0;
 		
-		foreach ($aSort as $aItem) {
+		foreach ($aSort as $key => $aItem) {
 			$rank++;
-			print "$rank\t{$aItem['name']}\t{$aItem['builds']}\t". 
+			print (in_array($key, ['Unlisted', 'Total']) ? '' : $rank) ."\t{$aItem['name']}\t{$aItem['builds']}\t". 
 				($GLOBALS['onlyShowInstalls'] ? "{$aItem['installs']}\n" :
 				"{$aItem['percentBuilds']}\t{$aItem['installs']}\t{$aItem['percentInstalls']}\n");
 		}
@@ -1395,6 +1504,10 @@ class Tally {
 		$aSort = [];
 		
 		foreach ($this->aVersions as $versionNo => $aItem) {
+			if ($versionNo == 'Total' or $versionNo == 'Unlisted') {
+				continue;
+			}
+			
 			$aItem["name"] = $versionNo;
 			$idx = $orderBy ? $aItem[$orderBy] : $versionNo; 
 			$aSort[$idx] = $aItem;
@@ -1406,15 +1519,20 @@ class Tally {
 			ksort($aSort);
 		}
 		
+		if (isset($this->aVersions['Unlisted'])) {
+			$aSort['Unlisted'] = $this->aVersions['Unlisted'];
+		}
+		$aSort['Total'] = $this->aVersions['Total'];
+		
 		print "+++==== LineageOS versions in active installs ====+++\n";
 		
 		print "Rank\tVersion\tBuilds\t" . 
 			($GLOBALS['onlyShowInstalls'] ? "Installs" : "% Builds\tInstalls\t% Installs") . "\n";
 		$rank = 0;
 		
-		foreach ($aSort as $aItem) {
+		foreach ($aSort as $key => $aItem) {
 			$rank++;
-			print "$rank\t{$aItem['name']}\t{$aItem['builds']}\t". 
+			print (in_array($key, ['Unlisted', 'Total']) ? '' : $rank) ."\t{$aItem['name']}\t{$aItem['builds']}\t". 
 				($GLOBALS['onlyShowInstalls'] ? "{$aItem['installs']}\n" :
 				"{$aItem['percentBuilds']}\t{$aItem['installs']}\t{$aItem['percentInstalls']}\n");
 		}
@@ -1426,16 +1544,30 @@ class Tally {
 	//sort by year
 	public function showYears() {
 		$aSort = $this->aYears;
+		foreach ($this->aYears as $key => $aYear) {
+			if (!is_numeric($key)) {
+				unset($aSort[$key]);
+			}
+		}
+		
 		ksort($aSort);
+		
+		if (isset($this->aYears['unknown'])) {
+			$aSort['unknown'] = $this->aYears['unknown'];
+		}
+		if (isset($this->aYears['Unlisted'])) {
+			$aSort['Unlisted'] = $this->aYears['Unlisted'];
+		}
+		$aSort['Total'] = $this->aYears['Total'];
 		
 		print "+++==== Years when devices running LineageOS were released ====+++\n";
 		
 		print "Year\tStatus\tBuilds\t" . 
-			($GLOBALS['onlyShowInstalls'] ? 'Installs' : "% Builds\tInstalls\t% Installs")."\n";
+				($GLOBALS['onlyShowInstalls'] ? 'Installs' : "% Builds\tInstalls\t% Installs")."\n";
 		
 		foreach ($aSort as $year => $aYear) {
 			foreach ($aYear as $status => $aStatus) {
-				print "$year\t$status\t{$aStatus['builds']}\t". 
+				print "$year\t$status\t{$aStatus['builds']}\t" . 
 					($GLOBALS['onlyShowInstalls'] ? "{$aStatus['installs']}\n" :
 					"{$aStatus['percentBuilds']}\t{$aStatus['installs']}\t{$aStatus['percentInstalls']}\n");
 			}
@@ -1472,13 +1604,11 @@ $minutes = (int) ($executionTime / 60);
 $seconds = $executionTime % 60;
 echo "Script execution time = ". 
 	($minutes ? "$minutes minutes $seconds" : $executionTime) . " seconds\n";
-	
  
 
 function showBuildList() {
 	global $countryData, $buildData, $verbose, $onlyShowInstalls;
 	
-	$aBuilds = array();
 	$tally = new Tally();
 	$ctryCount = 0;
 	
@@ -1494,14 +1624,14 @@ function showBuildList() {
 	$aDivCountries  = $html->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 	
 	print "Downloading builds from http://stats.lineageos.org" .
-		($GLOBALS['OS'] == "unix-like" ? ". Press 'b' to break downloads.\n": "...\n");
+		($GLOBALS['OS'] == "unix-like" ? ". Press 'b' to break downloads.\n\n": "...\n\n");
 	
 	foreach($aDivCountries as $divCountry) {
 		if ($GLOBALS['OS'] == "unix-like") {
 			//check if user presses "b" to break downloading
 			$char = fgetc($stdin);
 			if ($breakDownloads or $char == 'b') {
-				print "Breaking downloads and showing results for ".count($aBuilds)." builds...\n";
+				print "Breaking downloads and showing results for ".count($tally->aBuilds)." builds.\n\n";
 				system('stty sane');
 				fclose($stdin);
 				break;
@@ -1522,14 +1652,14 @@ function showBuildList() {
 		}
 		
 		if ($verbose) {
-			print("Get country #$ctryCount $countryCode:\t");
+			print sprintf('%-32s', "Get country #$ctryCount $countryCode:");
 		}
 		
 		$ctryPage = new simple_html_dom();
 		$ctryPage->load_file('https://stats.lineageos.org/country/' . $countryCode);
 		
 		if ($verbose) {
-			print $countryInstalls."\n";
+			print sprintf('%8d', $countryInstalls)."\n";
 		}
 		
 		$aDivBuilds = $ctryPage->find('div[id=top-devices]', 0)->find('div.leaderboard-row');
@@ -1544,69 +1674,29 @@ function showBuildList() {
 				}
 			}
 			
-			$buildCodeName = $divBuild->find("span.leaderboard-left a", 0)->innertext();
+			$buildCode = $divBuild->find("span.leaderboard-left a", 0)->innertext();
 			
-			if (isset($aBuilds[$buildCodeName])) {
+			if (isset($tally->aBuilds[$buildCode])) {
 				continue;
 			}
-			if ($verbose) {
-				print "Get build #".(count($aBuilds)+1)." $buildCodeName:\t";
+			
+			if ($verbose) {  
+				print sprintf('%-32s', "Get build #". (count($tally->aBuilds)+1) ." $buildCode:");
 			}
 			
-			$aBuilds[$buildCodeName] = new LosBuild($buildCodeName);
-			$aBuilds[$buildCodeName]->downloadInfo($buildCodeName, $buildData);
-			$tally->addBuild($aBuilds[$buildCodeName]);
+			$oBuild = new LosBuild($buildCode);
+			$oBuild->downloadInfo();
+			$tally->addBuild($oBuild);
 			
 			if ($verbose) {
-				print $aBuilds[$buildCodeName]->installs . "\n";
+				print sprintf('%8d', $oBuild->installs) . "\n";
 			}
 		}
 	}
 	
 	$tally->finalize($worldDownloads);
-	$aSortBuilds = array();
-
-	foreach ($aBuilds as $codename => $oBuild) {
-		$index = sprintf("%07d", $oBuild->installs) ."-". $codename;
-		$percentInstalls = percentString($oBuild->installs/$worldDownloads);
-		
-		$aSortBuilds[$index] = 
-			$oBuild->codename . "\t" .
-			$oBuild->maker ."\t". 
-			$oBuild->modelName .
-			($oBuild->altModelNames ? ', '.$oBuild->altModelNames : '') ."\t".
-			($onlyShowInstalls ? $oBuild->installs : 
-			$oBuild->processor ."\t".
-			$oBuild->modelReleaseDate ."\t".
-			$oBuild->status ."\t".
-			$oBuild->installs ."\t".
-			$percentInstalls);
-	}
 	
-	krsort($aSortBuilds);
-	
-	if ($tally->unknownInstalls) {
-		$percentOfTotal = percentString($tally->unknownInstalls/$worldDownloads);
-		$aSortBuilds[' Others'] = "Other builds\t\t\t" . 
-			($onlyShowInstalls ? $tally->unknownInstalls : "\t\t\t".$tally->unknownInstalls."\t".$percentOfTotal);
-	}
-	
-	$aSortBuilds[' World'] = "World\t\t\t". ($onlyShowInstalls ? $worldDownloads : "\t\t\t$worldDownloads\t100%");
-	$buildRank = 0;
-	print "+++==== LineageOS builds - global ranking by installs ====+++\n"; 
-	print "Rank\tCodename\tMaker\tModel\t" . ($onlyShowInstalls ? $Installs."\n" : 
-		"Processor\tModel released\tStatus\tInstalls\t% of total\n");
-	
-	foreach ($aSortBuilds as $build) {
-		$buildRank++;
-		print $buildRank.".\t".$build."\n";
-	}
-	
-	if (!$onlyShowInstalls) {
-		print "\nstatus codes: O=active official build, D=discontinued official build, U=unofficial build\n";
-	} 
-	
-	print "\n";
+	$tally->showBuilds();
 	$tally->showMakers();
 	$tally->showProcessors();
 	$tally->showStatuses();
@@ -1656,17 +1746,18 @@ function showCountryList() {
 	mergeTwoCountries('CZ', 'XC', $aCountries);  
 	
 	krsort($aCountries);
-	
-	print "CC\tCountry\tInstalls" . ($onlyShowInstalls ? "\n" : 
+	$rank = 0;
+	print "Rank\tCC\tCountry\tInstalls" . ($onlyShowInstalls ? "\n" : 
 		"\t% of total\tInstalls/million\tPopulation (000)\n");
 	
 	foreach ($aCountries as $key=>$country) {
+		$rank++;
 		if (!is_array($country) or count($country) < 6) {
 			print("Bad key: ".$key);
 			var_dump($country);
 		}
 		else {
-			print "{$country[0]}\t{$country[1]}\t{$country[2]}" . 
+			print ($key == ' World' ? '' : $rank) . "\t{$country[0]}\t{$country[1]}\t{$country[2]}" . 
 				($onlyShowInstalls ? "\n" : "\t{$country[3]}\t{$country[4]}\t{$country[5]}\n");
 		}
 	}
@@ -1757,9 +1848,7 @@ function showOneCountry($country) {
 			$maker = $buildData[$codename]->maker;
 			$processor = $buildData[$codename]->processor;
 			
-			print $codename ."\t". $maker ."\t". $buildData[$codename]->modelName .
-				($buildData[$codename]->altModelNames ? 
-				', '.$buildData[$codename]->altModelNames : '') ."\t".
+			print $codename ."\t". $maker ."\t". $buildData[$codename]->modelName ."\t".
 				($onlyShowInstalls ? $installs ."\n" :
 				$processor ."\t". $buildData[$codename]->modelReleaseDate ."\t".
 				$buildData[$codename]->status ."\t". $installs ."\t". $percentInstalls ."\n");
@@ -1775,24 +1864,6 @@ function showOneCountry($country) {
 			$aBuildInfo = ['codename' => $codename, 'installs' => $installs];
 			$aBuilds[$codename]->setInfo($aBuildInfo);
 			$tally->addBuild($aBuilds[$codename]);
-			/*
-			if (empty($processor)) {
-				$procesfsorKey = null;
-			}
-			elseif (preg_match('/Snapdragon ([24678S])/i', $processor, $match)) {
-				$processorKey = "Snapdragon ".$match[1];
-			}
-			else {
-				$processorKey = ucwords(strtolower(explode(' ', $processor)[0]));
-			}
-			
-			if ($processorKey) {
-				if (!isset($aProcessors[$processorKey])) 
-					$aProcessors[$processorKey] = array('builds' => 0, 'installs' => 0);
-				
-				$aProcessors[$processorKey]['builds']++;
-				$aProcessors[$processorKey]['installs'] += $installs;
-			}*/
 		}
 		else {
 			print $codename."\t\t\t". ($onlyShowInstalls ? $installs."\n" : 
@@ -1805,7 +1876,7 @@ function showOneCountry($country) {
 	if ($otherBuilds > 0) {
 		$percentInstalls = sprintf('%.2f', ($otherBuilds/$countryInstalls)*100) .'%';
 		
-		print "Other builds\t\t\t". ($onlyShowInstalls ? $otherBuilds."\n" :
+		print "Unlisted\t\t\t". ($onlyShowInstalls ? $otherBuilds."\n" :
 			"\t\t\t".$otherBuilds."\t".$percentInstalls."\n");
 	}
 	
@@ -1821,22 +1892,6 @@ function showOneCountry($country) {
 	$tally->showStatuses();
 	$tally->showYears();
 	
-	/*
-	foreach ($aMakers as $key => $maker) {
-		$percentInstalls = percentString($maker['installs']/$countryInstalls);
-		
-		print $key ."\t". $maker['builds'] ."\t". $maker['installs'] . 
-			($onlyShowInstalls ? "\n" : "\t$percentInstalls\n");
-	}
-	
-	print "\nProcessor\tBuilds\tInstalls" . ($onlyShowInstalls ? "\n" : "\t% of installs\n");
-		
-	foreach ($aProcessors as $key => $processor) {
-		$percentInstalls = percentString($processor['installs']/$countryInstalls);
-
-		print $key ."\t". $processor['builds'] ."\t". $processor['installs'] .
-			($onlyShowInstalls ? "\n" : "\t". $percentInstalls ."\n");
-	} */
 }
 
 
@@ -1878,10 +1933,10 @@ function showOneBuild($buildCode) {
 		//do case insensitive search for model name or maker + model name 
 		if (!$found) {
 			foreach ($buildData as $oBuild) {
-				$aModels      = [$oBuild->modelName];
-				$aMakerModels = [$oBuild->maker .' '. $oBuild->modelName];
+				$aModels = [];
+				$aMakerModels = [];
 				
-				foreach (preg_split('/\s*,\s*/', $oBuild->altModelNames) as $model) {
+				foreach (preg_split('/\s*,\s*/', $oBuild->modelName) as $model) {
 					$aModels[]      = $model;
 					$aMakerModels[] = $oBuild->maker .' '. $model;
 				}
@@ -1896,10 +1951,10 @@ function showOneBuild($buildCode) {
 		//redo search for partial string match
 		if (!$found) {
 			foreach ($buildData as $oBuild) {
-				$aModels      = [$oBuild->modelName];
-				$aMakerModels = [$oBuild->maker .' '. $oBuild->modelName];
+				$aModels = [];
+				$aMakerModels = [];
 				
-				foreach (preg_split('/\s*,\s*/', $oBuild->altModelNames) as $model) {
+				foreach (preg_split('/\s*,\s*/', $oBuild->modelName) as $model) {
 					$aModels[]      = $model;
 					$aMakerModels[] = $oBuild->maker .' '. $model;
 				}
@@ -1937,8 +1992,7 @@ function showOneBuild($buildCode) {
 		$status = $aStatusCodes[ $buildData[$buildCode]->status ]; 
 		
 		print "Build: $buildCode\tDevice: " . $buildData[$buildCode]->maker ."\t". 
-			$buildData[$buildCode]->modelName . ($buildData[$buildCode]->altModelNames ? 
-			', '.$buildData[$buildCode]->altModelNames : '') ."\n".
+			$buildData[$buildCode]->modelName ."\n".
 			($onlyShowInstalls ? "Installs: " . $buildInstalls ."\n\n":
 			"Processsor: ". $buildData[$buildCode]->processor .
 			"\tReleased: ". $buildData[$buildCode]->modelReleaseDate .
@@ -2002,5 +2056,49 @@ function percentString($percent, $precision = 2) {
 	 
 	return sprintf('%.'.$precision.'f', $percent) .'%';
 }
+
+function asciiTable(Array $rows, Int $padSize = 1, String $justify = "right", String $separator = "|", String $border = "-"): String {
+    if ($justify === "center") {
+        $justify = STR_PAD_BOTH;
+    } elseif ($justify === "left") {
+        $justify = STR_PAD_LEFT;
+    } else {
+        $justify = STR_PAD_RIGHT;
+    }
+    $body = "";
+    $headers = reset($rows); // copy the header columns
+    $sheet = $rows;
+    $sizes = array_map(function($row) { return array_map(function($col) { return strlen($col); }, $row); }, $sheet);
+    foreach ($headers as $column => $data) {
+        $colSize[$column] = max(array_column($sizes, $column));
+    }
+    foreach($sheet as $row => $columns) {
+        $last = count($columns) - 1;
+        $line = "";
+        foreach ($columns as $n => $column) {
+            $line .= $separator .
+                     str_pad(
+                     str_repeat(" ", $padSize) .
+                         $column . str_repeat(" ", $padSize),
+                         $colSize[$n] + ($padSize * 2),
+                         " ",
+                         $justify
+                     ) .
+                     ($n === $last ? $separator : "");
+        }
+        $body .= "$line\n";
+        if (!$row) {
+            $line = "";
+            foreach ($columns as $n => $column) {
+                $column = str_repeat($border, $colSize[$n] + ($padSize * 2));
+                $line .= $separator . str_pad($column, $colSize[$n] + ($padSize * 2)) . ($n === $last ? $separator : "");
+            }
+            $body .= "$line\n";
+        }
+    }
+    
+    return $body;
+}
+
 
 ?>
