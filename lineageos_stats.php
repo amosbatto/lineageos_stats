@@ -81,7 +81,7 @@ Command line options:
 Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)
 License: MIT license (for the lineageos_stats script and the included 
          SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom)
-Date:    2025-10-21 (version 0.2)
+Updated: 2025-10-21 (version 0.2)
 
 HELP;
 

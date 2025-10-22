@@ -26,10 +26,10 @@ provide a complete list of builds, but it does provide a total installs
 number, so any installs that aren't found are tallied at the end of the 
 list under "Unlisted". 
 
-The status codes for the builds are: 
-**O**=active official build,  
-**D**=discontinued official build,  
-**U**=unofficial build  
+The status codes for the builds are:  
+**O** = active official build,  
+**D** = discontinued official build,  
+**U** = unofficial build  
  
 **Installation:**   
 1. Install the command line interface for PHP 7 or later. 
@@ -45,11 +45,11 @@ unzip lineageos_stats.zip -d lineageos_stats
   
 **Execution:**  
 To run the script in a terminal:  
-  `php lineageos_stats.php`
+`php lineageos_stats.php`
   
 Depending on how you installed PHP, you may have to include the path to 
 execute it. For example in Windows:  
-  `C:\users\bob\php8.3\php.exe lineageos_stats.php` 
+`C:\users\bob\php8.3\php.exe lineageos_stats.php` 
 
 **Command line options:**  
 ```
@@ -85,4 +85,8 @@ execute it. For example in Windows:
 **Author:**  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)  
 **License:** MIT license (for the lineageos_stats script and the included 
          SimpleHtmlDom https://sourceforge.net/projects/simplehtmldom)  
-**Date:**    2025-10-21 (version 0.2)  
+**Last update:**    2025-10-21 (version 0.2)  
+
+----------------
+
+
