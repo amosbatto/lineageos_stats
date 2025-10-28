@@ -13,10 +13,6 @@ statistics tables at the end. If information is known about a build
 that is displayed in the build list. There is normally 1 build per 
 device model, but some builds support multiple device models.
 
-The information in the lists is separated by tabs, so you can copy it 
-from the terminal and paste it into your favorite spreadsheet 
-application. It is much easier to read in a spreadsheet. 
- 
 Getting the country list is fast, but getting the build list is
 very slow because the script has to download roughly 1500 web pages to
 get all the builds for each country to construct the build list, and 
@@ -32,13 +28,14 @@ The status codes for the builds are:
 **U** = unofficial build  
  
 **Installation:**   
-1. Install the command line interface for PHP 7 or later. 
-2. Download this script from https://github.com/amosbatto/lineageos_stats
+1. Install the command line interface for PHP 7 or later. ´
+2. Install the php-mbstring extension.
+3. Download this script from https://github.com/amosbatto/lineageos_stats
    If the ZIP file was downloaded, then decompress it. 
   
 In a Debian/Ubuntu/Mint terminal, these commands should work: 
 ```
-sudo apt install php
+sudo apt install php php-mbstring
 wget -O lineageos_stats.zip https://github.com/amosbatto/lineageos_stats/archive/refs/heads/main.zip
 unzip lineageos_stats.zip -d lineageos_stats
 ```
@@ -65,7 +62,7 @@ execute it. For example in Windows:
 -b , --build     Display the build list.  
                  Ex: php lineageos_stats.php -b  
                    
--bCODENAME       Can specify a buid codename or a device model name to  
+-bCODENAME       Can specify a build codename or a device model name to  
 --build=CODENAME display stats for a single build.  
                  Ex: php lineageos_stats.php -blavender  
                  Ex: php lineageos_stats.php --build=lavender  
@@ -73,8 +70,14 @@ execute it. For example in Windows:
                  Ex: php lineageos_stats.php --build="nOtE 7"  
                  The search is case insensitive and can find partial   
                  strings.
-                   
--i , --installs  Only show the number of installs and not other stats.     
+                                                                        
+-sSEP             The field separator for tables, which can be any 
+--separator=SEP   string and is " | " by default. It is recommended to 
+                  set to "\t" (tab) if copying into a spreadsheet and
+                  to ',' (comma) or ';' (semicolon) if copying into a
+                  a CSV (comma separated value) file.
+                  Ex: php lineageos_stats.php -s"\t"                   
+                  Ex: php lineageos_stats.php -separator="; "                             
                   
 -v , --verbose   Show information about what countries are being  
                  downloaded and what builds were found. Recommended 
