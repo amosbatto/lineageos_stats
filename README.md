@@ -25,7 +25,7 @@ list under "Unlisted".
 The status codes for the builds are:  
 **O** = active official build,  
 **D** = discontinued official build,  
-**U** = unofficial build 
+**U** = unofficial build  
 Note that many of the installs labeled as "O" are for versions that are
 now discontinued, since they are no longer getting security updates.  
  
