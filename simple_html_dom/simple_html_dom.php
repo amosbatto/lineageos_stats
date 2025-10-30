@@ -1552,11 +1552,34 @@ class simple_html_dom
 	function load_file()
 	{
 		$args = func_get_args();
-
-		if(($doc = call_user_func_array('file_get_contents', $args)) !== false) {
-			$this->load($doc, true);
-		} else {
-			return false;
+		
+		retry:
+		try {
+			if(($doc = call_user_func_array('file_get_contents', $args)) !== false) {
+				$this->load($doc, true);
+			} else {
+				return false;
+			}
+		}
+		catch (Exception $e) {
+			print PHP_EOL. "Error downloading ". $args[0] .PHP_EOL;
+			print "Press 'd' to continue downloading or 'b' to break downloads and generate report.".PHP_EOL;
+			
+			while (true) {
+				usleep(200000);
+				$char = fgetc($stdin);
+				//check if user presses "b" to break downloading
+				if ($char == 'b' or $char == 'B') {
+					/*print "Breaking downloads and showing results for ".count($tally->aBuilds).
+						" builds.".PHP_EOL.PHP_EOL;
+					system('stty sane');
+					fclose($stdin); */
+					return false;
+				} 
+				elseif ($char == 'd' or $char == 'D') { 
+					goto retry;
+				}
+			}
 		}
 	}
 

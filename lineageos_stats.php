@@ -26,6 +26,8 @@ list under "Unlisted".
 
 The status codes for the builds are: O=active official build, 
 D=discontinued official build, U=unofficial build 
+Note that many of the installs labeled as "O" are for versions that are
+now discontinued, since they are no longer getting security updates.
  
 INSTALLATION:   
 1. Install the command line interface for PHP 7 or later.
@@ -175,11 +177,18 @@ class LosBuild {
 			
 		$buildData = $GLOBALS['buildData'];
 		
+		retryDownload:
 		$buildPage = new simple_html_dom();
 		$buildPage->load_file('https://stats.lineageos.org/model/'.$buildCode);
-
-		$this->installs = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
-		$aVersionDivs = $buildPage->find('div[id=top-devices]', 0)->find('div.leaderboard-row');
+		
+		try {
+			$this->installs = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
+			$aVersionDivs = $buildPage->find('div[id=top-devices]', 0)->find('div.leaderboard-row');
+		}
+		catch (Exception $e) {
+			print $e->getMessage() .PHP_EOL.'Retrying download...'.PHP_EOL;
+			goto retryDownload;
+		}
 		
 		foreach ($aVersionDivs as $versionDiv) {
 			$version = $versionDiv->find('span.leaderboard-left a', 0)->innertext();
@@ -1107,9 +1116,8 @@ function showBuildList() {
 			//check if user presses "b" to break downloading
 			$char = fgetc($stdin);
 			if ($breakDownloads or $char == 'b') {
-				print "Breaking downloads and showing results for ".count($tally->aBuilds)." builds.\n\n";
-				system('stty sane');
-				fclose($stdin);
+				print "Breaking downloads and showing results for ".count($tally->aBuilds).
+					" builds.".PHP_EOL.PHP_EOL;
 				break;
 			}
 		}
@@ -1130,37 +1138,11 @@ function showBuildList() {
 		$ctryPage = new simple_html_dom();
 		$url = 'https://stats.lineageos.org/country/' . $countryCode;
 		
-		retryDownload:
 		if ($verbose) {
 			print sprintf('%-32s', "Get country #$ctryCount $countryCode:");
 		}
 		
-		try {
-			$ctryPage->load_file($url);
-		}
-		catch (Exception $e) {
-			print "Unable to download web page $url".PHP_EOL.
-				"Press 'd' to continue downloading or 'b' to break downloads and generate report.".PHP_EOL;
-				
-			while (true) {
-				usleep(200000);
-				$char = fgetc($stdin);
-				//check if user presses "b" to break downloading
-				if ($char == 'b' or $char == 'B') {
-					print "Breaking downloads and showing results for ".count($tally->aBuilds).
-						" builds.".PHP_EOL.PHP_EOL;
-					system('stty sane');
-					fclose($stdin);
-					break;
-				} 
-				elseif ($char == 'd' or $char == 'D') {
-					if ($verbose) {
-						print PHP_EOL;
-					} 
-					goto retryDownload;
-				}
-			}
-		}
+		$ctryPage->load_file($url);
 		
 		if ($verbose) {
 			print sprintf('%8d', $countryInstalls).PHP_EOL;
@@ -1193,6 +1175,11 @@ function showBuildList() {
 			retry:
 			try {
 				$oBuild->downloadInfo();
+				$tally->addBuild($oBuild);
+				
+				if ($verbose) {
+					print sprintf('%8d', $oBuild->installs) . "\n";
+				}
 			}
 			catch (Exception $e) {
 				print "Unable to download web page for build '$buildCode'.".PHP_EOL.
@@ -1203,10 +1190,7 @@ function showBuildList() {
 					$char = fgetc($stdin);
 					//check if user presses "b" to break downloading
 					if ($char == 'b' or $char == 'B') {
-						print "Breaking downloads and showing results for ".count($tally->aBuilds).
-							" builds.".PHP_EOL.PHP_EOL;
-						system('stty sane');
-						fclose($stdin);
+						$breakDownloads = true;
 						break;
 					} 
 					elseif ($char == 'd' or $char == 'D') {
@@ -1214,17 +1198,13 @@ function showBuildList() {
 					}
 				}
 			}
-			
-			$tally->addBuild($oBuild);
-			
-			if ($verbose) {
-				print sprintf('%8d', $oBuild->installs) . "\n";
-			}
 		}
 	}
+	//reset the terminal to function normally:
+	system('stty sane');
+	fclose($stdin);
 	
 	$tally->finalize($worldDownloads);
-	
 	$tally->showBuilds();
 	$tally->showMakers();
 	$tally->showProcessors();
@@ -1253,7 +1233,7 @@ function showCountryList() {
 		
 		if (isset($countryData[$countryCode])) {
 			$countryPop = $countryData[$countryCode][1];
-			$installsPerMillion = ($countryPop) ? round($countryInstalls/($countryPop/1000)) : '';  
+			$installsPerMillion = ($countryPop) ? $countryInstalls/($countryPop/1000) : '';  
 			
 			$aCountries[$idx] = [
 				'countryCode'       => $countryCode, 
@@ -1277,7 +1257,7 @@ function showCountryList() {
 	}
 	
 	//Add world total:
-	$worldInstallsPerMillion = round($worldDownloads/($countryData['World'][1]/1000));
+	$worldInstallsPerMillion = $worldDownloads/($countryData['World'][1]/1000);
 	$aCountries[' World'] = [
 		'countryCode'       => 'World', 
 		'countryName'       => 'World', 
@@ -1316,7 +1296,7 @@ function showCountryList() {
 		new TextCol('countryName',       'Country',    'adjust', 22, 'left',  'string' ),
 		new TextCol('installs',          'Installs',   'adjust',  8, 'right', 'integer'),
 		new TextCol('percentInstalls',   '% Installs', 'adjust', -1, 'right', 'percent', 2),
-		new TextCol('installsPerMillion','Installs/M', 'adjust', -1, 'right', 'integer'),
+		new TextCol('installsPerMillion','Installs/M', 'adjust', -1, 'right', 'decimal', 0),
 		new TextCol('countryPop',        'Pop. (000)', 'adjust', -1, 'right', 'decimal', 2)
 	];
 	
