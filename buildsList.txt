@@ -772,35 +772,35 @@ a13x	Samsung	Galaxy A13 5G	Dimensity 700 5G	2021-12-03	U	86	0.00%	https://gitlab
 g710ulm	LG	G7 ThinQ (G710ULM/VMX)	Snapdragon 845	2018-05-02	O	85	0.00%		
 dora	Sony	Xperia X Performance	Snapdragon 820	2016-07-01	U	85	0.00%	https://xdaforums.com/t/unofficial-lineage-20-0-sony-xperia-x-performance-dora.4737882/ 	
 X6833B	Infinix	Note 30 (X6833B)	Helio G99 	2023-05-22	U	85	0.00%	https://dodyirawan85.github.io/blog/2023-10-21-lineageos-x6833b/ 	
-RMX1971					U	85	0.00%		
-Crystal					U	85	0.00%		
-waydroid_arm					U	84	0.00%		
-jackpot2lte					U	84	0.00%		
+RMX1971	Realme	5 Pro, Q	Snapdragon 712	2019-09-01	U	85	0.00%	https://xdaforums.com/t/rom-rmx1971-9-0-0-unofficial-lineageos-16-0-for-realme-5-pro-realme-q.3985571/ 	
+Crystal	Nokia	7.1	Snapdragon 636	2018-10-28	U	85	0.00%		
+waydroid_arm	virtual	Waydroid on ARM	ARM32		U	84	0.00%		
+jackpot2lte	Samsung	Galaxy A8+ 2018 	Exynos 7885 	2018-01-01	U	84	0.00%		Probably using a GSI: https://xdaforums.com/t/guide-gsi-android12-up-pixel-experience-plus-12-1-12l-stable-for-a8-a8.4740326/
 mayfly	Xiaomi	Xiaomi 12S	Snapdragon 8+ Gen1	2022-07-01	O	83	0.00%		
-m31s					U	83	0.00%		
+m31s	Samsung	Galaxy M31s	Exynos9611	2020-08-06	U	83	0.00%	https://community.e.foundation/t/unofficial-builds-samsung-galaxy-exynos9611-devices-a51-m21-m31-m31s-and-f41-for-e-os-u/62158 	
 h910	LG	V20 (AT&T)	Snapdragon 820	2016-10-01	D	83	0.00%		
 X01AD	ASUS	Zenfone Max M2	Snapdragon 632	2018-12-01	D	83	0.00%		
-b4q					U	82	0.00%		
-a22x					U	82	0.00%		
-pocket2					U	81	0.00%		
-olivelite					U	81	0.00%		
-mojito					U	81	0.00%		
-lime					U	81	0.00%		
-a10dd					U	81	0.00%		
-samurai					U	80	0.00%		
+b4q	Samsung	Galaxy Z Flip 4 5G	Snapdragon 8+ Gen 1	2022-08-25	U	82	0.00%		
+a22x	Samsung	Galaxy A22 5G 	Dimensity 700	2021-06-24	U	82	0.00%		Probably a GSI build: https://dumps.tadiphone.dev/dumps/samsung/a22x/-/tree/a22xnsxx-user-13-TP1A.220624.014-A226BXXU6DWF3-release-keys/aosp-device-tree 
+pocket2					U	81	0.00%	https://github.com/turtleletortue/android_device_retroid_pocket2 	
+olivelite	Xiaomi	Redmi 8A 	Snapdragon 439	2019-09-30	U	81	0.00%	https://xdaforums.com/t/rom-10-0-lineageos-17-1-for-redmi-8a-olivelite-unofficial.4250337/ 	
+mojito	Xiaomi	Redmi Note 10	Snapdragon 678	2021-03-16	U	81	0.00%	https://sourceforge.net/projects/mojito-roms/	
+lime	Xiaomi	Redmi 9T, Redmi 9T NFC, Redmi 9 Power	Snapdragon 662	2021-01-18	U	81	0.00%	https://xdaforums.com/t/rom-14-lime-superiorextended-official-for-redmi-9t-9t-nfc-9-power.4656057/ 	
+a10dd	Samsung	A10	Exynos 7884	2019-03-19	U	81	0.00%	https://community.e.foundation/t/unofficial-builds-samsung-galaxy-a10-a20-a30-a40-series-with-exynos-7885-chipset-for-e-os-t/55401 	Don’t know what Is the difference between a10 and a10dd
+samurai	Realme	X2 Pro (RMX1931)	Snapdragon 855+	2019-10-01	U	80	0.00%	https://xdaforums.com/t/rom-14-crdroid-10-1-for-realme-x2-pro-samurai-rmx1931-official.4654312/ 	
 lithium	Xiaomi	Mi MIX	Snapdragon 821	2016-10-01	D	80	0.00%		
 ether	Nextbit	Robin	Snapdragon 808	2016-02-01	D	80	0.00%		
-wt88047x					U	79	0.00%		
+wt88047x	Xiaomi	Redmi 2	Snapdragon 410 	2015-01-01	U	79	0.00%	https://xdaforums.com/t/rom-12-1-unofficial-wt88047x-lineageos-19-1.4403923/ 	
 scorpio	Xiaomi	Mi Note 2	Snapdragon 821	2016-11-01	D	79	0.00%		
 mars	Xiaomi	Mi 11 Pro	Snapdragon 888	2021-03-01	D	79	0.00%		
-c1s					U	79	0.00%		
-m307f					U	78	0.00%		
-j7eltexx					U	78	0.00%		
-gale					U	78	0.00%		
-cruiserltesq					U	78	0.00%		
+c1s	Samsung	Galaxy Note20 (SM-N980F)	Exynos 990	2020-08-21	U	79	0.00%		
+m307f	Samsung	Galaxy M30s	Exynos 9611	2019-10-30	U	78	0.00%	https://xdaforums.com/t/rom-12-lineageos-19-for-galaxy-m30s-discontinued.4397855/ 	
+j7eltexx	Samsung	Galaxy J7 (2015) (SM-J700F)	Exynos 7580	2015-07-16	U	78	0.00%	https://github.com/Exynos7580/android_device_samsung_j7eltexx 	
+gale	Xiaomi	Redmi 13C (4G), Poco C65	Helio G85	2023-11-10	U	78	0.00%	https://xdaforums.com/t/closed-shared-rom-unofficial-lineageos-21-gale-gust.4697416/ 	
+cruiserltesq	Samsung	Galaxy S8 Active (SM-G892U)	Snapdragon 835	2017-08-01	U	78	0.00%		
 axon7	ZTE	Axon 7	Snapdragon 820	2016-06-01	D	77	0.00%		
-pdx201					U	76	0.00%		
-odessa					U	76	0.00%		
+pdx201	Sony	Xperia 10 II	Snapdragon 665 	2020-05-05	U	76	0.00%	https://github.com/lineageos-on-pdx201/releases/releases	
+odessa	Motorola	Moto G9 Plus	Snapdragon 730G	2020-09-07	U	76	0.00%	https://xdaforums.com/t/rom-unofficial-odessa-lineage-os-20-0-13-vainilla-11-20-2023.4601525/ 	
 nora					U	76	0.00%		
 bitra					U	76	0.00%		
 x55					U	75	0.00%		
