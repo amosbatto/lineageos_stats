@@ -93,10 +93,6 @@ HELP;
 $startTime = microtime(true);
 mb_internal_encoding("UTF-8");
 
-include './simple_html_dom/simple_html_dom.php';
-include 'devicesList.php';
-include 'countriesList.php';
-
 $GLOBALS["OS"] = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? "windows" : "unix-like";
 
 $shortOpts = 'hvs:c::b::';
@@ -146,24 +142,30 @@ if (isset($options['b']) or isset($options['build'])) {
 		$showBuild = $options['build'];
 }
 
+include './simple_html_dom/simple_html_dom.php';
+include 'devicesList.php';
+include 'countriesList.php';
+
 
 //Class to hold info about each LingeageOS build
 class LosBuild {
 	public $codename;   //codename of the LOS build
 	//info about device(s) supported by the build:
-	public $maker, $modelName, $altModelNames, $processor, $modelReleaseDate;
+	public $maker; 
+	public $modelName;  //model names of devices separated by commas
+	public $processor;          
+	public $modelReleaseDate;  // in "YYYY-MM-DD" format
 	public $status;     //status codes: O=active official build, D=discontinued official build, U=unofficial build 
 	public $installs;   //installs for all the different versions of the build
 	public $aVersions; 
 	public $aCountries;
 	
-	public function __construct($codename=null, $maker=null, $modelName=null, $altModelNames=null, 
+	public function __construct($codename=null, $maker=null, $modelName=null, 
 			$processor=null, $modelReleaseDate=null, $status=null) 
 	{
 		$this->codename         = $codename;    
 		$this->maker            = $maker; 
-		$this->modelName        = $modelName . ($altModelNames ? ', '.$altModelNames : '');
-		$this->altModelNames    = null; //added to modelName, so variable is no longer used
+		$this->modelName        = $modelName;    
 		$this->processor        = $processor; 
 		$this->modelReleaseDate = $modelReleaseDate; 
 		$this->status           = $status;
@@ -179,7 +181,10 @@ class LosBuild {
 		
 		retryDownload:
 		$buildPage = new simple_html_dom();
-		$buildPage->load_file('https://stats.lineageos.org/model/'.$buildCode);
+		
+		while ($buildPage->load_file('https://stats.lineageos.org/model/'.$buildCode) === false) {
+			continue;
+		}
 		
 		try {
 			$this->installs = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
@@ -237,7 +242,6 @@ class LosBuild {
 		else {
 			$this->maker            = $buildData[$buildCode]->maker;
 			$this->modelName        = $buildData[$buildCode]->modelName;
-			//$this->altModelNames  = $buildData[$buildCode]->altModelNames;
 			$this->processor        = $buildData[$buildCode]->processor; 
 			$this->modelReleaseDate = $buildData[$buildCode]->modelReleaseDate; 
 			$this->status           = $buildData[$buildCode]->status;
@@ -318,8 +322,8 @@ class TextTable {
 				$oCol = $this->aCols[$i];
 				$colHeader = $oCol->colTitle;
 				
-				if ($oCol->width != 'none' and $oCol->maxWidth > 0 and 
-					mb_strlen($oCol->colTitle) > $oCol->maxWidth) 
+				if ($GLOBALS['separator'] == ' | ' and $oCol->width != 'none' and 
+					$oCol->maxWidth > 0 and mb_strlen($oCol->colTitle) > $oCol->maxWidth) 
 				{
 					$colHeader = mb_substr($oCol->colTitle, 0, $oCol->maxWidth-1) .'…';
 				}
@@ -382,7 +386,9 @@ class TextTable {
 					}
 				}
 				//if a non-numeric string and longer than column's max width then truncate the string
-				elseif ($oCol->width != 'none' and $oCol->maxWidth > 0 and mb_strlen($sCell) > $oCol->maxWidth) {
+				elseif ($GLOBALS['separator'] == ' | ' and $oCol->width != 'none' and 
+					$oCol->maxWidth > 0 and mb_strlen($sCell) > $oCol->maxWidth) 
+				{
 					$sCell = mb_substr($sCell, 0, $oCol->maxWidth-1) .'…';
 				} 
 				
@@ -954,12 +960,6 @@ class Tally {
 		}
 		$aSort['Total'] = $this->aVersions['Total'];
 		
-		/*//add "Rank" column
-		$rank = 1;
-		foreach ($aSort as $key => $aItem) {
-			$aSort[$key]['rank'] = (in_array($key, ['Unlisted', 'Total']) ? '' : $rank++); 
-		}*/
-		
 		//add "Rank" column, but account for multiple items having same No. of installs, so same rank  
 		$rankSameNo = $rank = 1;
 		$prevRankInstalls = 0;
@@ -1104,7 +1104,10 @@ function showBuildList() {
 	system('stty cbreak -echo');
 	
 	$html = new simple_html_dom();
-	$html->load_file('https://stats.lineageos.org/');
+	
+	while ($html->load_file('https://stats.lineageos.org/') === false) {
+		continue;
+	}
 	$worldDownloads = $html->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	$aDivCountries  = $html->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 	
@@ -1142,7 +1145,9 @@ function showBuildList() {
 			print sprintf('%-32s', "Get country #$ctryCount $countryCode:");
 		}
 		
-		$ctryPage->load_file($url);
+		while ($ctryPage->load_file($url) === false) {
+			continue;
+		}
 		
 		if ($verbose) {
 			print sprintf('%8d', $countryInstalls).PHP_EOL;
@@ -1218,9 +1223,12 @@ function showCountryList() {
 	$onlyShowInstalls = $GLOBALS['onlyShowInstalls'];
 	
 	$aCountries = array(); 
-	
 	$html = new simple_html_dom();
-	$html->load_file('https://stats.lineageos.org/');
+	
+	while ($html->load_file('https://stats.lineageos.org/') === false) {
+		continue;
+	}
+	
 	$worldDownloads = $html->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	$aDivCountries = $html->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 	
@@ -1370,7 +1378,10 @@ function showOneCountry($country) {
 	
 	$country = strtoupper($country);
 	$ctryPage = new simple_html_dom();
-	$ctryPage->load_file('https://stats.lineageos.org/country/' . $country);
+	
+	while ($ctryPage->load_file('https://stats.lineageos.org/country/' . $country) === false) {
+		continue;
+	}
 	
 	$countryInstalls = $ctryPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	$aDivBuilds = $ctryPage->find('div[id=top-devices]', 0)->find('div.leaderboard-row');
@@ -1525,7 +1536,10 @@ function showOneBuild($buildCode) {
 	//if build code only contains letters, numbers, underscores and dashes, 
 	//then load page and see if downloads are greater than zero
 	if (preg_match('/^[-_a-zA-Z0-9]+$/', $buildCode)) {
-		$buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode);
+		
+		while ($buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode) === false) {
+			continue;
+		}
 		$buildInstalls = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 		
 		if ($buildInstalls > 0)
@@ -1584,7 +1598,10 @@ function showOneBuild($buildCode) {
 		}
 	}
 	
-	$buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode);
+	while ($buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode) === false) {
+		continue;
+	}
+	
 	$buildInstalls = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	$installsPerMillion = sprintf('%.2f', $buildInstalls/($countryData['World'][1]/1000));
 	
@@ -1595,7 +1612,10 @@ function showOneBuild($buildCode) {
 	
 	$aDivBuilds = $buildPage->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 	$runningTotal = 0;$buildPage = new simple_html_dom();
-	$buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode);
+	
+	while ($buildPage->load_file('https://stats.lineageos.org/model/' . $buildCode) === false) {
+		continue;
+	}
 	
 	$buildInstalls = $buildPage->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	$installsPerMillion = sprintf('%.2f', $buildInstalls/($countryData['World'][1]/1000));

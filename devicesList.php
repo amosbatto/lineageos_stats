@@ -1,9 +1,54 @@
 <?php
+$buildData = [];
+$buildsFilename = 'buildsList.txt'; 
+$aBuildCols = ['codename', 'maker', 'modelName', 'processor', 'modelReleaseDate', 
+	'status', 'installs', 'percentInstalls', 'links', 'notes'];
+$cntImports = 0; //count imported builds
+$cntLines = 0;   //count lines in buildList.txt
 
+
+//data in buildList.txt is separated by tabs and first line contains the column headers
+$aBuildsTabs = file($buildsFilename, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES) or 
+	die ("Error: Unable to open file '$buildsFilename'.".PHP_EOL);
+
+foreach ($aBuildsTabs as $buildLine) {
+	//skip the first line
+	if ($cntLines++ == 0) {
+		continue;
+	}
+	$aData = preg_split("/ *\t */", $buildLine);
+	
+	//if not 10 data columns
+	if (count($aData) !=  10) {
+		print "Error in build line $cntLine:".PHP_EOL.$buildLine.PHP_EOL;
+		continue;
+	}
+	$aBuild = array_combine($aBuildCols, $aData);
+	
+	if ($aBuild['maker'] or $aBuild['modelName'] or $aBuild['processor']) {
+		$buildData[ $aBuild['codename'] ] = new LosBuild(
+			$aBuild['codename'],
+			$aBuild['maker'], 
+			$aBuild['modelName'],
+			$aBuild['processor'],
+			$aBuild['modelReleaseDate'],
+			$aBuild['status']
+		);
+		$cntImports++;
+	}
+}
+
+if ($GLOBALS['verbose']) {
+	print "Imported $cntImports builds.".PHP_EOL;
+}
+
+$GLOBALS['buildData'] = $buildData;
+
+/*
 //array of information about the LineageOS builds.
 //Includes all official builds and the top 250 unofficial builds
 $GLOBALS['buildData'] = $buildData = [
-	//buildCodename => new LosBuild($codename, $maker, $modelName, $altModelNames, $processor, $modelReleaseDate, $status)
+	//buildCodename => new LosBuild($codename, $maker, $modelName, $processor, $modelReleaseDate, $status, $links, $notes)
 	'G'         => new LosBuild('G', '10.or', 'G', '', 'Snapdragon 626', '2017-10-03', 'D'),
 	'austin'    => new LosBuild('austin', 'Amazon', 'Fire 7" (Austin)', '', 'MediaTek MT8127', '2017-06-01', 'U'),
 	'ford'      => new LosBuild('ford', 'Amazon', 'Fire 7" (ford)', '', 'MediaTek MT8127', '2015-11-01', 'U'),
@@ -29,47 +74,47 @@ $GLOBALS['buildData'] = $buildData = [
 	'P024'      => new LosBuild('P024', 'ASUS', 'ZenPad 8.0 (Z380KL)', '', 'Snapdragon 410', '2015-07-01', 'D'),
 	'm5'        => new LosBuild('m5', 'Banana Pi', 'M5 (Android TV)', '', 'Amlogic S905X3', '2020-12-01', 'O'),
 	'm5_tab'    => new LosBuild('m5_tab', 'Banana Pi', 'M5 (Tablet)', '', 'Amlogic S905X3', '2020-12-01', 'O'),
-	'vegetalte'		=> new LosBuild('vegetalte', 'BQ', 'Aquaris E5 4G', 'Aquaris E5s', 'Snapdragon 410', '2014-11-01', 'D'),
-	'piccolo'		=> new LosBuild('piccolo', 'BQ', 'Aquaris M5', '', 'Snapdragon 615', '2015-08-01', 'D'),
-	'chaozu'		=> new LosBuild('chaozu', 'BQ', 'Aquaris U', '', 'Snapdragon 430', '2016-09-01', 'D'),
-	'tenshi'		=> new LosBuild('tenshi', 'BQ', 'Aquaris U Plus', '', 'Snapdragon 430', '2016-09-01', 'D'),
-	'bardock'		=> new LosBuild('bardock', 'BQ', 'Aquaris X', '', 'Snapdragon 626', '2017-06-01', 'D'),
-	'bardockpro'		=> new LosBuild('bardockpro', 'BQ', 'Aquaris X Pro', '', 'Snapdragon 626', '2017-06-01', 'D'),
-	'zangya'		=> new LosBuild('zangya', 'BQ', 'Aquaris X2', '', 'Snapdragon 636', '2018-05-01', 'D'),
-	'zangyapro'		=> new LosBuild('zangyapro', 'BQ', 'Aquaris X2 Pro', '', 'Snapdragon 626', '2017-06-01', 'D'),
-	'paella'		=> new LosBuild('paella', 'BQ', 'Aquaris X5', '', 'Snapdragon 412', '2015-10-14', 'D'),
-	'gohan'		=> new LosBuild('gohan', 'BQ', 'Aquaris X5 Plus', '', 'Snapdragon 652', '2016-07-01', 'D'),
-	'c2502t_cm8900plus_800x1280_4x64g'		=> new LosBuild('c2502t_cm8900plus_800x1280_4x64g', 'C Idea', 'CM8900 Plus', '', 'Snapdragon QT615', '2025-09-24', 'U'),
-	'wade'		=> new LosBuild('wade', 'Dynalink', 'TV Box 4K (2021)', '', 'Amlogic S905Y2', '2021-06-01', 'O'),
-	'mata'		=> new LosBuild('mata', 'Essential', 'PH-1', '', 'Snapdragon 835', '2017-08-01', 'O'),
-	'pro1'		=> new LosBuild('pro1', 'F(x)tec', 'Pro¹', '', 'Snapdragon 835', '2019-10-01', 'O'),
-	'pro1x'		=> new LosBuild('pro1x', 'F(x)tec', 'Pro¹ X', '', 'Snapdragon 662', '2022-12-01', 'O'),
-	'FP2'		=> new LosBuild('FP2', 'Fairphone', 'Fairphone 2', '', 'Snapdragon 801', '2015-12-01', 'D'),
-	'FP3'		=> new LosBuild('FP3', 'Fairphone', 'Fairphone 3', 'Fairphone 3+', 'Snapdragon 632', '2019-09-01', 'O'),
-	'FP4'		=> new LosBuild('FP4', 'Fairphone', 'Fairphone 4', '', 'Snapdragon 750G', '2021-10-01', 'O'),
-	'FP5'		=> new LosBuild('FP5', 'Fairphone', 'Fairphone 5', '', 'Qualcomm QCM6490', '2023-08-01', 'O'),
-	'deadpool'		=> new LosBuild('deadpool', 'Google', 'ADT-3', '', 'Amlogic S905Y2', '2020-09-22', 'O'),
-	'seed'		=> new LosBuild('seed', 'Google', 'Android One 2nd Gen', '', 'Snapdragon 410', '2015-07-01', 'D'),
-	'sabrina'		=> new LosBuild('sabrina', 'Google', 'Chromecast with Google TV (4K)', '', 'Amlogic S905D3G', '2020-09-01', 'O'),
-	'maguro'		=> new LosBuild('maguro', 'Google', 'Galaxy Nexus GSM', '', 'OMAP 4460', '2011-10-01', 'D'),
-	'toroplus'		=> new LosBuild('toroplus', 'Google', 'Galaxy Nexus LTE (Sprint)', '', 'OMAP 4460', '2012-01-01', 'D'),
-	'toro'		=> new LosBuild('toro', 'Google', 'Galaxy Nexus LTE (Verizon)', '', 'OMAP 4460', '2011-12-15', 'D'),
-	'manta'		=> new LosBuild('manta', 'Google', 'Nexus 10', '', 'Exynos 5250', '2012-11-13', 'D'),
-	'mako'		=> new LosBuild('mako', 'Google', 'Nexus 4', '', 'Snapdragon S4 Pro', '2012-11-13', 'D'),
-	'hammerhead'		=> new LosBuild('hammerhead', 'Google', 'Nexus 5', '', 'Snapdragon 800', '2013-10-31', 'D'),
-	'bullhead'		=> new LosBuild('bullhead', 'Google', 'Nexus 5X', '', 'Snapdragon 808', '2015-09-29', 'D'),
-	'shamu'		=> new LosBuild('shamu', 'Google', 'Nexus 6', '', 'Snapdragon 805', '2014-10-29', 'D'),
-	'angler'		=> new LosBuild('angler', 'Google', 'Nexus 6P', '', 'Snapdragon 810', '2015-09-29', 'D'),
-	'flo'		=> new LosBuild('flo', 'Google', 'Nexus 7 (Wi-Fi, 2013 version)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
-	'debx'		=> new LosBuild('debx', 'Google', 'Nexus 7 2013 (LTE, Repartitioned)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
-	'deb'		=> new LosBuild('deb', 'Google', 'Nexus 7 2013 (LTE)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
-	'flox'		=> new LosBuild('flox', 'Google', 'Nexus 7 2013 (Wi-Fi, Repartitioned)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
-	'flounder_lte'		=> new LosBuild('flounder_lte', 'Google', 'Nexus 9 (LTE)', '', 'Tegra K1 (T124)', '2014-11-03', 'D'),
-	'flounder'		=> new LosBuild('flounder', 'Google', 'Nexus 9 (Wi-Fi)', '', 'Tegra K1 (T124)', '2014-11-03', 'D'),
-	'fugu'		=> new LosBuild('fugu', 'Google', 'Nexus Player', '', 'Atom Z3560', '2014-10-01', 'D'),
-	'sailfish'		=> new LosBuild('sailfish', 'Google', 'Pixel', '', 'Snapdragon 821', '2016-10-01', 'O'),
-	'walleye'		=> new LosBuild('walleye', 'Google', 'Pixel 2', '', 'Snapdragon 835', '2017-10-01', 'O'),
-	'taimen'		=> new LosBuild('taimen', 'Google', 'Pixel 2 XL', '', 'Snapdragon 835', '2017-10-01', 'O'),
+	'vegetalte' => new LosBuild('vegetalte', 'BQ', 'Aquaris E5 4G', 'Aquaris E5s', 'Snapdragon 410', '2014-11-01', 'D'),
+	'piccolo'   => new LosBuild('piccolo', 'BQ', 'Aquaris M5', '', 'Snapdragon 615', '2015-08-01', 'D'),
+	'chaozu'    => new LosBuild('chaozu', 'BQ', 'Aquaris U', '', 'Snapdragon 430', '2016-09-01', 'D'),
+	'tenshi'    => new LosBuild('tenshi', 'BQ', 'Aquaris U Plus', '', 'Snapdragon 430', '2016-09-01', 'D'),
+	'bardock'   => new LosBuild('bardock', 'BQ', 'Aquaris X', '', 'Snapdragon 626', '2017-06-01', 'D'),
+	'bardockpro'=> new LosBuild('bardockpro', 'BQ', 'Aquaris X Pro', '', 'Snapdragon 626', '2017-06-01', 'D'),
+	'zangya'    => new LosBuild('zangya', 'BQ', 'Aquaris X2', '', 'Snapdragon 636', '2018-05-01', 'D'),
+	'zangyapro' => new LosBuild('zangyapro', 'BQ', 'Aquaris X2 Pro', '', 'Snapdragon 626', '2017-06-01', 'D'),
+	'paella'    => new LosBuild('paella', 'BQ', 'Aquaris X5', '', 'Snapdragon 412', '2015-10-14', 'D'),
+	'gohan'     => new LosBuild('gohan', 'BQ', 'Aquaris X5 Plus', '', 'Snapdragon 652', '2016-07-01', 'D'),
+	'c2502t_cm8900plus_800x1280_4x64g' => new LosBuild('c2502t_cm8900plus_800x1280_4x64g', 'C Idea', 'CM8900 Plus', '', 'Snapdragon QT615', '2025-09-24', 'U'),
+	'wade'      => new LosBuild('wade', 'Dynalink', 'TV Box 4K (2021)', '', 'Amlogic S905Y2', '2021-06-01', 'O'),
+	'mata'      => new LosBuild('mata', 'Essential', 'PH-1', '', 'Snapdragon 835', '2017-08-01', 'O'),
+	'pro1'      => new LosBuild('pro1', 'F(x)tec', 'Pro¹', '', 'Snapdragon 835', '2019-10-01', 'O'),
+	'pro1x'     => new LosBuild('pro1x', 'F(x)tec', 'Pro¹ X', '', 'Snapdragon 662', '2022-12-01', 'O'),
+	'FP2'       => new LosBuild('FP2', 'Fairphone', 'Fairphone 2', '', 'Snapdragon 801', '2015-12-01', 'D'),
+	'FP3'       => new LosBuild('FP3', 'Fairphone', 'Fairphone 3', 'Fairphone 3+', 'Snapdragon 632', '2019-09-01', 'O'),
+	'FP4'       => new LosBuild('FP4', 'Fairphone', 'Fairphone 4', '', 'Snapdragon 750G', '2021-10-01', 'O'),
+	'FP5'       => new LosBuild('FP5', 'Fairphone', 'Fairphone 5', '', 'Qualcomm QCM6490', '2023-08-01', 'O'),
+	'deadpool'  => new LosBuild('deadpool', 'Google', 'ADT-3', '', 'Amlogic S905Y2', '2020-09-22', 'O'),
+	'seed'      => new LosBuild('seed', 'Google', 'Android One 2nd Gen', '', 'Snapdragon 410', '2015-07-01', 'D'),
+	'sabrina'   => new LosBuild('sabrina', 'Google', 'Chromecast with Google TV (4K)', '', 'Amlogic S905D3G', '2020-09-01', 'O'),
+	'maguro'    => new LosBuild('maguro', 'Google', 'Galaxy Nexus GSM', '', 'OMAP 4460', '2011-10-01', 'D'),
+	'toroplus'  => new LosBuild('toroplus', 'Google', 'Galaxy Nexus LTE (Sprint)', '', 'OMAP 4460', '2012-01-01', 'D'),
+	'toro'      => new LosBuild('toro', 'Google', 'Galaxy Nexus LTE (Verizon)', '', 'OMAP 4460', '2011-12-15', 'D'),
+	'manta'     => new LosBuild('manta', 'Google', 'Nexus 10', '', 'Exynos 5250', '2012-11-13', 'D'),
+	'mako'      => new LosBuild('mako', 'Google', 'Nexus 4', '', 'Snapdragon S4 Pro', '2012-11-13', 'D'),
+	'hammerhead'=> new LosBuild('hammerhead', 'Google', 'Nexus 5', '', 'Snapdragon 800', '2013-10-31', 'D'),
+	'bullhead'  => new LosBuild('bullhead', 'Google', 'Nexus 5X', '', 'Snapdragon 808', '2015-09-29', 'D'),
+	'shamu'     => new LosBuild('shamu', 'Google', 'Nexus 6', '', 'Snapdragon 805', '2014-10-29', 'D'),
+	'angler'    => new LosBuild('angler', 'Google', 'Nexus 6P', '', 'Snapdragon 810', '2015-09-29', 'D'),
+	'flo'       => new LosBuild('flo', 'Google', 'Nexus 7 (Wi-Fi, 2013 version)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
+	'debx'      => new LosBuild('debx', 'Google', 'Nexus 7 2013 (LTE, Repartitioned)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
+	'deb'       => new LosBuild('deb', 'Google', 'Nexus 7 2013 (LTE)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
+	'flox'      => new LosBuild('flox', 'Google', 'Nexus 7 2013 (Wi-Fi, Repartitioned)', '', 'Snapdragon S4 Pro', '2013-07-26', 'D'),
+	'flounder_lte' => new LosBuild('flounder_lte', 'Google', 'Nexus 9 (LTE)', '', 'Tegra K1 (T124)', '2014-11-03', 'D'),
+	'flounder'  => new LosBuild('flounder', 'Google', 'Nexus 9 (Wi-Fi)', '', 'Tegra K1 (T124)', '2014-11-03', 'D'),
+	'fugu'      => new LosBuild('fugu', 'Google', 'Nexus Player', '', 'Atom Z3560', '2014-10-01', 'D'),
+	'sailfish'  => new LosBuild('sailfish', 'Google', 'Pixel', '', 'Snapdragon 821', '2016-10-01', 'O'),
+	'walleye'   => new LosBuild('walleye', 'Google', 'Pixel 2', '', 'Snapdragon 835', '2017-10-01', 'O'),
+	'taimen'    => new LosBuild('taimen', 'Google', 'Pixel 2 XL', '', 'Snapdragon 835', '2017-10-01', 'O'),
 	'blueline'		=> new LosBuild('blueline', 'Google', 'Pixel 3', '', 'Snapdragon 845', '2018-10-01', 'O'),
 	'crosshatch'		=> new LosBuild('crosshatch', 'Google', 'Pixel 3 XL', '', 'Snapdragon 845', '2018-10-01', 'O'),
 	'sargo'		=> new LosBuild('sargo', 'Google', 'Pixel 3a', '', 'Snapdragon 670', '2019-04-01', 'O'),
@@ -645,12 +690,12 @@ $GLOBALS['buildData'] = $buildData = [
 	'akershus'		=> new LosBuild('akershus', 'ZTE', 'Axon 9 Pro', '', 'Snapdragon 845', '2018-11-01', 'O'),
 	'ham'		=> new LosBuild('ham', 'ZUK', 'Z1', '', 'Snapdragon 801', '2015-10-14', 'D'),
 	'z2_plus'		=> new LosBuild('z2_plus', 'ZUK', 'Z2 Plus', '', 'Snapdragon 820', '2016-06-01', 'D'),
-	'waydroid_arm64'		=> new LosBuild('waydroid_arm64', 'virtual machine', 'Waydroid on ARM64', '', 'ARM', '2021-07-01', 'U'),
-	'waydroid_x86'		=> new LosBuild('waydroid_x86', 'virtual machine', 'Waydroid on i386', '', 'x86', '2021-07-01', 'U'),
-	'waydroid_x86_64'		=> new LosBuild('waydroid_x86_64', 'virtual machine', 'Waydroid on x86_64', '', 'x86', '2021-07-01', 'U'),
-	'android_x86_64'		=> new LosBuild('android_x86_64', 'virtual machine', 'Android on x86_64', '', 'x86', '', 'U'),
-	'x86_64_tv'		=> new LosBuild('x86_64_tv', 'virtual machine', 'Android TV on x86_64', '', 'x86', '', 'U'),
-	'android_x86'		=> new LosBuild('android_x86', 'virtual machine', 'Android on x86', '', 'x86', '', 'U'),
-	'D22AP'		=> new LosBuild('D22AP', 'virtual machine', 'Android 12 (API 22)', '', '', '', 'U') 
-];
+	'waydroid_arm64'		=> new LosBuild('waydroid_arm64', 'virtual', 'Waydroid on ARM64', '', 'ARM', '2021-07-01', 'U'),
+	'waydroid_x86'		=> new LosBuild('waydroid_x86', 'virtual', 'Waydroid on i386', '', 'x86', '2021-07-01', 'U'),
+	'waydroid_x86_64'		=> new LosBuild('waydroid_x86_64', 'virtual', 'Waydroid on x86_64', '', 'x86', '2021-07-01', 'U'),
+	'android_x86_64'		=> new LosBuild('android_x86_64', 'virtual', 'Android on x86_64', '', 'x86', '', 'U'),
+	'x86_64_tv'		=> new LosBuild('x86_64_tv', 'virtual', 'Android TV on x86_64', '', 'x86', '', 'U'),
+	'android_x86'		=> new LosBuild('android_x86', 'virtual', 'Android on x86', '', 'x86', '', 'U'),
+	'D22AP'		=> new LosBuild('D22AP', 'virtual', 'Android 12 (API 22)', '', '', '', 'U') 
+];*/
 ?>

@@ -1553,15 +1553,15 @@ class simple_html_dom
 	{
 		$args = func_get_args();
 		
-		retry:
-		try {
+		//retry:
+		//try {
 			if(($doc = call_user_func_array('file_get_contents', $args)) !== false) {
 				$this->load($doc, true);
 			} else {
 				return false;
 			}
-		}
-		catch (Exception $e) {
+		//}
+		/*catch (Exception $e) {
 			print PHP_EOL. "Error downloading ". $args[0] .PHP_EOL;
 			print "Press 'd' to continue downloading or 'b' to break downloads and generate report.".PHP_EOL;
 			
@@ -1573,14 +1573,14 @@ class simple_html_dom
 					/*print "Breaking downloads and showing results for ".count($tally->aBuilds).
 						" builds.".PHP_EOL.PHP_EOL;
 					system('stty sane');
-					fclose($stdin); */
+					fclose($stdin); 
 					return false;
 				} 
 				elseif ($char == 'd' or $char == 'D') { 
 					goto retry;
 				}
 			}
-		}
+		}*/
 	}
 
 	function set_callback($function_name)
