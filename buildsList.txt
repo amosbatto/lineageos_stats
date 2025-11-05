@@ -782,7 +782,7 @@ h910	LG	V20 (AT&T)	Snapdragon 820	2016-10-01	D	83	0.00%
 X01AD	ASUS	Zenfone Max M2	Snapdragon 632	2018-12-01	D	83	0.00%		
 b4q	Samsung	Galaxy Z Flip 4 5G	Snapdragon 8+ Gen 1	2022-08-25	U	82	0.00%		
 a22x	Samsung	Galaxy A22 5G 	Dimensity 700	2021-06-24	U	82	0.00%		Probably a GSI build: https://dumps.tadiphone.dev/dumps/samsung/a22x/-/tree/a22xnsxx-user-13-TP1A.220624.014-A226BXXU6DWF3-release-keys/aosp-device-tree 
-pocket2					U	81	0.00%	https://github.com/turtleletortue/android_device_retroid_pocket2 	
+pocket2	Retroid	Pocket 2 	MediaTek mt6580a	2020-08-01	U	81	0.00%	https://github.com/turtleletortue/android_device_retroid_pocket2 	
 olivelite	Xiaomi	Redmi 8A 	Snapdragon 439	2019-09-30	U	81	0.00%	https://xdaforums.com/t/rom-10-0-lineageos-17-1-for-redmi-8a-olivelite-unofficial.4250337/ 	
 mojito	Xiaomi	Redmi Note 10	Snapdragon 678	2021-03-16	U	81	0.00%	https://sourceforge.net/projects/mojito-roms/	
 lime	Xiaomi	Redmi 9T, Redmi 9T NFC, Redmi 9 Power	Snapdragon 662	2021-01-18	U	81	0.00%	https://xdaforums.com/t/rom-14-lime-superiorextended-official-for-redmi-9t-9t-nfc-9-power.4656057/ 	
@@ -801,68 +801,68 @@ cruiserltesq	Samsung	Galaxy S8 Active (SM-G892U)	Snapdragon 835	2017-08-01	U	78	
 axon7	ZTE	Axon 7	Snapdragon 820	2016-06-01	D	77	0.00%		
 pdx201	Sony	Xperia 10 II	Snapdragon 665 	2020-05-05	U	76	0.00%	https://github.com/lineageos-on-pdx201/releases/releases	
 odessa	Motorola	Moto G9 Plus	Snapdragon 730G	2020-09-07	U	76	0.00%	https://xdaforums.com/t/rom-unofficial-odessa-lineage-os-20-0-13-vainilla-11-20-2023.4601525/ 	
-nora					U	76	0.00%		
-bitra					U	76	0.00%		
-x55					U	75	0.00%		
-q4q					U	75	0.00%		
+nora	Motorola	Moto E5, Moto E (5th Gen.)	Snapdragon 425	2018-05-01	U	76	0.00%	https://xdaforums.com/t/rom-10-0-0_r41-lineageos-17-1-for-moto-e5-nora-recovery-64bit.4235721/	
+bitra	Realme	GT Neo 2 	Snapdragon 870 5G	2021-09-28	U	76	0.00%	https://xdaforums.com/t/rom-unofficial-bitra-a14-lineageos-21.4682015/ 	
+x55	PowKiddy	X55 	Rockchip RK3566	2023-05-01	U	75	0.00%	https://www.reddit.com/r/PowKiddy/comments/1894zzl/android_on_x55/ 	
+q4q	Samsung	Galaxy Z Fold4, Galaxy Fold 4 5G	Snapdragon 8+ Gen 1	2022-08-25	U	75	0.00%	https://github.com/FryUpDoe/twrp_device_samsung_q4q , https://github.com/sm8450-mainline/fdt 	Can only find the TWRP image and device tree files, but someone probably installed with a GSI. 
 porg	NVIDIA	Jetson Nano [Android TV], Jetson Nano 2GB [Android TV]	Tegra X1 (T210)	2019-03-18	O	75	0.00%		
 judyp	LG	V35 ThinQ	Snapdragon 845	2018-05-30	O	75	0.00%		
-Pacman					U	75	0.00%		
+Pacman	Nothing	Phone (2a)	Dimensity 7200 Pro	2024-03-12	U	75	0.00%	https://github.com/Nothing-2A/releases/releases/tag/22.2-20250829-UNOFFICIAL 	
 wade	Dynalink	TV Box 4K (2021)	Amlogic S905Y2	2021-06-01	O	74	0.00%		
-X6739					U	74	0.00%		
-olives					U	73	0.00%		
-asteroids					U	73	0.00%		
-a31					U	73	0.00%		
+X6739	Infinix	GT 10 Pro	Dimensity 8050	2023-08-13	U	74	0.00%	https://sourceforge.net/projects/layearddevmod/files/ROM/X6739/LineageOS/ 	
+olives	Xiaomi	Redmi 8, Redmi 8A, Redmi 8A Dual	Snapdragon 439	2019-10-12	U	73	0.00%	https://xdaforums.com/t/rom-12-1-unofficial-olives-dot-os-6-0-redmi-8-8a-8a-dual-unified.4429611/ 	
+asteroids	Nothing	Phone (3a)	Snapdragon 7s Gen 3	2025-03-11	U	73	0.00%	https://nothingforum.com/konu/nothing-phone-3a-sahiplerine-mujde-efsanevi-lineageos-destegi-cok-yakinda.3898/ 	Can’t find any info except a screen shot in Recovery Mode
+a31	Samsung	Galaxy A31	Helio P65	2020-04-27	U	73	0.00%		Probably a GSI install. See: https://magiskzip.com/how-to-install-gsi-rom-on-samsung-galaxy-a31/, https://community.e.foundation/t/unofficial-gsi-android-13/63791 
 A6020	Lenovo	Vibe K5, Vibe K5 Plus	Snapdragon 415	2016-04-01	D	73	0.00%		
-wt89536					U	72	0.00%		
-ferrari					U	72	0.00%		
+wt89536	YU	Yureka 2	Snapdragon 625	2017-09-01	U	72	0.00%	https://cyanogenmods.org/forums/topic/lineage-os-16-for-yu-yureka-2-android-pie-9-0/ 	
+ferrari	Xiaomi	Mi 4i	Snapdragon 615 	2015-04-01	U	72	0.00%	https://sourceforge.net/projects/lineageos-15-1-ferrari/ 	Somebody made a build for the Realme GT 2 Pro that was also called “ferrari”: https://xdaforums.com/t/closed-unofficial-lineageos-20-ferrari.4622425/ 
 eqs	Motorola	edge 30 ultra	Snapdragon 8+ Gen1	2022-09-01	O	72	0.00%		
 casuarina	Vsmart	Joy 3, Joy 3+	Snapdragon 632	2020-02-14	O	71	0.00%		
-a6plte					U	71	0.00%		
-Dragon					U	71	0.00%		
-tate					U	70	0.00%		
-sweet_k6a					U	70	0.00%		
-perry					U	70	0.00%		
-kyleprods					U	70	0.00%		
-everpal					U	70	0.00%		
-chuwi_vi10plus					U	70	0.00%		
-tilapia					U	69	0.00%		
-m51					U	69	0.00%		
+a6plte	Samsung	Galaxy A6+ (2018)	Snapdragon 450	2018-05-01	U	71	0.00%	https://xdaforums.com/t/rom-13-discontinued-unofficial-lineage-os-20-0-with-gapps-for-samsung-galaxy-a6-a605x-gsi-stable-arch64-binder32.4666897/ 	
+Dragon	Google	Pixel C	Nvidia Tegra X1	2015-12-08	U	71	0.00%	https://xdaforums.com/t/rom-13-0-dragon-lineageos-20-0-unofficial.4540725/	The official build is “dragon” in lower case, but this is an unofficial build name “Dragon” in upper case
+tate	Amazon	Kindle Fire HD 7" (2nd Gen)	OMAP 4460 HS	2012-09-14	U	70	0.00%	https://xdaforums.com/t/rom-7-1-lineageos-cm-14-1-and-cm13-unofficial-nougat-tate.3315075/ 	
+sweet_k6a	Xiaomi	Redmi Note 12 Pro 4G 	Snapdragon 732G 	2023-04-11	U	70	0.00%	https://xdaforums.com/t/closed-unofficial-rom-14-lineageos-21-for-redmi-note-12-pro-4g-sweet_k6a.4660682/ 	
+perry	Motorola	Moto E4 (US model)	Snapdragon 427	2017-06-01	U	70	0.00%	https://xdaforums.com/t/rom-unofficial-stable-perry-lineageos-14-1-for-moto-e4-qualcomm.3868291/ 	There is also a European model with Mediatek MT6737.
+kyleprods	Samsung	Galaxy S Duos 2 (S7582)	Broadcom BCM21664T	2013-12-01	U	70	0.00%	https://xdaforums.com/t/rom-6-0-1_r79-unofficial-lineageos-13-0-galaxy-s-duos-2-trend-plus-s7580-s7582.3307986/ 	
+everpal	Xiaomi	Redmi Note 11T, Redmi 11S 5G, Redmi 11 5G, POCO M4 Pro 5G	Dimensity 810	2021-12-07	U	70	0.00%	https://github.com/Xiaomi-MT6833/device_xiaomi_everpal, 	Can’t find the LOS ROM, but his is Pixel Exp: https://xdaforums.com/t/rom-13-unofficial-oss-vendor-pixelexperience-plus-for-redmi-note-11t-11s-5g-11-5g-poco-m4-pro-5g-everpal.4562525/ 
+chuwi_vi10plus	Chuwi	Vi10 Plus, Hi10 Plus, Hi10 Pro, Hibook, Hibook Pro, Hi12	Atom X5 Z8350	2016-10-02	U	70	0.00%	https://konstakang.com/devices/chuwi_vi10plus/CM13/ 	
+tilapia	ASUS	Nexus 7 3G (2012)	Tegra 3 T30L	2012-07-13	U	69	0.00%	https://xdaforums.com/t/rom-7-1-2-tilapia-unofficial-lineageos-14-1-2021-03-13.3978723/	
+m51	Samsung	M51	Snapdragon 730G 	2020-09-11	U	69	0.00%	https://xdaforums.com/t/rom-11-0-oneui-3-1-unofficial-eol-lineageos-18-1-for-samsung-m51.4252011/	
 condor	Motorola	moto e	Snapdragon 200	2014-05-13	D	69	0.00%		
-p6800					U	68	0.00%		
-nx595j					U	68	0.00%		
-citrus					U	68	0.00%		
-a30s					U	68	0.00%		
-nobleltejv					U	67	0.00%		
+p6800	Samsung	Galaxy Tab 7.7 (P6800)	Exynos 4 Dual 4210	2011-12-01	U	68	0.00%	https://xdaforums.com/t/rom-p6800-p6810-i815-lineageos-cm-12-1-unofficial.3777068/	
+nx595j	Nubia	Z17	Snapdragon 835 	2017-06-01	U	68	0.00%	https://xdaforums.com/t/closed-rom-unofficial-12l-nx595j-lineageos-19-1-for-nubia-z17s-16-01-2023.4542005/ 	I am going to list the maker as “Nubia”, since it was spun off from ZTE in 2015.
+citrus	Xiaomi	POCO M3	Snapdragon 662	2020-11-27	U	68	0.00%		Most people are using “juice” or “chime” build. Can’t find the LOS build for “citrus”, but here is the Superior Extended ROM: https://xdaforums.com/t/rom-14-citrus-superiorextended-official-for-poco-m3.4656058/ 
+a30s	Samsung	Galaxy A30	Exynos 7904	2019-09-11	U	68	0.00%		Can’t find the LOS ROM, but here is the /e/OS ROM: https://community.e.foundation/t/unofficial-builds-samsung-galaxy-a10-a20-a30-a40-a10-a10dd-a20-a20e-a30-a30s-a40-series-with-exynos-7885-chipset-for-e-os-u/66086 
+nobleltejv	Samsung	Galaxy Note 5 (SM-N920C)	Exynos 7420 Octa	2015-09-01	U	67	0.00%	https://xdaforums.com/t/rom-n920t-7-1-1-lineageos-14-1.3572047/	
 klteactivexx	Samsung	Galaxy S5 Active (G870F)	Snapdragon 801	2014-12-01	D	67	0.00%		
-h3gduoschn					U	67	0.00%		
-aio_otfp					U	67	0.00%		
-GM9PRO_sprout					U	67	0.00%		
-Daredevil					U	67	0.00%		
-ruby					U	66	0.00%		
+h3gduoschn	Samsung	Galaxy Note 3  (SM-N9002)	Snapdragon 800	2013-09-01	U	67	0.00%	https://xdaforums.com/t/rom-unofficial-14-lineageos-21-0-for-samsung-galaxy-note-3-hlte-h3gduoschn.4717614/	h3gduoschn is for the dual-SIM LTE version
+aio_otfp	Lenovo	Vibe K3 Note	Mediatek MT6752 	2015-03-01	U	67	0.00%	https://xdaforums.com/t/rom-alpha-8-1-0-unofficial-lineageos-15-1-for-lenovo-vibe-k3-note-by-daniel_hk.3764939/	
+GM9PRO_sprout	General Mobile	GM9 Pro	Snapdragon 660	2018-09-01	U	67	0.00%		Can’t find the LOS ROM, but here is AOSP 9.0 GSI: https://www.getdroidtips.com/android-9-0-pie-general-mobile-gm9-pro/
+Daredevil	Nokia	7.2	Snapdragon 660	2019-09-23	U	67	0.00%	https://xdaforums.com/t/rom-14-0-daredevil-lineageos-21-0-qpr3-unofficial.4001281/	
+ruby	Xiaomi	Redmi Note 12 Pro 5G	Dimensity 1080	2022-11-01	U	66	0.00%	https://github.com/bengris32/releases/releases/tag/ruby-21-1.0	
 kingdom	Lenovo	Vibe Z2 Pro	Snapdragon 801	2014-09-01	D	66	0.00%		
-greatqlte					U	66	0.00%		
-RMX1911					U	66	0.00%		
-gprimeltexx					U	65	0.00%		
-cuscoi					U	65	0.00%		
-A001D					U	65	0.00%		
+greatqlte	Samsung	Galaxy Note8 (SM-N9500)	Snapdragon 835 	2017-09-01	U	66	0.00%		Can’t find the ROM for this Chinese model.
+RMX1911	Realme	5, 5i, 5s	Snapdragon 665	2019-09-01	U	66	0.00%	https://xdaforums.com/t/rom-a14-realm-5-5i-5s-lineageos-21-0-december.4648231/	
+gprimeltexx	Samsung	Galaxy Grand Prime (G530FZ)	Snapdragon 410	2014-10-01	U	65	0.00%	https://github.com/LineageOS/android_device_samsung_gprimeltexx	
+cuscoi	Motorola	Moto Edge 50 Fusion 5G 2024 Standard Edition Dual SIM XT2429-1			U	65	0.00%		Can’t find the LOS ROM, but here are the kernel files: https://dumps.tadiphone.dev/dumps/motorola/cuscoi
+A001D	ASUS	ZenFone Max Shot, ZenFone Shot Plus (ZB634KL)	Snapdragon SiP 1	2019-03-01	U	65	0.00%	https://sourceforge.net/projects/matheusva001d/files/Lineage-FE/	
 zippo	Lenovo	Z6 Pro	Snapdragon 855	2019-09-11	O	64	0.00%		
-r5q					U	64	0.00%		
-le_x620					U	64	0.00%		
-jd2019					U	64	0.00%		
-j1x3gxx					U	64	0.00%		
+r5q	Samsung	Galaxy S10 Lite 	Snapdragon 855	2020-02-03	U	64	0.00%	https://xdaforums.com/t/rom-unofficial-g770f-fd-10-lineageos-17-1.4155067/	
+le_x620	LeEco	Le 2	Helio X20 MT6797	2016-04-01	U	64	0.00%	https://xdaforums.com/t/rom-x620-lineageos-782mb-17-sep-2017-unofficial.3560750/ 	
+jd2019	Lenovo	Z5s	Snapdragon 710	2018-12-24	U	64	0.00%	https://xdaforums.com/t/rom-14-unofficial-jd2019-ota-lineageos-for-lenovo-z5s.4684365/ 	
+j1x3gxx	Samsung	Galaxy J1 Duos (2016) (SM-J120H)	Spreadtrum SC9830	2016-01-01	U	64	0.00%		Can’t find the LOS ROM, but here are device tree files: https://github.com/LegacyOS/android_device_samsung_j1x3g 
 h830	LG	G5 (T-Mobile)	Snapdragon 820	2016-02-01	D	64	0.00%		
-a24					U	64	0.00%		
-on5ltetmo					U	63	0.00%		
+a24	Samsung	Galaxy A24 4G	Helio G99	2023-05-05	U	64	0.00%		Can’t find any ROMs for the A24, but maybe this is a GSI
+on5ltetmo	Samsung	Galaxy On5 (SM-G550T)	Exynos 3475 Quad	2015-11-01	U	63	0.00%	https://androidfilehost.com/?fid=10620683726822079162 	
 nx611j	Nubia	Z18 Mini	Snapdragon 660	2018-04-01	O	63	0.00%		
-nx569j					U	63	0.00%		
+nx569j	Nubia	Z17 Mini 	Snapdragon 652 or 653	2017-04-01	U	63	0.00%	https://xdaforums.com/t/rom-unofficial-7-1-2-nx569j-lineageos-14-1-13-11-2018.3759093/ 	
 gunnar	OnePlus	OnePlus Nord N20	Snapdragon 695	2022-04-28	O	63	0.00%		
-f300					U	63	0.00%		
+f300	LG	Vu 3 F300L	Snapdragon 800	2013-10-01	U	63	0.00%		kernel files: https://github.com/gyu9907/android_device_lge_f300 
 comet	Google	Pixel 9 Pro Fold	Tensor G4	2024-09-04	O	63	0.00%		
-a6000					U	63	0.00%		
-Z00xD					U	63	0.00%		
-RMX2030					U	63	0.00%		
-j1mini3gxw					U	62	0.00%		
+a6000	Lenovo	A6000, A6000 Plus	Snapdragon 410	2015-01-28	U	63	0.00%	https://androidfilehost.com/?w=files&flid=142361&sort_by=date&sort_dir=DESC 	
+Z00xD	ASUS	Zenfone 2 Laser	Snapdragon 410	2015-09-01	U	63	0.00%	https://github.com/Asus-MSM8916/lineage_OTA/releases	
+RMX2030	Realme	5i (RMX2030)	Snapdragon 665	2020-01-01	U	63	0.00%	https://github.com/realme-trinket-organization/android_device_realme_RMX2030 	
+j1mini3gxw	Samsung	Galaxy J1 mini 3G	Spreadtrum SC8830	2016-03-01	U	62	0.00%		Can’t find the j1mini3gxw ROM.
 cupidr					U	62	0.00%		
 clark	Motorola	moto x pure edition (2015), moto x style (2015)	Snapdragon 808	2015-09-01	D	62	0.00%		
 benz	OnePlus	OnePlus Nord CE4	Snapdragon 7 Gen 3	2024-04-01	O	62	0.00%		
