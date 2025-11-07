@@ -547,7 +547,7 @@ A102	Micromax	Canvas Doodle 3 (A102)	Mediatek MT6572 	2014-04-01	U	214	0.01%	htt
 X00T	ASUS	Zenfone Max Pro M1	Snapdragon 636	2018-05-01	U	213	0.01%	https://xdaforums.com/t/rom-9-0-0_r46-lineageos-16-0-x00t-unofficial.3946675/	
 TB2-X30L	Lenovo	TAB 2 A10-30 (TB2-X30L)	Snapdragon 210 	2015-10-29	U	213	0.01%		
 virtio_arm64only	virtual		ARM64		U	212	0.01%		
-p3s					U	211	0.01%		Probably Samsung Galaxy S21 Ultra 5G (SM-G998B/N) , but can’t the ROM
+p3s	Samsung	Galaxy S21 Ultra 5G (SM-G998B/N)			U	211	0.01%		Can’t the ROM
 ariel	Amazon	Fire HD 6/7 	MediaTek MT8135V	2014-10-02	U	210	0.01%	https://xdaforums.com/t/rom-unofficial-7-1-2-lineageos-14-1-for-amazon-fire-hd6-7-ariel.4702111/	
 amami	Sony	Xperia Z1 compact 	Snapdragon 800	2014-01-01	U	210	0.01%	https://xdaforums.com/t/rom-unofficial-11-0-signed-ota-lineage-os-18-1-for-xperia-z1-compact.4199113/	
 addison	Motorola	moto z play	Snapdragon 625	2016-09-01	D	210	0.01%		
@@ -655,7 +655,7 @@ Z1					U	143	0.00%
 voyager	Sony	Xperia XA2 Plus	Snapdragon 630	2018-07-01	O	142	0.00%		
 r7	OPPO	R7	Snapdragon 615	2015-05-01	U	142	0.00%	https://github.com/LineageOS/android_device_oppo_r7 	
 pdx237	Sony	Xperia 5 V	Snapdragon 8 Gen2	2023-09-01	O	142	0.00%		
-q2q					U	141	0.00%		
+q2q	Samsung	Galaxy Z Fold3 5G			U	141	0.00%		
 peregrine	Motorola	moto g 4G	Snapdragon 400	2014-06-01	D	137	0.00%		
 hannah	Motorola	moto e5 plus (XT1924-6/7/8)	Snapdragon 435	2018-05-01	D	137	0.00%		
 B2N	Nokia	Nokia 7 plus	Snapdragon 660	2018-04-30	O	137	0.00%		
@@ -684,7 +684,7 @@ nikel	Xiaomi	Redmi Note 4	Snapdragon 625	2017-01-01	U	126	0.00%	https://xdaforum
 felix	Google	Pixel Fold	Tensor GS201	2023-06-27	O	126	0.00%		
 RMP6768	Realme	Pad	Helio G80	2021-09-16	U	125	0.00%	https://github.com/Realme-Pad-Dev/android_vendor_realme_RMP6768 , https://github.com/neilchetty/releases/releases/tag/08012023 	
 gta2swifi	Samsung	Galaxy Tab A WiFi (SM-T380)	Snapdragon 425	2017-09-01	U	124	0.00%	https://xdaforums.com/t/rom-64bit-unofficial-11-lineageos-18-1-for-the-sm-t380-gta2swifi.4563435/	
-a13					U	124	0.00%		I can’t find an ROMs for the Galaxy A13, so this might refer to Android 13
+a13	Samsung	A13			U	124	0.00%		I can’t find an ROMs for the Galaxy A13, so this might refer to Android 13
 beyond0	Samsung	Galaxy S10e	Exynos 9820	2019-03-08	U	123	0.00%		I can’t find the ROM, but I assume this is a variant of beyond0lte for the Galaxy S10e. See: https://wiki.lineageos.org/devices/beyond0lte/ 
 unicorn	Xiaomi	Xiaomi 12S Pro	Snapdragon 8+ Gen1	2022-07-04	O	122	0.00%		
 r11s	OPPO	R11	Snapdragon 660 	2017-06-01	U	122	0.00%	https://androidfilehost.com/?w=files&flid=254599	
@@ -692,7 +692,7 @@ bahamut	Sony	Xperia 1, Xperia 5	Snapdragon 855 	2019-05-30	U	121	0.00%	https://x
 TBX304F	Lenovo	Tab4 10 WiFi (TB-X304F)	Qualcomm APQ8017	2017-07-01	U	121	0.00%	https://xdaforums.com/t/rom-unofficial-10-0-tb-x304f-tb-8504f-lineageos-17-1-for-lenovo-tab4-8-10-wifi.4466879/ 	
 shark	Xiaomi	Black Shark	Snapdragon 845	2018-04-01	O	120	0.00%		
 realme_trinket	Realme	5, 5i, 5s, 5 NFC, 5 Vietnam	Snapdragon 665	2019-08-01	U	120	0.00%	https://dodyirawan85.github.io/blog/2024-08-24-lineageos-realme-trinket/ 	
-g0q					U	119	0.00%		
+g0q	Samsung	Galaxy S22 (SM-S9060)			U	119	0.00%		
 RMX1851	Realme	Realme 3 Pro	Snapdragon 710	2019-04-29	D	119	0.00%		
 x86_64_tablet			x86_64		U	118	0.00%		
 a42xq	Samsung	Galaxy A42 5G	Snapdragon 750 5G	2020-11-11	U	118	0.00%	https://xdaforums.com/t/rom-13-unofficial-a42xq-lineageos-20-0-stable.4576615/	
@@ -751,7 +751,7 @@ alice	Huawei	P8 Lite (ALE-L21)	Kirin 620	2015-05-01	U	92	0.00%	https://androidfi
 X6531	Infinix	Hot 50i 	Helio G81	2024-10-01	U	92	0.00%	https://xdaforums.com/t/guide-to-flashing-gsi-ported-rom-for-infinix-hot-50i-x6531-x6531b.4735933/	
 m5	Banana Pi	M5 (Android TV)	Amlogic S905X3	2020-12-01	O	91	0.00%		
 a03s	Samsung	Galaxy A03s	Helio P35	2021-08-18	U	91	0.00%		Probably a GSI install: https://xdaforums.com/t/samsung-galaxy-a03-rooting-and-gsi-installation-guide.4642322/ 
-tank					U	90	0.00%		
+tank					U	90	0.00%		probably one of the Unihertz Tank models
 odroidm1	HardKernel	ODROID-M1	Rockchip RK3568B2	2022-04-03	U	90	0.00%	https://oph.mdrjr.net/voodik/RK356X/ODROID-M1/Android/LineageOTA-19.1/builds/selfinstall/	
 nashc	Realme	8	Helio G95	2021-03-25	U	90	0.00%	https://xdaforums.com/t/rom-unofficial-13-rmx3085-nashc-lineageos-20-for-realme-8.4534851/page-2	
 jackpotlte	Samsung	Galaxy A8 2018	Exynos 7885	2018-01-01	U	90	0.00%	https://github.com/Mesa-Labs-Archive/android_device_samsung_jackpotlte 	
@@ -764,7 +764,7 @@ frd	Huawei	Honor 8	Kirin 950	2016-07-01	U	88	0.00%	https://www.needrom.com/downl
 oxford					U	87	0.00%		
 nx551j	Nubia	M2	Snapdragon 625 	2017-06-01	U	87	0.00%	https://xdaforums.com/t/rom-unofficial-7-1-2-nx551j-lineageos-14-1-for-nubia-m2-17-09-2018.3811496/page-13 	
 j23g	Samsung	Galaxy J2 (SM-J200H)	Exynos 3475 Quad 	2015-09-01	U	87	0.00%	https://xdaforums.com/t/rom-unofficial-7-1-2-sm-j200h-lineageos-for-samsung-galaxy-j2.3659657/	
-icosa_sr					U	87	0.00%		
+icosa_sr	Nintendo	Switch			U	87	0.00%	https://github.com/LeddaZ/lineage-switch/releases/tag/20220824 , https://github.com/LeddaZ/lineage-switch?tab=readme-ov-file 	
 aurora	Sony	Xperia XZ2 Premium	Snapdragon 845	2018-04-01	O	87	0.00%		
 a20e	Samsung	Galaxy A20e	Exynos 7884	2019-05-01	U	87	0.00%	https://xdaforums.com/t/rom-ported-11-custom-roms-for-galaxy-a20e-lineage-havoc.4263905/	
 sphynx	Google	Pixel C	Nvidia Tegra X1	2015-12-08	U	86	0.00%	https://xdaforums.com/t/unofficial-lineageos-20-for-the-google-pixel-c-not-fully-functional.4636800/ 	
@@ -977,7 +977,7 @@ mi439	Xiaomi	Redmi 8A Dual	Snapdragon 439	2019-10-01	U	38	0.00%	https://sourcefo
 j2xlte	Samsung	J2 (2016)	Spreadtrum SC8830	2016-07-01	U	38	0.00%	https://xdaforums.com/t/rom-7-1-2-unofficial-sm-j210f-lineageos-14-1.3680656/ 	
 fde_x86_64			x86_64		U	38	0.00%	https://github.com/openfde/device_fde 	
 e8	HTC	One E8	Snapdragon 801 (28 nm)	2014-06-01	U	38	0.00%	https://xdaforums.com/t/rom-unofficial-lineageos-16-0-for-htc-one-e8.3920547/	
-Z500					U	38	0.00%		
+Z500	Acer	Z500			U	38	0.00%	https://rokibhasansagar.github.io/LiquidPort/lineageos-14.1-acer-Z500/ 	
 Z00A	ASUS	Zenfone 2 (1080p)	Atom Z3580	2015-03-01	D	38	0.00%		
 TB3-850M	Lenovo	Tab3 8	Mediatek MT8161 (28 nm)	2016-06-01	U	38	0.00%		
 OP4863	OnePlus	13 	Snapdragon 8 Elite (3 nm)	2024-11-01	U	38	0.00%		
@@ -1011,233 +1011,233 @@ ziti	OnePlus	Nord CE3	Snapdragon 782G (6 nm)	2023-08-05	U	33	0.00%	https://xdafo
 rubyx	Xiaomi	Redmi Note 12 Pro, Pro Plus 5G	Dimensity 1080 (6 nm)	2022-11-01	U	33	0.00%	https://github.com/xiaomi-mediatek-devs/releases/releases , https://xdaforums.com/t/shared-rom-15-unofficial-lineage-os-22.4709381/ 	
 roth	NVIDIA	Shield Portable	Tegra 4 (T114)	2013-07-31	D	33	0.00%		
 m2note	Meizu	M2 Note, Blue Charm Note2	Mediatek MT6753 (28 nm)	2015-06-01	U	33	0.00%	https://xdaforums.com/t/rom-lineageos-14-1-for-meizu-m2-note-7-1-2.3692279/ 	
-delos3geur	Samsung	Galaxy Win (GT-I8552)			U	33	0.00%		
-a5dwg					U	33	0.00%		
+delos3geur	Samsung	Galaxy Win, Galaxy Grand Quattro (GT-I8552)	 Snapdragon 200	2013-05-01	U	33	0.00%		
+a5dwg	HTC	Desire 816 dual SIM	Snapdragon 400 (28 nm)	2014-05-01	U	33	0.00%	https://xdaforums.com/t/rom-11-0-unofficial-a5-all-lineageos-18-1-stable.4327909/ 	
 Z00L	ASUS	Zenfone 2 Laser (720p)	Snapdragon 410	2015-11-01	D	33	0.00%		
-OP4B79L1					U	33	0.00%		
+OP4B79L1	OPPO	A5 (2020)	Snapdragon 665 (11 nm)	2019-10-01	U	33	0.00%		
 ivy	Sony	Xperia Z3+	Snapdragon 810	2015-06-01	D	32	0.00%		
 hiae	HTC	One A9	Snapdragon 617	2015-10-20	D	32	0.00%		
-hero2ltektt					U	32	0.00%		
+hero2ltektt	Samsung	Galaxy S7 Edge (SM-G935K)	Exynos 8 Octa 8890 (14nm)	2016-03-11	U	32	0.00%		
 x3					U	31	0.00%		
-star2qlteue					U	31	0.00%		
-spartan					U	31	0.00%		
-pele					U	31	0.00%		
-nobleltezt					U	31	0.00%		
-j5xnltexx					U	31	0.00%		
+star2qlteue	Samsung	Galaxy S9+ (SM-G965U1)	Snapdragon 845	2018-03-01	U	31	0.00%		
+spartan	Realme	GT Neo 3T (RMX3371)	Snapdragon 870 5G (7 nm)	2022-06-25	U	31	0.00%	https://github.com/ProjectEverest-Devices/device_realme_spartan 	
+pele	Motorola	XT701, XT720			U	31	0.00%		
+nobleltezt	Samsung	Galaxy Note5			U	31	0.00%		
+j5xnltexx	Samsung	Galaxy J5 (2016)			U	31	0.00%		
 g2m	LG	G2 Mini	Snapdragon 400	2014-04-01	D	31	0.00%		
-dream2qltecan					U	31	0.00%		
+dream2qltecan	Samsung	Galaxy S8+ (SM-G955W)			U	31	0.00%		
 d2spr	Samsung	Galaxy S III (Sprint)	Snapdragon S4 Plus	2012-06-28	D	31	0.00%		
-certus64					U	31	0.00%		
-K2					U	31	0.00%		
-wt86528					U	30	0.00%		
+certus64	Xiaomi	Redmi 6, Redm 6A			U	31	0.00%	https://github.com/NusantaraROM-Devices/device_xiaomi_certus64 , https://sourceforge.net/projects/certusroms/files/ 	
+K2					U	31	0.00%		This maybe a GSI install on a Blackberry Key2. See: https://web.archive.org/web/20200904033946/https://gearallnews.com/how-to-install-lineage-os-17-gsi-for-blackberry-key2-android-10/ 
+wt86528	Lenovo 	A6010, K31-t3, wt86528			U	30	0.00%	https://androidfilehost.com/?fid=673368273298945685 , https://xdaforums.com/t/rom-stable-7-1-2_r29-f2fs-2017-08-31-a6000-a6010-arm64-lineage-oms-unofficial.3540256/ 	
 w7	LG	L90	Snapdragon 400	2014-02-01	D	30	0.00%		
-ulova					U	30	0.00%		
+ulova	Xiaomi	Redmi 4A, Redmi 5A, Redmi Note 5A, Redmi Y1			U	30	0.00%	https://github.com/CherishOS-Devices/device_xiaomi_ulova, https://community.e.foundation/t/unofficial-builds-legacy-xiaomi-redmi-msm8937-based-devices-for-e-os-r-2-3/76640 	
 scale					U	30	0.00%		
-porsche					U	30	0.00%		
-m53x					U	30	0.00%		
-gts7xl					U	30	0.00%		
-dreamqltecan					U	30	0.00%		
-c2q					U	30	0.00%		
+porsche	Realme	GT 2			U	30	0.00%		Can’t find the LOS build, but other ROMs are here: https://customrombay.org/realme-porsche/ 
+m53x	Samsung	Galaxy M53 5G (SM-M536B, SM-M546B)			U	30	0.00%		
+gts7xl	Samsung	Galaxy Tab S7+, Galaxy Tab S7+ 5G			U	30	0.00%		SM-T975/N, SM-T976B/N/U
+dreamqltecan	Samsung	Galaxy S8 (SM-G950W)			U	30	0.00%		
+c2q	Samsung	Galaxy Note20 Ultra 5G			U	30	0.00%		SM-N9860/N/U/U1/W
 bathena	Motorola	defy 2021	Snapdragon 662	2021-06-01	O	30	0.00%		
-OP4EFDL1					U	30	0.00%		
-z2_row					U	29	0.00%		
-tiro					U	29	0.00%		
+OP4EFDL1	OPPO	A53			U	30	0.00%		
+z2_row	ZUK	Z2 Pro			U	29	0.00%		
+tiro	Nubia	Red Magic 9 Pro			U	29	0.00%	https://xdaforums.com/t/rom-android-16-beta-ota-lineageos-23-0-for-red-magic-9-pro-tiro-nx769j.4763210/ 	
 nx606j	Nubia	Z18	Snapdragon 845	2018-09-01	O	29	0.00%		
-nx591j					U	29	0.00%		
-ms01lte					U	29	0.00%		
-m33x					U	29	0.00%		
-hi6250					U	29	0.00%		
+nx591j	ZTE	NX591J			U	29	0.00%		
+ms01lte	Samsung	Galaxy Grand2			U	29	0.00%		
+m33x	Samsung	Galaxy Jump2			U	29	0.00%		
+hi6250	Huawei	P9 Lite			U	29	0.00%	https://xdaforums.com/t/rom-7-1-2-lineageos-14-1-for-p9-lite-by-hassanmirza01.3713895/ 	
 h872	LG	G6 (T-Mobile)	Snapdragon 821	2017-02-01	D	29	0.00%		
-a82xq					U	29	0.00%		
-a5y17ltelgt					U	29	0.00%		
+a82xq	Samsung	Galaxy Quantum2			U	29	0.00%		
+a5y17ltelgt	Samsung	Galaxy A5 (2017) (SM-A520L)			U	29	0.00%		
 2025					U	29	0.00%		
-star					U	28	0.00%		
-ef59					U	28	0.00%		
-e53g					U	28	0.00%		
-atom					U	28	0.00%		
-X6532					U	28	0.00%		
-OP4BA5L1					U	28	0.00%		
-x6833b					U	27	0.00%		
+star	Xiaomi	Mi 11 Ultra			U	28	0.00%	https://git.mainlining.org/FlowerSea0208/flower-ota/src/branch/lineage-21/star-21.0-20240320 , https://xdaforums.com/t/rom-13-unofficial-lineageos-20-for-mi-11-ultra.4618973/ 	
+ef59	Pantech	VEGA Secret Note			U	28	0.00%	https://androidfilehost.com/?fid=673368273298974433 	
+e53g	Samsung	Galaxy E5 (SM-E500H)			U	28	0.00%		
+atom	Xiaomi	Redmi 10X (atom, M2004J7AC)			U	28	0.00%		
+X6532	Infinix	SMART 9 (X6532)			U	28	0.00%		
+OP4BA5L1	OPPO	CPH2109, CPH2113			U	28	0.00%		
+x6833b	Infinix	Infinix NOTE 30			U	27	0.00%		
 nx619j	Nubia	Red Magic Mars	Snapdragon 845	2018-12-01	O	27	0.00%		
 jag3gds	LG	G3 S	Snapdragon 400	2014-08-01	D	27	0.00%		
-e1q					U	27	0.00%		
-a5ul					U	27	0.00%		
-a55x					U	27	0.00%		
+e1q	LG	K4 (LG-K120GT, LG-K121, VS425)			U	27	0.00%		
+a5ul	HTC	Desire 816			U	27	0.00%		
+a55x	Samsung	Galaxy A55 5G			U	27	0.00%		
 1920					U	27	0.00%		
-winner					U	26	0.00%		
+winner	Samsung	Galaxy Fold, Galaxy Fold 5G (SM-F9000/F/U/U1/W, SM-F907B/N)			U	26	0.00%		
 us996d	LG	V20 (GSM Unlocked - DirtySanta)	Snapdragon 820	2016-10-01	D	26	0.00%		
-sydneym					U	26	0.00%		
-gracerltektt					U	26	0.00%		
-ef60					U	26	0.00%		
-arubaslim					U	26	0.00%		
-F1					U	26	0.00%		
-sirisu					U	25	0.00%		
-alphalm					U	25	0.00%		
-lexus					U	24	0.00%		
-OP46B1					U	24	0.00%		
-ziyi					U	23	0.00%		
+sydneym	Huawei	Mate 20 Lite 	Kirin 710		U	26	0.00%	https://xdaforums.com/t/rom-13-0-lineageos-20-huawei-mate-20-lite-sydneym-update-28-09-2025.4714244/ 	
+gracerltektt	Samsung	Galaxy Note Fan Edition (SM-N935K)			U	26	0.00%		
+ef60	Pantech	VEGA Secret UP (EF60S)	Snapdragon 800	2013-12-01	U	26	0.00%	https://androidfilehost.com/?fid=15664248565197198109  	
+arubaslim	Samsung	Galaxy Core (GT-I8262)			U	26	0.00%		
+F1					U	26	0.00%		Probably an unofficial build of the POCO F1 or OPPO F1
+sirisu	Google	Pixel 2 XL			U	25	0.00%	https://4pda.to/forum/index.php?showtopic=890364&st=1740 	Some weird Russian build
+alphalm	LG	G8 ThinQ (LM-G820)			U	25	0.00%		
+lexus	OnePlus	Nord 5			U	24	0.00%	https://xdaforums.com/t/rom-unofficial-lexus-lineageos-22-2-for-oneplus-nord-5.4760529/ 	
+OP46B1	OPPO	Reno 标准版  (PCAM00)			U	24	0.00%		
+ziyi	Xiaomi	13 Lite			U	23	0.00%		
 tenet					U	23	0.00%		
-j5ltechn					U	23	0.00%		
-fortunafz					U	23	0.00%		
-emerald					U	23	0.00%		
-penang					U	22	0.00%		
-passion					U	22	0.00%		
-kltedcm					U	22	0.00%		
+j5ltechn	Samsung	Galaxy J5 (SM-J5008)			U	23	0.00%		
+fortunafz	Samsung	Galaxy Grand Prime			U	23	0.00%	https://xdaforums.com/t/rom-stable-lineageos-13-builds-g530h-g530fz-g530m.3632779/ 	
+emerald	Teracube	2e (2022)			U	23	0.00%	https://xdaforums.com/t/rom-emerald-teracube-2e-2022-lineageos-18-1-unofficial.4405211/ 	The Xiaomi POCO M6 Pro also has the OEM codename “emerald”
+penang	Motorola	moto G53 (XT2335-3)			U	22	0.00%		
+passion	Lenovo	Vibe P1			U	22	0.00%	https://xdaforums.com/t/rom-lineage-16-0-unofficial-passion.4083875/ 	The HTC Nexus One also had the “passion” codename 
+kltedcm	Samsung	Galaxy S5			U	22	0.00%	https://androidfilehost.com/?fid=1322778262904015211 	Not sure which version of the S5l this is for
 dogo	Sony	Xperia ZR	Snapdragon S4 Pro	2013-06-01	D	22	0.00%		
 chef	Motorola	one power	Snapdragon 636	2018-10-10	D	22	0.00%		
-X00I					U	22	0.00%		
-CK8n					U	22	0.00%		
-zircon					U	21	0.00%		
-shamrock					U	21	0.00%		
-KL5					U	21	0.00%		
+X00I	ASUS	ZenFone 4 Max (ZC554KL)			U	22	0.00%		
+CK8n	TECNO	CAMON 20 Pro 5G			U	22	0.00%		
+zircon	Xiaomi	Redmi Note 13 Pro+			U	21	0.00%		
+shamrock	General Mobile	GM 5 Plus	Snapdragon 617		U	21	0.00%	https://cyanogenmods.org/forums/topic/lineage-os-14-1-gm-5-plus-shamrock-nougat-7-1-rom/ 	
+KL5	TECNO	SPARK 30C (KL5)			U	21	0.00%		
 r7sf	OPPO	R7s (International)	Snapdragon 615	2015-11-01	D	20	0.00%		
-poplar_kddi					U	20	0.00%		
+poplar_kddi	Sony	Xperia XZ1 (SOV36)			U	20	0.00%	https://xdaforums.com/t/rom-lineageos-19-1-unofficial-1-6-2022-09-18.4406727/ 	
 paros					U	20	0.00%		
-owens					U	20	0.00%		
+owens	Motorola	Moto E (4) Plus			U	20	0.00%		
 klteaio	Samsung	Galaxy S5 LTE (G900AZ/S902L)	Snapdragon 801	2014-04-11	D	20	0.00%		
 jagnm	LG	G3 Beat	Snapdragon 400	2014-08-01	D	20	0.00%		
-houji					U	20	0.00%		
-c1q					U	20	0.00%		
-amber					U	20	0.00%		
-X00H					U	20	0.00%		
-wly					U	19	0.00%		
-nobleltetmo					U	19	0.00%		
+houji	Xiaomi	14			U	20	0.00%	https://dumps.tadiphone.dev/dumps/xiaomi/houji/-/tree/missi_phone_cn_only64-user-14-UKQ1.230804.001-V816.0.6.0.UNCCNXM-release-keys/aosp-device-tree 	
+c1q	Samsung	Galaxy Note20 5G (SM-N9810/N/U/U1/W)			U	20	0.00%		
+amber	Xiaomi	11T			U	20	0.00%	https://xdaforums.com/t/rom-14-0-unofficial-agate-amber-2024-05-30-lineageos-21-0.4658099/	This is different from the official “Amber” build. 
+X00H	ASUS	ZenFone 4 Max 			U	20	0.00%		
+wly	OnePlus	10 Pro	Snapdragon 8 Gen 1		U	19	0.00%	https://github.com/pjgowtham/android_device_oneplus_wly/releases 	
+nobleltetmo	Samsung	Galaxy Note5			U	19	0.00%		
 kltechnduo	Samsung	Galaxy S5 LTE Duos (G9006W/8W)	Snapdragon 801	2014-04-01	D	19	0.00%		
-juice					U	19	0.00%		
+juice	Xiaomi	Redmi 9T, POCO M3, Redmi 9 Power, Redmi Note 9 4G			U	19	0.00%	https://sourceforge.net/projects/gengkapak/files/ROM/juice/LineageOS/11/ 	
 himaul	HTC	One M9 (GSM)	Snapdragon 810	2015-03-01	D	19	0.00%		
-fortunalteub					U	19	0.00%		
-ebba					U	19	0.00%		
-apollopro					U	19	0.00%		
-KJ5					U	19	0.00%		
-udon					U	18	0.00%		
-odroidgo3					U	18	0.00%		
+fortunalteub	Samsung	Galaxy Grand Prime  (fortunalte)			U	19	0.00%		probably   Galaxy Grand Prime  (fortunalte)
+ebba	OnePlus	Nord CE 5G			U	19	0.00%	https://xdaforums.com/t/rom-11-unofficial-lineageos-18-1-oneplus-nord-ce-ebba.4402233/ 	
+apollopro	Xiaomi	Mi 10T pro 			U	19	0.00%		The code name of both the Mi 10T and Mi 10T Pro is “apollo”
+KJ5	TECNO	SPARK 20			U	19	0.00%		
+udon	Xiaomi	Mi MIX 4			U	18	0.00%	https://xdaforums.com/t/rom-udon-14-0-official-miku-ui-for-xiaomi-mix-4.4573575/ 	
+odroidgo3	HardKernel	ODROID go3		2022-10-04	U	18	0.00%		
 m8d	HTC	One (M8) Dual SIM	Snapdragon 801	2014-06-01	D	18	0.00%		
 zangya	BQ	Aquaris X2	Snapdragon 636	2018-05-01	D	17	0.00%		
 tsubasa	Sony	Xperia V	Snapdragon S4	2012-09-01	D	17	0.00%		
 piccolo	BQ	Aquaris M5	Snapdragon 615	2015-08-01	D	17	0.00%		
-lv517					U	17	0.00%		
-j5ltekx					U	17	0.00%		
-cs02					U	17	0.00%		
-X6871					U	17	0.00%		
-vitamin					U	16	0.00%		
-ulysse					U	16	0.00%		
-serranoltespr					U	16	0.00%		
-h96_max_x3					U	16	0.00%		
-h815_usu					U	16	0.00%		
-eqe					U	16	0.00%		
-willow					U	15	0.00%		
-rio					U	15	0.00%		
-ph2n					U	15	0.00%		
+lv517	LG	K20			U	17	0.00%		
+j5ltekx	Samsung	Galaxy J5 (SM-J500N0)			U	17	0.00%		
+cs02	Samsung	Galaxy Core Plus (SM-G350)			U	17	0.00%		
+X6871	Infinix	GT 20 Pro			U	17	0.00%		
+vitamin	OnePlus	OnePlus Nord 3 5G 	MediaTek MT6983Z/CZA		U	16	0.00%	https://github.com/lineageos-on-vitamin/releases/releases/tag/22.2-20250419-UNOFFICIAL 	
+ulysse	Xiaomi	Redmi Note 5A, Redmi Note 5A Prime, Redmi Y1 	Snapdragon 435 (28 nm)	2017-11-01	U	16	0.00%	https://sourceforge.net/projects/ulysse-ports/files/LineageOS/ , https://review.lineageos.org/c/LineageOS/lineage_wiki/+/329353/2/pages/upgrade/ulysse.md 	
+serranoltespr	Samsung	Galaxy S4 Mini (SPH-L520)			U	16	0.00%		
+h96_max_x3	H96	Max X3	Amlogic S905X3		U	16	0.00%		May be LG V10(LG-H960, LG-H961AN, LG-H961N)
+h815_usu	LG	G4			U	16	0.00%	https://xdaforums.com/t/rom-unofficial-o-usu-lineageos-15-1-h815-deprecated.3806629/page-3 	Only for devices unlocked by UsU
+eqe	Motorola	edge 50 pro			U	16	0.00%		
+willow	Xiaomi	Redmi Note 8T			U	15	0.00%		
+rio	Huawei	G8, GX8			U	15	0.00%	https://androidfilehost.com/?fid=529152257862695796 , https://xdaforums.com/t/rom-7-1-x-unofficialy-lineageos-14-1-for-huawei-g8-gx8-update-24-03-2017.3527849/page-7#post-70568400 	
+ph2n	LG	Stylo 2 Plus			U	15	0.00%		
 figo	Huawei	P Smart	Kirin 659	2017-12-01	D	15	0.00%		
 f1f	OPPO	F1 (International)	Snapdragon 615	2016-01-01	D	15	0.00%		
-plato					U	14	0.00%		
+plato	Xiaomi	12T			U	14	0.00%		
 nx609j	Nubia	Red Magic	Snapdragon 835	2018-04-01	D	14	0.00%		
 mint	Sony	Xperia T	Snapdragon S4	2012-09-01	D	14	0.00%		
 hayabusa	Sony	Xperia TX	Snapdragon S4	2012-08-01	D	14	0.00%		
-a7lte					U	14	0.00%		
-tbelteskt					U	13	0.00%		
-h812_usu					U	13	0.00%		
+a7lte	Samsung	Galaxy A7			U	14	0.00%		
+tbelteskt	Samsung	Galaxy Note Edge			U	13	0.00%		
+h812_usu	LG	G4 (LG-H812)			U	13	0.00%		
 anne	Huawei	P20 Lite	Kirin 659	2018-03-01	D	13	0.00%		
-P1m					U	13	0.00%		
-z3dual					U	12	0.00%		
+P1m	Lenovo	Vibe P1m 			U	13	0.00%		Probably this build, but all download links are broken: https://xdaforums.com/t/rom-7-1-2-stable-lineage-os-lenovo-vibe-p1m-mt6735-x64bit.3559291/ 
+z3dual	Sony	Xperia Z3 Dual			U	12	0.00%		
 r7plus	OPPO	R7 Plus (International)	Snapdragon 615	2015-05-01	D	12	0.00%		
-prague					U	12	0.00%		
-kltevzw					U	12	0.00%		
-j7xlte					U	12	0.00%		
+prague	Huawei	P8 Lite (2017)			U	12	0.00%	https://xdaforums.com/t/rom-prague-11-lineageos-18-1-for-huawei-p8-lite-2017.4275551/ 	
+kltevzw	Samsung	https://xdaforums.com/t/rom-prague-11-lineageos-18-1-for-huawei-p8-lite-2017.4275551/https://xdaforums.com/t/rom-prague-11-lineageos-18-1-for-huawei-p8-lite-2017.4275551/			U	12	0.00%		
+j7xlte	Samsung	Galaxy J7 (2016) (SM-J710F), Galaxy On8 (SM-J710FN)			U	12	0.00%		
 gohan	BQ	Aquaris X5 Plus	Snapdragon 652	2016-07-01	D	12	0.00%		
-crownqltechn					U	12	0.00%		
-a70s					U	12	0.00%		
-a6010					U	12	0.00%		
-a53gxx					U	12	0.00%		
-y560					U	11	0.00%		
-s3_h560					U	11	0.00%		
-p7_l10					U	11	0.00%		
+crownqltechn	Samsung	Galaxy Note9 (SM-N9600)			U	12	0.00%		
+a70s	Samsung	Galaxy A70s			U	12	0.00%		
+a6010	Lenovo	A6010			U	12	0.00%		
+a53gxx	Samsung	Galaxy A5 (SM-A500H)			U	12	0.00%		
+y560	Huawei	Y5, Y560			U	11	0.00%		
+s3_h560	JiaYu	S3			U	11	0.00%	https://xdaforums.com/t/rom-7-1-2-unofficial-lineageos-14-1-jiayu-s3.3499668/ 	
+p7_l10	Huawei	Ascend P6S-U06 P7-L10			U	11	0.00%	https://github.com/threader/android_device_huawei_p7_l10 , https://xdaforums.com/t/rom-6-0-1-unofficial-lineageos-13-0-for-huawei-ascend-p6s-u06-p7-l10-continued.4300013/  	
 nicki	Sony	Xperia M	Snapdragon S4 Plus	2013-06-01	D	11	0.00%		
 jflteatt	Samsung	Galaxy S4 (SGH-I337)	Snapdragon 600	2013-04-01	D	11	0.00%		
-j3xltebmc					U	11	0.00%		
+j3xltebmc	Samsung	Galaxy J3 (2016) (SM-J320W8)			U	11	0.00%		
 f400	LG	G3 (Korea)	Snapdragon 801	2014-06-01	D	11	0.00%		
 d852	LG	G3 (Canada)	Snapdragon 801	2014-06-01	D	11	0.00%		
 d851	LG	G3 (T-Mobile)	Snapdragon 801	2014-06-01	D	11	0.00%		
 d850	LG	G3 (AT&T)	Snapdragon 801	2014-06-01	D	11	0.00%		
-coreprimeve3g					U	11	0.00%		
+coreprimeve3g	Samsung	Galaxy Core Prime (SM-G361H)			U	11	0.00%		
 TP1803	Nubia	Mini 5G	Snapdragon 855	2019-04-01	O	11	0.00%		
-A5_Pro					U	11	0.00%		
+A5 Pro	OPPO	A5 Pro			U	11	0.00%		
 w5	LG	Optimus L70	Snapdragon 200	2014-04-01	D	10	0.00%		
 vegetalte	BQ	Aquaris E5 4G, Aquaris E5s	Snapdragon 410	2014-11-01	D	10	0.00%		
-odroidn2l					U	10	0.00%		
-i9100g					U	10	0.00%		
-htc_820g_plus					U	10	0.00%		
-RMX3242					U	10	0.00%		
-urd					U	9	0.00%		
-m8qlul					U	9	0.00%		
+odroidn2l	HardKernel	ODROID-N2L			U	10	0.00%		
+i9100g	Samsung	Galaxy S2 Plus (GT-I9100G)			U	10	0.00%		
+htc_820g_plus	HTC	Desire 820G PLUS dual sim			U	10	0.00%		
+RMX3242	Realme	Narzo 30 5G			U	10	0.00%		
+urd	ZTE	Z981			U	9	0.00%		
+m8qlul	HTC	ONE M8s			U	9	0.00%		
 ls990	LG	G3 (Sprint)	Snapdragon 801	2014-06-01	D	9	0.00%		
-h930					U	9	0.00%		
-frescoltekor					U	9	0.00%		
-flashlm					U	9	0.00%		
-caza					U	9	0.00%		
+h930	LG	V30 (LG-H930)			U	9	0.00%		
+frescoltekor	Samsung	Galaxy Note3 Neo (SM-N750K/L/S)			U	9	0.00%		
+flashlm	LG	V50 (LM-V500XM), V50 ThinQ (LM-V450)			U	9	0.00%		
+caza	Nubia	Z60 Ultra, Red Magic 9 Pro, RedMagic 10 Air	Snapdragon 8 Gen 3 (4 nm)		U	9	0.00%	https://github.com/nubia-sm8650-devs/android_device_nubia_caza 	
 caymanslm	LG	Velvet	Snapdragon 845	2020-07-31	O	9	0.00%		
 ahannah	Motorola	moto e5 plus (XT1924-3/9)	Snapdragon 430	2018-05-01	D	9	0.00%		
-a5ltexx					U	9	0.00%		
-x500					U	8	0.00%		
-wilcoxltexx					U	8	0.00%		
-vee7					U	8	0.00%		
-onc					U	8	0.00%		
-Tiare_4_19					U	8	0.00%		
-GM8_sprout					U	8	0.00%		
-r5xQ					U	7	0.00%		
-p839v55					U	7	0.00%		
-light					U	7	0.00%		
-kltespr					U	7	0.00%		
-kinzie					U	7	0.00%		
+a5ltexx	Samsung	Galaxy A5 (SM-A500F/G)			U	9	0.00%		
+x500	ZTE	X500			U	8	0.00%		
+wilcoxltexx	Samsung	Galaxy Express2			U	8	0.00%		
+vee7	LG	L7 II (vee7e), L7 II Dual (vee7ds)			U	8	0.00%		
+onc	Xiaomi	Redmi 7			U	8	0.00%		
+Tiare_4_19	Xiaomi	Redmi Go (tiare)			U	8	0.00%		
+GM8_sprout	General Mobile	GM 8			U	8	0.00%		
+r5xQ					U	7	0.00%	https://sourceforge.net/projects/filerom/files/lineageOS-r5xQ-A10/ 	
+p839v55	Vodafona	Smart ultra 6			U	7	0.00%		
+light	Xiaomi	POCO M4 5G, Redmi 10 5G (22041219G)			U	7	0.00%		Could be the ZTE V9
+kltespr	Samsung	Galaxy S5 (SM-G900P)			U	7	0.00%		
+kinzie	Motorola	DROID Turbo 2			U	7	0.00%		
 h811	LG	G4 (T-Mobile)	Snapdragon 808	2015-06-01	D	7	0.00%		
-ef56					U	7	0.00%		
-draconis					U	7	0.00%		
-agate					U	7	0.00%		
-x1					U	6	0.00%		
-trltexx					U	6	0.00%		
-sltecan					U	6	0.00%		
+ef56	Pantech	Vega LTE-A			U	7	0.00%	https://cyanogenmods.org/forums/topic/lineage-os-14-1-vega-lte-a-ef56-nougat-7-1-rom/ , https://androidfilehost.com/?fid=745425885120722528 	
+draconis	ZTE	Z970			U	7	0.00%		
+agate	Xiaomi	11T			U	7	0.00%	https://xdaforums.com/t/rom-14-0-unofficial-agate-amber-2024-05-30-lineageos-21-0.4658099/	
+x1					U	6	0.00%		Maybe Sharp X1 or ZTE Blade X1 5G or zte Helios X1 or ZTE   Switch X1 or Acer Liquid X1
+trltexx	Samsung	Galaxy Note4 (SM-N910F/G/X)			U	6	0.00%		
+sltecan	Samsung	Galaxy Alpha (SM-G850W)			U	6	0.00%		
 rs988	LG	G5 (US Unlocked)	Snapdragon 820	2016-02-01	D	6	0.00%		
-poplar_canada					U	6	0.00%		
-osaka					U	6	0.00%		
-maverick					U	6	0.00%		
-j3xprolte					U	6	0.00%		
-ef71					U	6	0.00%		
-d838					U	6	0.00%		
-A7010a48					U	6	0.00%		
-vidofnir					U	5	0.00%		
-unified7870					U	5	0.00%		
-nx589j					U	5	0.00%		
-j5ltexx					U	5	0.00%		
-iris					U	5	0.00%		
-idol4					U	5	0.00%		
-h96pro					U	5	0.00%		
+poplar_canada	Sony	Xperia XZ1 (Canada)			U	6	0.00%	https://xdaforums.com/t/rom-lineageos-20-0-unofficial-1-5-2023-12-27.4501493/ 	
+osaka	Motorola	Moto G Stylus 5G 2021			U	6	0.00%	https://sourceforge.net/projects/moto-g-stylus-5g-2021-roms/files/Osaka/ 	
+maverick	Amazon	Fire HD 10 9th gen			U	6	0.00%	https://xdaforums.com/t/rom-unofficial-maverick-temp-unlocked-11-lineageos-18-1-for-amazon-fire-hd-10-9th-generation-28-02-2022.4410305/page-2 	
+j3xprolte	Samsung	Galaxy J3 Pro (SM-J3110, SM-J3119)			U	6	0.00%		
+ef71	Pantech	SKY IM-100 			U	6	0.00%	https://pfile.imholic.com:2822/Pantech/Hiru/IM-100/9/LineageOS/ 	
+d838	LG	G Pro2 (LG-D838)			U	6	0.00%		
+A7010a48	Lenovo	VIBE X3 Lite  (A7010a48)			U	6	0.00%		
+vidofnir	Volla Phone	X23 (Gigaset GX4)	Helio G99		U	5	0.00%		
+unified7870	Samsung	Exynos 7870 Device	Exynos 7870		U	5	0.00%	https://sourceforge.net/projects/ping2109builds/files/universal7870/stable/LineageOS/  , https://t.me/s/nippongsi?before=6341 	Appears to be a Samsung dev board or prototype
+nx589j	ZTE	NX589J			U	5	0.00%		
+j5ltexx	Samsung	Galaxy J5 (SM-J5007/F/G/M)			U	5	0.00%		
+iris	ZTE	Grand S Flex			U	5	0.00%		
+idol4	Alcatel	6055A			U	5	0.00%		
+h96pro	H96	Pro Plus	Amlogic S912		U	5	0.00%		
 v1					U	4	0.00%		
-serranolteusc					U	4	0.00%		
-j7ltechn					U	4	0.00%		
-j3ltekx					U	4	0.00%		
-ctwo					U	4	0.00%		
-X00QD					U	4	0.00%		
-NX679J					U	4	0.00%		
-x1slte					U	3	0.00%		
-sydney					U	3	0.00%		
-sf340n					U	3	0.00%		
-nemo					U	3	0.00%		
-logan					U	3	0.00%		
-fortuna3gdtv					U	3	0.00%		
-cusco					U	3	0.00%		
-GS290					U	3	0.00%		
-trltevzw					U	2	0.00%		
+serranolteusc	Samsung	Galaxy S4 Mini (SCH-R890)			U	4	0.00%		
+j7ltechn	Samsung	Galaxy J7 (SM-J7008)			U	4	0.00%		
+j3ltekx	Samsung	Galaxy J3 (2016) (SM-J320N0)			U	4	0.00%		
+ctwo	Motorola	edge 50 ultra			U	4	0.00%		
+X00QD	ASUS	ZenFone 5 (ZE620KL)			U	4	0.00%		
+NX679J	ZTE	NX679J			U	4	0.00%		
+x1slte	Gionee	X1S			U	3	0.00%		
+sydney	Huawei	Nova 3i Sydney			U	3	0.00%		Guessing this is the Nova 3i Sydney, but can’t find ROM
+sf340n	LG	Stylo 3 Plus			U	3	0.00%		
+nemo	LG	Watch Urbane 2nd Edition LTE			U	3	0.00%		
+logan	Samsung	Galaxy Ace3  (GT-S7270, SCH-I679)			U	3	0.00%		
+fortuna3gdtv	Samsung	Galaxy Grand Prime (SM-G530BT)			U	3	0.00%		
+cusco	Motorola	edge 50 fusion			U	3	0.00%		
+GS290	Gigaset	GS290			U	3	0.00%		
+trltevzw	Samsung	Galaxy Note4 (SM-N910V)			U	2	0.00%		
 r5	OPPO	R5 (International), R5s (International)	Snapdragon 615	2014-12-01	D	2	0.00%		
-h810_usu					U	2	0.00%		
-e5lte					U	2	0.00%		
-Z00RD					U	2	0.00%		
-X5_Max_Pro					U	2	0.00%		
-VFD700					U	2	0.00%		
-Samsung Galaxy S8 Plus SM-G955F					U	2	0.00%		
-shamu_t					U	1	0.00%		
-k11ta_a					U	1	0.00%		
-j7toplteskt					U	1	0.00%		
-find7s					U	1	0.00%		
-d2refreshspr					U	1	0.00%		
-a71n					U	1	0.00%		
-RMX3461					U	1	0.00%		
+h810_usu	LG	G4 (LG-H810)			U	2	0.00%		
+e5lte	Samsung	Galaxy E5 (SM-E500F/M)			U	2	0.00%		
+Z00RD	ASUS	ZenFone 2 Laser (ZE500KG)			U	2	0.00%		
+X5_Max_Pro	Doogee	X5 Max Pro			U	2	0.00%		
+VFD700	Alcatel	NeXT by Maxis (M1)			U	2	0.00%		
+Samsung Galaxy S8 Plus SM-G955F	Samsung	Galaxy S8 Plus (SM-G955F)			U	2	0.00%		
+shamu_t	Motorola	Moto X Pro (China)			U	1	0.00%		
+k11ta_a	ulefone	Future			U	1	0.00%	https://cyanogenmods.org/forums/topic/lineage-os-13-ulefone-future-marshmallow-rom/ 	
+j7toplteskt	Samsung	Galaxy Wide3			U	1	0.00%		
+find7s	OPPO	Find7			U	1	0.00%		
+d2refreshspr	Samsung	Galaxy S III (Sprint)			U	1	0.00%	https://xdaforums.com/t/rom-lineage-14-1-unofficial-d2refreshspr-5-7-18-whenicanlies.3786850/ 	
+a71n	Samsung	Galaxy A71			U	1	0.00%	https://xdaforums.com/t/rom-unofficial-a71n-10-lineageos-17-1.4134811/ 	
+RMX3461	Realme	9 5G Speed Edition			U	1	0.00%		
