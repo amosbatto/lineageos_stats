@@ -777,7 +777,7 @@ Crystal	Nokia	7.1	Snapdragon 636	2018-10-28	U	85	0.00%
 waydroid_arm	virtual	Waydroid on ARM	ARM32		U	84	0.00%		
 jackpot2lte	Samsung	Galaxy A8+ 2018 	Exynos 7885 	2018-01-01	U	84	0.00%		Probably using a GSI: https://xdaforums.com/t/guide-gsi-android12-up-pixel-experience-plus-12-1-12l-stable-for-a8-a8.4740326/
 mayfly	Xiaomi	Xiaomi 12S	Snapdragon 8+ Gen1	2022-07-01	O	83	0.00%		
-m31s	Samsung	Galaxy M31s	Exynos9611	2020-08-06	U	83	0.00%	https://community.e.foundation/t/unofficial-builds-samsung-galaxy-exynos9611-devices-a51-m21-m31-m31s-and-f41-for-e-os-u/62158 	
+m31s	Samsung	Galaxy M31s	Exynos 9611	2020-08-06	U	83	0.00%	https://community.e.foundation/t/unofficial-builds-samsung-galaxy-exynos9611-devices-a51-m21-m31-m31s-and-f41-for-e-os-u/62158 	
 h910	LG	V20 (AT&T)	Snapdragon 820	2016-10-01	D	83	0.00%		
 X01AD	ASUS	Zenfone Max M2	Snapdragon 632	2018-12-01	D	83	0.00%		
 b4q	Samsung	Galaxy Z Flip 4 5G	Snapdragon 8+ Gen 1	2022-08-25	U	82	0.00%		
@@ -1000,18 +1000,18 @@ X00P	ASUS	Zenfone Max M1	Snapdragon 430	2018-12-01	D	35	0.00%
 ASUS_X00AD_2	ASUS	ZenFone Go (ZB500KL)	Snapdragon 410 (28 nm)	2016-10-01	U	35	0.00%		
 parker	Motorola	one zoom	Snapdragon 675	2019-09-05	D	34	0.00%		
 paella	BQ	Aquaris X5	Snapdragon 412	2015-10-14	D	34	0.00%		
-dream2qlteue					U	34	0.00%		
+dream2qlteue	Samsung	Galaxy S8+ (SM-G955U1)	Snapdragon 835 (10nm)	2017-04-01	U	34	0.00%		
 d2att	Samsung	Galaxy S III (AT&T)	Snapdragon S4 Plus	2012-06-28	D	34	0.00%		
-a3xeltexx					U	34	0.00%		
-a3core					U	34	0.00%		
-a23xq					U	34	0.00%		
+a3xeltexx	Samsung	Galaxy A3 (2016)	Exynos 7578	2015-12-01	U	34	0.00%		
+a3core	Samsung	Galaxy A03 Core	Unisoc SC9863A (28 nm)	2021-12-06	U	34	0.00%		
+a23xq	Samsung	Galaxy A23 5G SM-A2360	Snapdragon 695 5G (6 nm)	2022-09-02	U	34	0.00%		
 1951					U	34	0.00%		
 1907					U	34	0.00%		
-ziti					U	33	0.00%		
-rubyx					U	33	0.00%		
+ziti	OnePlus	Nord CE3	Snapdragon 782G (6 nm)	2023-08-05	U	33	0.00%	https://xdaforums.com/t/closed-custom-rom-development-for-oneplus-nord-ce-3.4658142/	
+rubyx	Xiaomi	Redmi Note 12 Pro, Pro Plus 5G	Dimensity 1080 (6 nm)	2022-11-01	U	33	0.00%	https://github.com/xiaomi-mediatek-devs/releases/releases , https://xdaforums.com/t/shared-rom-15-unofficial-lineage-os-22.4709381/ 	
 roth	NVIDIA	Shield Portable	Tegra 4 (T114)	2013-07-31	D	33	0.00%		
-m2note					U	33	0.00%		
-delos3geur					U	33	0.00%		
+m2note	Meizu	M2 Note, Blue Charm Note2	Mediatek MT6753 (28 nm)	2015-06-01	U	33	0.00%	https://xdaforums.com/t/rom-lineageos-14-1-for-meizu-m2-note-7-1-2.3692279/ 	
+delos3geur	Samsung	Galaxy Win (GT-I8552)			U	33	0.00%		
 a5dwg					U	33	0.00%		
 Z00L	ASUS	Zenfone 2 Laser (720p)	Snapdragon 410	2015-11-01	D	33	0.00%		
 OP4B79L1					U	33	0.00%		
