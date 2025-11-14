@@ -28,3 +28,10 @@ using the names of countries in their local languages.
 
 5. Added a ReleaseNotes.txt file to keep track of changes.
 
+6. Added build info for all the unofficial builds that I can find with
+Google searches. I also added links to many of the unofficial builds, so
+people looking for the builds can find them. In many cases, I couldn't
+find the ROMs, but I added the model info if I was able to find it. 
+
+
+
