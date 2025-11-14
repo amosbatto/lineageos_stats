@@ -1,0 +1,30 @@
+Release Notes for lineageos_stats.php
+
+************ Version 0.4 *****************
+Release Date: 2025-11-14
+
+Version 0.4 makes this script usable and maintainable in the long term. 
+It now has all the functionality that I originally planned for the script.
+Now that the build list and population of the countries can be updated,
+the script should work in the future when I am no longer around to maintain
+the script. 
+
+Changes:
+1. Moved the data in the $countriesData and $buildData arrays to the 
+countriesList.txt and buildsList.txt files, so that the data is imported 
+when the script starts. The benefit is that the data can be updated and 
+stored, so it isn't necessary to check for new data every time the 
+script is run. 
+
+2. Added the --update-devices, --update-pop, and --find-builds options. 
+This will reduce the number of downloads to run the script, but these 
+options can be used when it is necessary.  
+
+3. Added the "Unsupported" tally in the Statuses table to sum the number of 
+installs for official builds that are for unsupported versions.
+
+4. Added the alternative names to countries, so people can look up countries 
+using the names of countries in their local languages. 
+
+5. Added a ReleaseNotes.txt file to keep track of changes.
+
