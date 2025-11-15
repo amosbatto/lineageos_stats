@@ -1323,7 +1323,7 @@ Nightmare					U
 j1minivelte	Samsung	Galaxy J1 Mini Prime (SM-J106M)	Spreadtrum SC9830	2016-12-01	U				
 f41	Samsung	F41	Exynos 9611 (10 nm)	2020-10-16	U				https://xdaforums.com/t/rom-unofficial-lineage-os-21-for-galaxy-m31-f41-m21s-a51-m31s-m21.4679799/
 ef65	Pantech	Vega Pop-Up Note	Snapdragon 800	2014-11-01	U				https://kongjak.tistory.com/24 , https://dl.kongjak.com/ef65/LineageOS/
-KJ7	Tecno	SPARK 20 Pro+	Helio G99 Ultimate	2024-02-09	U				
+KJ7	TECNO	SPARK 20 Pro+	Helio G99 Ultimate	2024-02-09	U				
 surfna	Motorola	Moto E6	Snapdragon 435 (MSM8940)	2019-08-01	U				
 j5xn3g	Samsung	Galaxy J5 (2016)	Snapdragon 410 (MSM8916) (28nm)	2016-04-01	U				
 idol347	Alcatel	Onetouch Idol 3 (5.5)	Snapdragon 615 (MSM8939) (28nm)	2015-06-01	U	7 			https://xdaforums.com/t/rom-aosp-lineageos-for-idol3-idol347-with-close-to-mainline-kernel.4533061/#post-88990481
