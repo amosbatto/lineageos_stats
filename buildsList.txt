@@ -108,7 +108,7 @@ vayu	Xiaomi	POCO X3 Pro	Snapdragon 860	2021-03-01	O		[18.1,19.1,20,22.2]
 guacamole	OnePlus	OnePlus 7 Pro, OnePlus 7 Pro (T-Mobile)	Snapdragon 855	2019-05-01	O		[16,17.1,18.1,19.1,20,21,22.1,22.2,23]		
 redfin	Google	Pixel 5	Snapdragon 765G 5G	2020-10-01	O		[18.1,19.1,20,21,22.1,22.2,23]		
 n5100	Samsung	Galaxy Note 8.0 (GSM)	Exynos 4412	2013-04-01	D		[14.1]		
-lmi	Xiaomi	POCO F2 Pro, Redmi K30 Pro, Redmi K30 Pro Zoom Edition	Snapdragon 865	2020-03-01	D		[18.1,19.1,20]		
+lmi	Xiaomi	POCO F2 Pro, Redmi K30 Pro, Redmi K30 Pro Zoom Edition	Snapdragon 865	2020-03-01	O		[18.1,19.1,20,21,22.1,22.2]		
 surya	Xiaomi	POCO X3 NFC	Snapdragon 732G	2020-09-08	O		[18.1,19.1,20,21,22.2]		
 kebab	OnePlus	OnePlus 8T, OnePlus 8T (T-Mobile)	Snapdragon 865	2020-10-01	O		[18.1,19.1,20,21,22.1,22.2,23]		
 nx563j	Nubia	Z17	Snapdragon 835	2017-06-01	O		[16,17.1,19.1,20,21,22.2]		
@@ -513,7 +513,7 @@ gvwifi	Samsung	Galaxy View WiFi (SM-T670)	Exynos 7580 Octa	2015-11-01	U			https:
 r8s	Samsung	Galaxy S20 FE (SM-G780F)	Exynos 990	2020-10-02	U			https://xdaforums.com/t/rom-unofficial-14-15-lineageos-21-0-22-2-based-for-samsung-galaxy-s20fe-r8s-for-e-os-a14-former-e-os-u-and-lineageos-21-0-and-22-2.4727030/	
 kiwi	Huawei	Honor 5X	Snapdragon 616	2015-11-01	D		[14.1,15.1,16,17.1]		
 a40	Samsung	Galaxy A40	Exynos 7904	2019-04-01	U			https://xdaforums.com/t/a11-r-arm64-a40-lineageos-18-1-unofficial-by-kevios12.4335409/	
-alphaplus	LG	G8 ThinQ, G8 ThinQ (Korea)	Snapdragon 855	2019-02-01	D		[21]		
+alphaplus	LG	G8 ThinQ, G8 ThinQ (Korea)	Snapdragon 855	2019-02-01	D		[20,21]		
 z3	Sony	Xperia Z3	Snapdragon 801	2014-09-04	D		[16,17.1,18.1]		
 picassolte	Samsung	Galaxy Tab Pro 10.1 LTE (SM-T525)	Snapdragon 800	2014-03-01	U			https://xdaforums.com/t/6-0-x-sm-t525-lineageos-13-0-unofficial-nightlies-for-the-tab-pro-10-1-lte.3314507/	
 caiman	Google	Pixel 9 Pro	Tensor G4	2024-09-09	O		[22.1,22.2,23]		
@@ -1057,7 +1057,7 @@ OP46B1	OPPO	Reno 标准版  (PCAM00)	Snapdragon 710	2019-04-01	U
 ziyi	Xiaomi	13 Lite	Snapdragon 7 Gen 1	2023-02-26	U				
 j5ltechn	Samsung	Galaxy J5 (SM-J5008)	Snapdragon 410	2015-06-01	U				
 fortunafz	Samsung	Galaxy Grand Prime (SM-S920L)	Snapdragon 410 (MSM8916)	2014-10-01	U			https://xdaforums.com/t/rom-stable-lineageos-13-builds-g530h-g530fz-g530m.3632779/, https://androidfilehost.com/?fid=961840155545574833	There is another version (Value Edition) with  the Spreadtrum SC7730 
-emerald	Teracube	2e (2022)	Helio A25	1905-07-14	U			https://xdaforums.com/t/rom-emerald-teracube-2e-2022-lineageos-18-1-unofficial.4405211/	The Xiaomi POCO M6 Pro also has the OEM codename “emerald”
+emerald	Teracube	2e (2022)	Helio A25	2022-02-22	U			https://xdaforums.com/t/rom-emerald-teracube-2e-2022-lineageos-18-1-unofficial.4405211/ , https://community.myteracube.com/t/advanced-users-only-teracube-2e-2nd-batch-sn-2021-lineageos-18-1-beta-emerald/3387	The Xiaomi POCO M6 Pro also has the OEM codename “emerald”
 penang	Motorola	moto G53 (XT2335-3)	Snapdragon 480 Plus	2022-12-15	U				
 passion	Lenovo	Vibe P1	Snapdragon 615	2015-10-01	U			https://xdaforums.com/t/rom-lineage-16-0-unofficial-passion.4083875/	The HTC Nexus One also had the “passion” codename 
 kltedcm	Samsung	Galaxy S5 (G900T)	Snapdragon 801 MSM8974-AC (28nm)	2014-04-11	U			https://androidfilehost.com/?fid=1322778262904015211	Not sure which version of the S5l this is for
@@ -1303,20 +1303,28 @@ pdx223	Sony	Xperia 1 IV	Snapdragon 8 Gen 1 (SM8450) (4nm)	2022-06-11	U			https:/
 penangf	Motorola	moto g13	Helio G85 (MT6769Z) (12nm)	2023-01-24	U				
 gts9wifi	Samsung	Galaxy Tab S9 (SM-X710)	Snapdragon 8 Gen 2	2023-08-11	U				
 A5_Pro	Umidigi	A5 Pro	Helio P23	2019-05-01	U			https://xdaforums.com/t/rom-13-unofficial-lineageos-20-0-for-umidigi-a5-pro-oss-2023-10-20.4637455/	
-wseries					U	492 			
-enzo					U	50 			
-androidbox					U	35 			
-treble					U	94 			
-K2					U	31 			
-tenet					U	23 			
-hulkbuster					U	439 			
-Z1					U	125 			
-X3					U	44 			
-2036					U	39 			
-2027					U	38 			
-2026					U	27 			
-p10bio					U	101 			
-paros					U	12 			
-scale					U	27 			
-x1					U	6 			
-Nightmare					U	1 			
+wseries					U				
+enzo					U				
+androidbox					U				
+treble					U				
+K2					U				
+tenet					U				
+hulkbuster					U				
+Z1					U				
+X3					U				
+2036					U				
+2027					U				
+2026					U				
+p10bio					U				
+paros					U				
+scale					U				
+x1					U				
+Nightmare					U				
+j1minivelte	Samsung	Galaxy J1 Mini Prime (SM-J106M)	Spreadtrum SC9830	2016-12-01	U				
+f41	Samsung	F41	Exynos 9611 (10 nm)	2020-10-16	U				https://xdaforums.com/t/rom-unofficial-lineage-os-21-for-galaxy-m31-f41-m21s-a51-m31s-m21.4679799/
+ef65	Pantech	Vega Pop-Up Note	Snapdragon 800	2014-11-01	U				https://kongjak.tistory.com/24 , https://dl.kongjak.com/ef65/LineageOS/
+KJ7	Tecno	SPARK 20 Pro+	Helio G99 Ultimate	2024-02-09	U				
+surfna	Motorola	Moto E6	Snapdragon 435 (MSM8940)	2019-08-01	U				
+j5xn3g	Samsung	Galaxy J5 (2016)	Snapdragon 410 (MSM8916) (28nm)	2016-04-01	U				
+idol347	Alcatel	Onetouch Idol 3 (5.5)	Snapdragon 615 (MSM8939) (28nm)	2015-06-01	U	7 			https://xdaforums.com/t/rom-aosp-lineageos-for-idol3-idol347-with-close-to-mainline-kernel.4533061/#post-88990481
+bkav_b60	BKAV	Bphone B60	Snapdragon 660	2020-05-01	U	2 			

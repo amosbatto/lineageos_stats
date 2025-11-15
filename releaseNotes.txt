@@ -34,4 +34,35 @@ people looking for the builds can find them. In many cases, I couldn't
 find the ROMs, but I added the model info if I was able to find it. 
 
 
+************ Version 0.5 *****************
+Release Date: 2025-11-15
 
+Fixed many things that I overlooked in the version 0.4 release.
+
+Changes:
+1. Renamed the -o/--official option to -S/--supported. Changed
+Tally->addBuild() and Tally->finalize() calculate the unsupported 
+installs for all statuses ('O', 'D' and 'U'). 
+
+2. Renamed the -d/--update-devices option to -u/--update-builds.
+
+3. Dealt with the discrepencies between build variants, by only using
+the more common variant when updating the build information.
+
+4. Rewrote the Help/README to reflect default behavior that doesn't 
+download the countries pages and search for new builds by default.
+
+5. Changed most of the options from $GLOBALS to defined constants.
+
+6. Now the buildsList.txt file is rewritten if either --update-builds or 
+--find-builds options were selected.
+ 
+7. Changed Tally->addBuild() to only count installs as "official" if
+they are in the list of officially supported versions for the build. 
+This is the big change that made me decide to do a new release. 
+
+8. Got rid of all the old code for -i/--only-installs option which is no
+longer used.
+
+9. Also filed a bug report (https://github.com/lineageos-infra/issues/issues/22)
+so hopefully can fix the bad country codes in the future in the code

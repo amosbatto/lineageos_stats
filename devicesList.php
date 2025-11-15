@@ -53,16 +53,27 @@ foreach ($aBuildsTabs as $buildLine) {
 	//}
 }
 
-if ($GLOBALS['verbose']) {
+if (VERBOSE) {
 	print "Imported $cntImports builds.".PHP_EOL;
 }
 
 $GLOBALS['buildData'] = $buildData;
 
-if ($GLOBALS['updateDevices']) {
-	
+/* There are three discrepancies in the build variants, so the update builds uses
+ * the more common variant. 
+ * 1. alphaplus_variant1 (G8 ThinQ [LM-G820UM, LM-G820QM]) supports versions 20 and 21, 
+ *    but alphaplus_variant2 (G8 ThinQ (Korea)) only supports versions 21.
+ * 2. lmi_variant1 (POCO F2 Pro) and lmi_variant2 (Redmi K30 Pro) 
+ *    are active builds with a maintainer (versions 18.1, 19.1, 20, 21, 22.1, 22.2),
+ *    whereas lmi_variant3 (Redmi K30 Pro Zoom Edition) is discontinued 
+ *    and only versions 18.1, 19.1 and 20 were official.
+ * 3. quill_tab_variant1 (Jetson TX2 [Tablet]) supports versions 17.1, 21, 22.1, 22.2, 
+ *    but quill_tab_variant2 (Jetson TX2 NX [Tablet]) supports versions 17.1, 20, 21, 22.1, 22.2.
+ */ 
+if (UPDATE_BUILDS) {
 	$devicesDirUrl = 'https://github.com/LineageOS/lineage_wiki/tree/3d8f6bec90670564163254b5e065f52245b5539a/_data/devices';
 	$aBuildsDir = [];
+	$aSkipBuilds = ['alphaplus_variant1.yml', 'alphaplus_variant2.yml', 'quill_tab_variant1.yml', 'lmi_variant3.yml'];
 	
 	$devicesDirPage = new simple_html_dom();
 	
@@ -84,6 +95,10 @@ if ($GLOBALS['updateDevices']) {
 		$filename = $oFile->name;
 		$isVariant = false;
 		
+		if (in_array($filename, $aSkipBuilds)) {
+			continue;
+		}
+		
 		if (preg_match('/^(.+?)_variant(\d).yml$/', $filename, $match)) {
 			$buildCode = $match[1];
 			$isVariant = true;
@@ -103,8 +118,8 @@ if ($GLOBALS['updateDevices']) {
 		
 		$aBuildInfo = yaml_parse($buildYaml);
 		
-		$latestVersion = max($aBuildInfo['versions']);
 		$status = empty($aBuildInfo['maintainers']) ? 'D' : 'O';
+		
 		$releaseDate = $aBuildInfo['release'];
 		
 		if (is_array($releaseDate)) {
@@ -138,27 +153,27 @@ if ($GLOBALS['updateDevices']) {
 				$aBuildInfo['versions']
 			);
 			
-			if ($GLOBALS['verbose']) {
+			if (VERBOSE) {
 				print "Added new build '$buildCode' for {$aBuildInfo['vendor']} {$aBuildInfo['name']}.".PHP_EOL; 
 			}
 		}
 		
 		if (!isset($buildData[$buildCode]->officialVersions) or empty($buildData[$buildCode]->officialVersions)) {
 			$buildData[$buildCode]->officialVersions = $aBuildInfo['versions'];
-			if ($GLOBALS['verbose']) {
+			if (VERBOSE) {
 				print "Added official versions to build '$buildCode'.".PHP_EOL; 
 			}
 		}
 		elseif ($buildData[$buildCode]->officialVersions != $aBuildInfo['versions']) {
 			$buildData[$buildCode]->officialVersions = $aBuildInfo['versions'];
-			if ($GLOBALS['verbose']) {
-				print "Updated official versions for build '$buildCode'.".PHP_EOL; 
+			if (VERBOSE) {
+				print "Changed official versions for build '$buildCode'.".PHP_EOL; 
 			}
 		}
 		
 		if ($buildData[$buildCode]->status != $status) {
-			if ($GLOBALS['verbose']) {
-				print "Updated status from {$buildData[$buildCode]->status} to $status for build '$buildCode'.".PHP_EOL; 
+			if (VERBOSE) {
+				print "Changed status from {$buildData[$buildCode]->status} to $status for build '$buildCode'.".PHP_EOL; 
 			}
 			$buildData[$buildCode]->status = $status;
 		}
@@ -167,7 +182,7 @@ if ($GLOBALS['updateDevices']) {
 			// add the variant model name to the end of the modelName if not already in the modelName
 			if (stripos($buildData[$buildCode]->modelName, $aBuildInfo['name']) === false) {
 				$buildData[$buildCode]->modelName .= ', '.$aBuildInfo['name'];
-				if ($GLOBALS['verbose']) {
+				if (VERBOSE) {
 					print "Added model variant '{$aBuildInfo['name']}' to build '$buildCode'." . PHP_EOL; 
 				}
 			}
@@ -175,7 +190,7 @@ if ($GLOBALS['updateDevices']) {
 			if ($buildData[$buildCode]->modelReleaseDate > $releaseDate) {
 				$buildData[$buildCode]->modelReleaseDate = $releaseDate;
 				
-				if ($GLOBALS['verbose']) {
+				if (VERBOSE) {
 					print "Updated model release date to '$releaseDate' for build '$buildCode'." . PHP_EOL; 
 				}
 			}
@@ -184,6 +199,8 @@ if ($GLOBALS['updateDevices']) {
 	
 	$GLOBALS['buildData'] = $buildData;
 }
+
+
 
 //write updated build info to text file with data separated by tabs
 function writeBuildsToFile($filename) {
@@ -212,7 +229,7 @@ function writeBuildsToFile($filename) {
 	
 	fclose($fileBuildsList);
 	
-	if ($GLOBALS['verbose']) {
+	if (VERBOSE) {
 		print "Wrote $cntBuilds builds to the buildsList.txt file.".PHP_EOL;
 		if (!empty($aEmptyBuilds)) {
 			print "The following ".count($aEmptyBuilds)." builds are empty:".PHP_EOL;

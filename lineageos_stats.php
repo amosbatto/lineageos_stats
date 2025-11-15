@@ -1,13 +1,15 @@
 <?php
 $help = <<<'HELP'
-lineageos_stats.php is a command-line script to download LineageOS stats
-about the number of builds and installs from https://stats.lineageos.org
+lineageos_stats.php is a command-line script to download LineageOS 
+statistics about the number of builds and installs from 
+https://stats.lineageos.org
 It displays more information than is provided by the LineageOS web page,
 which only displays builds by their code name and countries by their ISO
-codes. This script can search for countries by their English names and 
-for builds by their device model names. It tallies the total builds and 
-installs by country, device manufacturer, processor family, release year
-of devices, build status and LineageOS version number.   
+codes. This script can search for countries by their English or local
+language names and for builds by their device model names. It tallies 
+the total builds and installs by country, device manufacturer, processor
+family, release year of devices, build status and LineageOS version 
+number.   
   
 By default the script shows the country list and the build list with 
 statistics tables at the end. If information is known about a build 
@@ -16,31 +18,29 @@ that is displayed in the build list. There is normally 1 build per
 device model, but some builds support multiple device models.
  
 Getting the country list is fast, but getting the build list is
-very slow because the script has to download roughly 1500 web pages to
-get all the builds for each country to construct the build list, and 
-there are some less popular builds that it won't find because LineageOS 
-only provides the top 250 builds for each country. LineageOS doesn't 
-provide a complete list of builds, but it does provide a total installs 
-number, so any installs that aren't found are tallied at the end of the 
-list under "Unlisted". 
+very slow because the script has to download over 1300 build pages to
+get the data. Unfortunately, LineageOS doesn't provide a complete list 
+of all the build code names, so any builds which aren't listed in any of
+the country pages are tallied at the end of the list under "Unlisted". 
 
-The status codes for the builds are: O=active official build, 
-D=discontinued official build, U=unofficial build 
-Note that many of the installs labeled as "O" are for versions that are
-now discontinued, since they are no longer getting security updates.
+The status codes for the builds are: 
+O=active official, D=discontinued official, U=unofficial
+ 
+The number of installs for versions which are no longer getting security 
+updates from Google are tallied under "Unsupported". 
  
 INSTALLATION:   
 1. Install the command line interface for PHP 7 or later.
-2. Install the php-mbstring and yaml extensions. 
+2. Install the PHP extensions: mbstring, yaml and curl 
 3. Download this script from https://github.com/amosbatto/lineageos_stats
    If the ZIP file was downloaded, then decompress it. 
   
 In a Debian/Ubuntu/Mint terminal, these commands should work:  
-  sudo apt install php php-mbstring php-yaml
-  wget -O lineageos_stats.zip https://github.com/amosbatto/lineageos_stats/archive/refs/heads/main.zip
-  unzip lineageos_stats.zip -d lineageos_stats
+  sudo apt install php php-mbstring php-yaml php-curl
+  wget -O los_stats.zip https://github.com/amosbatto/lineageos_stats/archive/refs/heads/main.zip
+  unzip los_stats.zip -d lineageos_stats
   
-EXECUTION:  
+USAGE:  
 To run the script in a terminal:  
   php lineageos_stats.php
   
@@ -48,12 +48,14 @@ Depending on how you installed PHP, you may have to include the path to
 execute it. For example in Windows:  
   C:\users\bob\php8.3\php.exe lineageos_stats.php 
 
-Command line options:  
--c , --country     Display the country list.   
+COMMAND LINE OPTIONS:  
+-c , --country     Display the country list with the number of builds
+                   and active installs per country.   
                    Ex: php lineageos_stats.php -c  
                   
--cXX               Can specify an optional two letter country code or a
---country=XX       country name to display stats for a single country.
+-c[XX]             Can specify an optional two letter country code or a
+--country=[XX]     country name (in English or local language) to 
+                   display stats for a single country.
                    Ex: php lineageos_stats.php -cUS  
                    Ex: php lineageos_stats.php --country=BR  
                    Ex: php lineageos_stats.php -c"United Arab Emirates"
@@ -61,8 +63,8 @@ Command line options:
 -b , --build       Display the build list.  
                    Ex: php lineageos_stats.php -b  
   
--bCODENAME         Can specify a build codename or a device model name 
---build=CODENAME   to display stats for a single build.  
+-b[NAME]           Can specify a build codename or a device model name 
+--build=[NAME]     to display stats for a single build.  
                    Ex: php lineageos_stats.php -blavender  
                    Ex: php lineageos_stats.php --build=lavender  
                    Ex: php lineageos_stats.php -b"Xiaomi Redmi Note 7"
@@ -70,9 +72,9 @@ Command line options:
                    The search is case insensitive and can find partial 
                    strings.
                    
--sSEP              The field separator for tables, which can bezZ4 any 
---separator=SEP    string and is " | " by default. Set a different 
-                   separator to not have info truncated. It is 
+-s[SEP]            The field separator for tables, which can be any 
+--separator=[SEP]  string and is " | " by default. Set a different 
+                   separator to not have data truncated. It is 
                    recommended to set to "\t" (tab) if copying into a 
                    spreadsheet and to ',' (comma) or ';' (semicolon) if
                    copying into a CSV (comma separated value) file. 
@@ -80,19 +82,23 @@ Command line options:
                    Ex: php lineageos_stats.php -separator="; "      
                    
 -f                 Find new builds by downloading all the countries and
---find-builds      looking for new builds.                       
+--find-builds      looking for new builds and add them to the 
+                   buildsList.txt file.                     
                   
--u                 Update the list of devices in the buildsList.txt
---update-devices   file from the LineageOS wiki.   
+-u                 Update the list of builds in the buildsList.txt
+--update-builds    file from the official builds on the LineageOS wiki.
+                   This option downloads roughly 550 files.  
                                                                       
 -p                 Update the population of the countries to the current
---update-pop       year.   
+--update-pop       year, which is stored in the countriesList.txt file.
+                   This option involves roughly 220 downloads.   
                                                                        
--oVERSION          Oldest official LineageOS version that is still   
---official=VERSION getting security updates, which is currently 20. This
-                   determines when status changes to 'D' (discontinued).
-                   Ex: php lineageos_stats.php -o21
-                   Ex: php lineageos_stats.php --official=21
+-S[VER]            Set the oldest supported LineageOS version that is    
+--supported=[VER]  getting security updates, which is 20 by default 
+                   (Android/AOSP 13). This number needs to be updated
+                   over time as Google ends security updates.
+                   Ex: php lineageos_stats.php -S21
+                   Ex: php lineageos_stats.php --supported=21
                   
 -v , --verbose     Show information about what countries are being  
                    downloaded and what builds were found. Recommended 
@@ -102,18 +108,18 @@ Command line options:
 Author:  Amos Batto (amosbatto[AT]yahoo.com, https://amosbbatto.wordpress.com)
 License: MIT license (for the lineageos_stats script and the included 
          SimpleHtmlDom (https://sourceforge.net/projects/simplehtmldom)
-Updated: 2025-10-28 (version 0.3)
+Updated: 2025-11-15 (version 0.5)
 
 HELP;
 
 $startTime = microtime(true);
 mb_internal_encoding("UTF-8");
 
-$GLOBALS["OS"] = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? "windows" : "unix-like";
+define('OS', (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? "windows" : "unix-like");
 
-$shortOpts = 'hvupfs:c::b::o:';
-$longOpts  = ['help', 'verbose', 'update-devices', 'update-pop', 'find-builds', 
-	'separator:', 'country::', 'build::', 'official:'];
+$shortOpts = 'hvupfs:c::b::S:';
+$longOpts  = ['help', 'verbose', 'update-builds', 'update-pop', 'find-builds', 
+	'separator:', 'country::', 'build::', 'supported:'];
 $options = getopt($shortOpts, $longOpts);
 
 if (isset($options['h']) || isset($options['help'])) {
@@ -122,38 +128,35 @@ if (isset($options['h']) || isset($options['help'])) {
 }
 
 //Oldest official version of LOS that is still getting security updates from Google, which is currently 
-//version 20 (AOSP 13). Need to keep updating this number over time, but can be set with the -o option
-$GLOBALS['oldestSupportedVersion'] = 20; 
+//version 20 (AOSP 13). Need to keep updating this number over time, but can be set with the --supported option
+$oldestSupportedVersion = 20; 
 
-if (isset($options['o'])) {
-	$GLOBALS['oldestSupportedVersion'] = $options['o'];
-} elseif (isset($options['official'])) {
-	$GLOBALS['oldestSupportedVersion'] = $options['official'];
+if (isset($options['S'])) {
+	$oldestSupportedVersion = $options['S'];
+} elseif (isset($options['supported'])) {
+	$oldestSupportedVersion = $options['supported'];
 }
 
-if (!is_numeric($GLOBALS['oldestSupportedVersion']) or $GLOBALS['oldestSupportedVersion'] < 12 or 
-	$GLOBALS['oldestSupportedVersion'] > 26) 
-{
-	throw new Exception("Invalid version number {GLOBALS['oldestSupportedVersion']} in option --official.".PHP_EOL);
+if (!is_numeric($oldestSupportedVersion) or $oldestSupportedVersion < 12 or $oldestSupportedVersion > 26) {
+	throw new Exception("Invalid version number $oldestSupportedVersion in option --supported.".PHP_EOL);
 }
 
-$GLOBALS['verbose'] = $verbose = (isset($options['v']) || isset($options['verbose'])) ? true : false;
-$GLOBALS['updateDevices'] = (isset($options['u']) || isset($options['update-devices'])) ? true : false;
-$GLOBALS['findBuilds'] = (isset($options['f']) || isset($options['find-builds'])) ? true : false;
-$GLOBALS['updatePop'] = (isset($options['p']) || isset($options['update-pop'])) ? true : false;
-
-$GLOBALS['onlyShowInstalls'] = $onlyShowInstalls = 
-	(isset($options['i']) || isset($options['installs'])) ? true : false;
-
-$GLOBALS['separator'] = ' | ';
+$separator = ' | ';
 
 if (isset($options['s'])) { 
-	$GLOBALS['separator'] = $options['s'];
+	$separator = $options['s'];
 } elseif (isset($options['separator'])) { 
-	$GLOBALS['separator'] = $options['separator'];
+	$separator = $options['separator'];
 }
 
-$GLOBALS['separator'] = str_replace(['\t', '\n', '\r'], ["\t", "\n", "\r"], $GLOBALS['separator']); 
+$separator = str_replace(['\t', '\n', '\r'], ["\t", "\n", "\r"], $separator); 
+
+define('OLDEST_SUPPORTED_VERSION', $oldestSupportedVersion);
+define('SEPARATOR', $separator);
+define('VERBOSE', (isset($options['v']) || isset($options['verbose'])) ? true : false);
+define('UPDATE_BUILDS', (isset($options['u']) || isset($options['update-builds'])) ? true : false);
+define('FIND_BUILDS', (isset($options['f']) || isset($options['find-builds'])) ? true : false);
+define('UPDATE_POP', (isset($options['p']) || isset($options['update-pop'])) ? true : false);
 
 $showCountry = "default";
 $showBuild   = "default";
@@ -337,7 +340,9 @@ class TextTable {
 	                           //set to empty string to not have horizontal borders.                            
 	public $showHeader = true; //display the table header row
 	
-	public function __construct($aRows=[], $title=null, $aCols=[], $colSep=' | ', $leftBorder='| ', $rightBorder=' |', $hBorderChar='-', $showHeader=true) {
+	public function __construct($aRows=[], $title=null, $aCols=[], $colSep=' | ', 
+			$leftBorder='| ', $rightBorder=' |', $hBorderChar='-', $showHeader=true) 
+	{
 		$this->aRows       = $aRows; 
 		$this->title       = $title;
 		$this->aCols       = $aCols;
@@ -367,7 +372,7 @@ class TextTable {
 				$oCol = $this->aCols[$i];
 				$colHeader = $oCol->colTitle;
 				
-				if ($GLOBALS['separator'] == ' | ' and $oCol->width != 'none' and 
+				if (SEPARATOR == ' | ' and $oCol->width != 'none' and 
 					$oCol->maxWidth > 0 and mb_strlen($oCol->colTitle) > $oCol->maxWidth) 
 				{
 					$colHeader = mb_substr($oCol->colTitle, 0, $oCol->maxWidth-1) .'…';
@@ -428,7 +433,7 @@ class TextTable {
 					}
 				}
 				//if a non-numeric string and longer than column's max width then truncate the string
-				elseif ($GLOBALS['separator'] == ' | ' and $oCol->width != 'none' and 
+				elseif (SEPARATOR == ' | ' and $oCol->width != 'none' and 
 					$oCol->maxWidth > 0 and mb_strlen($sCell) > $oCol->maxWidth) 
 				{
 					$sCell = mb_substr($sCell, 0, $oCol->maxWidth-1) .'…';
@@ -468,7 +473,7 @@ class TextTable {
 		
 		if ($this->showHeader) {
 			for ($i = 0; $i < count($aHeaders); $i++) {
-				if ($GLOBALS['separator'] != ' | ')
+				if (SEPARATOR != ' | ')
 					$aHeaders[$i] = $aHeaders[$i];
 				else
 					$aHeaders[$i] = mb_str_pad($aHeaders[$i], $aColWidths[$i], ' ', STR_PAD_BOTH);
@@ -483,7 +488,7 @@ class TextTable {
 		
 		foreach ($aRowsOut as $aRowPrint) {
 			for ($i = 0; $i < count($aRowPrint); $i++) {
-				if ($GLOBALS['separator'] == ' | ' and $this->aCols[$i]->width != 'none') {
+				if (SEPARATOR == ' | ' and $this->aCols[$i]->width != 'none') {
 					$padding = STR_PAD_RIGHT;   //left aligned
 					if ($this->aCols[$i]->align == 'center') {
 						$padding = STR_PAD_BOTH;
@@ -512,39 +517,67 @@ class Tally {
 	public $aMakers      = [];
 	public $aProcessors  = [];
 	public $aStatuses    = [
-		'O' => ['builds' => 0, 'installs' => 0, 'offUnsupported' => 0],  //active official builds
-		'D' => ['builds' => 0, 'installs' => 0, 'offUnsupported' => ''], //discontinued official builds
-		'U' => ['builds' => 0, 'installs' => 0, 'offUnsupported' => '']  //unofficial builds
+		'O' => ['builds' => 0, 'installs' => 0, 'unsupported' => 0], //active official builds
+		'D' => ['builds' => 0, 'installs' => 0, 'unsupported' => 0], //discontinued official builds
+		'U' => ['builds' => 0, 'installs' => 0, 'unsupported' => 0]  //unofficial builds
 	];
 	public $aYears       = [];  //years when devices were originally released
-	public $sumBuilds = 0;      //running total of builds
-	public $sumInstalls = 0;    //running total of installs
+	public $sumBuilds    = 0;   //running total of builds
+	public $sumInstalls  = 0;   //running total of installs
 	public $unlistedInstalls;   //installs that aren't listed on stats.lineageos.org pages
 	public $totalInstalls;      //total installs shown on stats.lineageos.org pages
 	
 	//add a build to the tally
 	public function addBuild(LosBuild $oBuild) {
+		if ($oBuild->installs == 0) {
+			return;
+		}
+		
 		$this->sumBuilds++;
 		$this->sumInstalls += $oBuild->installs;
+		$status = $oBuild->status = empty($oBuild->status) ? 'U' : $oBuild->status;
+		
 		$this->aBuilds[$oBuild->codename] = $oBuild;
-		$unsupportedInstalls = 0;
+		//$unsupportedInstalls = 0;
+		$aInstallsByStatus = [
+			'O' => ['installs' => 0, 'unsupported' => 0],
+			'D' => ['installs' => 0, 'unsupported' => 0],
+			'U' => ['installs' => 0, 'unsupported' => 0]
+		]; 
 		
 		if (!empty($oBuild->aVersions)) {
 			foreach ($oBuild->aVersions as $versionNo => $versionInstalls) {
 				if (!isset($this->aVersions[$versionNo])) {
-					$this->aVersions[$versionNo] = ['builds' => 0, 'installs' => 0, 'offUnsupported' => 0];
+					$this->aVersions[$versionNo] = ['builds' => 0, 'installs' => 0, 'unsupported' => 0];
 				}
 				
 				$this->aVersions[$versionNo]['builds']++;
 				$this->aVersions[$versionNo]['installs'] += $versionInstalls;
-				
-				if ($oBuild->status == 'O' and $versionNo < $GLOBALS['oldestSupportedVersion']) {
-					
-					$this->aVersions[$versionNo]['offUnsupported'] += $versionInstalls;
-					$unsupportedInstalls += $versionInstalls;
+				if ($versionNo < OLDEST_SUPPORTED_VERSION) {
+					$this->aVersions[$versionNo]['unsupported'] += $versionInstalls;
+					//$unsupportedInstalls += $versionInstalls;
 				}
+				 
+				if (!empty($GLOBALS['buildData'][$oBuild->codename]->officialVersions)) {
+					//only add as "O" or "D" if version in the list of official versions for build, otherwise it "U".
+					if (in_array($versionNo, $GLOBALS['buildData'][$oBuild->codename]->officialVersions)) {
+						$aInstallsByStatus[$status]['installs'] += $versionInstalls;
+						$aInstallsByStatus[$status]['unsupported'] += ($versionNo < OLDEST_SUPPORTED_VERSION) ? $versionInstalls : 0;
+					} 
+					else {
+						$aInstallsByStatus['U']['installs'] += $versionInstalls;
+						$aInstallsByStatus['U']['unsupported'] += ($versionNo < OLDEST_SUPPORTED_VERSION) ? $versionInstalls : 0;
+					}
+				}
+				else {
+					$aInstallsByStatus[$status]['installs'] += $versionInstalls;
+					$aInstallsByStatus[$status]['unsupported'] += ($versionNo < OLDEST_SUPPORTED_VERSION) ? $versionInstalls : 0;
+				} 
 			}
 		}
+		else {
+			$aInstallsByStatus[$status] = $oBuild->installs;
+		} 
 		
 		if (!empty($oBuild->aCountries)) {
 			foreach ($oBuild->aCountries as $country => $countryInstalls) {
@@ -598,13 +631,13 @@ class Tally {
 			$this->aProcessors[$processorType]['installs'] += $oBuild->installs;
 		}
 		
-		$status = empty($oBuild->status) ? 'U' : $oBuild->status;
 		$this->aStatuses[$status]['builds']++;
-		$this->aStatuses[$status]['installs'] += $oBuild->installs;
-		
-		if ($unsupportedInstalls > 0) {
-			$this->aStatuses['O']['offUnsupported'] += $unsupportedInstalls;
-		}
+		$this->aStatuses['O']['installs'] += $aInstallsByStatus['O']['installs'];
+		$this->aStatuses['D']['installs'] += $aInstallsByStatus['D']['installs'];
+		$this->aStatuses['U']['installs'] += $aInstallsByStatus['U']['installs'];
+		$this->aStatuses['O']['unsupported'] += $aInstallsByStatus['O']['unsupported'];
+		$this->aStatuses['D']['unsupported'] += $aInstallsByStatus['D']['unsupported'];
+		$this->aStatuses['U']['unsupported'] += $aInstallsByStatus['U']['unsupported'];
 		
 		if (empty($oBuild->modelReleaseDate)) {
 			if (!isset($this->aYears['unknown'])) {
@@ -670,12 +703,9 @@ class Tally {
 			'installs' => $this->totalInstalls, 'percentInstalls' => 1.0];
 		
 		foreach ($this->aStatuses as $statusCode => $aStatus) {
-			$this->aStatuses[$statusCode]['percentBuilds']   = $this->aStatuses[$statusCode]['builds'] / $this->sumBuilds;
-			$this->aStatuses[$statusCode]['percentInstalls'] = $this->aStatuses[$statusCode]['installs'] / $this->totalInstalls;
-			$this->aStatuses[$statusCode]['percentOffUnsupported'] = '';
-			if ($this->aStatuses[$statusCode]['offUnsupported']) {
-				$this->aStatuses[$statusCode]['percentOffUnsupported'] = $this->aStatuses[$statusCode]['offUnsupported'] / $this->totalInstalls; 
-			}
+			$this->aStatuses[$statusCode]['percentBuilds']      = $this->aStatuses[$statusCode]['builds'] / $this->sumBuilds;
+			$this->aStatuses[$statusCode]['percentInstalls']    = $this->aStatuses[$statusCode]['installs'] / $this->totalInstalls;
+			$this->aStatuses[$statusCode]['percentUnsupported'] = $this->aStatuses[$statusCode]['unsupported'] / $this->totalInstalls; 
 		}
 		
 		if ($this->unlistedInstalls) {
@@ -683,15 +713,17 @@ class Tally {
 				'name' => 'Unlisted', 'builds' => '?', 'percentBuilds' => '?', 
 				'installs' => $this->unlistedInstalls, 
 				'percentInstalls' => $this->unlistedInstalls / $this->totalInstalls, 
-				'offUnsupported' => '', 'percentOffUnsupported' => '' 
+				'unsupported' => '', 'percentUnsupported' => '' 
 			];
 		}  
 		
+		$unsupported = $this->aStatuses['O']['unsupported'] + $this->aStatuses['D']['unsupported'] + 
+			$this->aStatuses['U']['unsupported'];
+			
 		$this->aStatuses["Total"] = [
 			'name' => 'Total', 'builds' => $this->sumBuilds, 'percentBuilds' => 1.0, 
 			'installs' => $this->totalInstalls, 'percentInstalls' => 1.0, 
-			'offUnsupported' => $this->aStatuses['O']['offUnsupported'], 
-			'percentOffUnsupported' => $this->aStatuses['O']['offUnsupported']/$this->totalInstalls 
+			'unsupported' => $unsupported, 'percentUnsupported' => $unsupported / $this->totalInstalls 
 		];
 		$totalVersions = count($this->aVersions);
 		
@@ -742,7 +774,6 @@ class Tally {
 	}
 	
 	public function showBuilds($orderBy="installs", $order="descending") {
-		$onlyShowInstalls = $GLOBALS['onlyShowInstalls'];
 		$aSortBuilds = array();
 
 		foreach ($this->aBuilds as $codename => $oBuild) {
@@ -801,20 +832,16 @@ class Tally {
 			new TextCol('percentInstalls',  '% Installs',   'adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($aSortBuilds, 'LineageOS builds by number of installs', 
-				$aColumns, $GLOBALS['separator'], '', '', '');
+				$aColumns, SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($aSortBuilds, 'LineageOS builds by number of installs', $aColumns);
 		}
 		$table->output();
 		
-		if (!$onlyShowInstalls) {
-			print "\nStatus codes: O=active official build, D=discontinued official build, U=unofficial build\n";
-		} 
-		
-		print PHP_EOL;
+		print 'Build status codes: O=active official, D=discontinued official, U=unofficial'.PHP_EOL.PHP_EOL;
 	}
 	
 	public function showMakers($orderBy="installs", $order="descending") {
@@ -862,23 +889,18 @@ class Tally {
 		}
 		
 		$aColumns = [
-			new TextCol('rank',   'Rank',  'fixed',   4, 'left',  'integer'),
-			new TextCol('maker',  'Maker', 'adjust', 20, 'left',  'string' ),
-			new TextCol('builds', 'Builds','adjust',  6, 'right', 'integer')
+			new TextCol('rank',           'Rank',      'fixed',   4, 'left',  'integer'),
+			new TextCol('maker',          'Maker',     'adjust', 20, 'left',  'string' ),
+			new TextCol('builds',         'Builds',    'adjust',  6, 'right', 'integer'), 
+			new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 1),
+			new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer'),
+			new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['onlyShowInstalls']) {
-			$aColumns[] = new TextCol('installs', 'Installs', 'adjust',  8, 'right', 'integer');
-		} else {
-			$aColumns[] = new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 1);
-			$aColumns[] = new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer');
-			$aColumns[] = new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2);
-		}
-		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($aSort, 'Manufacturers of devices that run LineageOS', $aColumns,
-				$GLOBALS['separator'], '', '', '');
+				SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($aSort, 'Manufacturers of devices that run LineageOS', $aColumns);
 		}
@@ -932,23 +954,18 @@ class Tally {
 		}
 		
 		$aColumns = [
-			new TextCol('rank',   'Rank',           'fixed',   4, 'left',  'integer'),
-			new TextCol('name',   'Processor Type', 'adjust', 20, 'left',  'string' ),
-			new TextCol('builds', 'Builds',         'adjust',  6, 'right', 'integer')
+			new TextCol('rank',           'Rank',           'fixed',   4, 'left',  'integer'),
+			new TextCol('name',           'Processor Type', 'adjust', 20, 'left',  'string' ),
+			new TextCol('builds',         'Builds',         'adjust',  6, 'right', 'integer'),
+			new TextCol('percentBuilds',  '% Builds',       'adjust', -1, 'right', 'percent', 1),
+			new TextCol('installs',       'Installs',       'adjust',  8, 'right', 'integer'),
+			new TextCol('percentInstalls','% Installs',     'adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['onlyShowInstalls']) {
-			$aColumns[] = new TextCol('installs', 'Installs', 'adjust',  8, 'right', 'integer');
-		} else {
-			$aColumns[] = new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 1);
-			$aColumns[] = new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer');
-			$aColumns[] = new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2);
-		}
-		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($aSort, 'Processors of devices that run LineageOS', $aColumns,
-				$GLOBALS['separator'], '', '', '');
+				SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($aSort, 'Processors of devices that run LineageOS', $aColumns);
 		}
@@ -963,30 +980,25 @@ class Tally {
 		}
 		
 		$aColumns = [
-			new TextCol('name',   'Status', 'adjust', -1, 'left',  'string' ),
-			new TextCol('builds', 'Builds', 'adjust',  6, 'right', 'integer')
+			new TextCol('name',              'Status',       'adjust', -1, 'left',  'string' ),
+			new TextCol('builds',            'Builds',       'adjust',  6, 'right', 'integer'),
+			new TextCol('percentBuilds',     '% Builds',     'adjust', -1, 'right', 'percent', 1),
+			new TextCol('installs',          'Installs',     'adjust',  8, 'right', 'integer'),
+			new TextCol('percentInstalls',   '% Installs',   'adjust', -1, 'right', 'percent', 2),
+			new TextCol('unsupported',       'Unsupported',  'adjust', -1, 'right', 'integer'),
+			new TextCol('percentUnsupported','% Unsupported','adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['onlyShowInstalls']) {
-			$aColumns[] = new TextCol('installs', 'Installs', 'adjust',  8, 'right', 'integer');
-		} else {
-			$aColumns[] = new TextCol('percentBuilds',        '% Builds',     'adjust', -1, 'right', 'percent', 1);
-			$aColumns[] = new TextCol('installs',             'Installs',     'adjust',  8, 'right', 'integer');
-			$aColumns[] = new TextCol('percentInstalls',      '% Installs',   'adjust', -1, 'right', 'percent', 2);
-			$aColumns[] = new TextCol('offUnsupported',       'Unsupported',  'adjust', -1, 'right', 'integer');
-			$aColumns[] = new TextCol('percentOffUnsupported','% Unsupported','adjust', -1, 'right', 'percent', 2);
-		}
-		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($this->aStatuses, 'Status of LineageOS builds', $aColumns,
-				$GLOBALS['separator'], '', '', '');
+				SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($this->aStatuses, 'Status of LineageOS builds', $aColumns);
 		}
 		$table->output();
 		print "Build status codes: O=active official, D=discontinued official, U=unofficial".PHP_EOL.
-			"Unsupported = installs of unsupported versions of official builds".PHP_EOL.PHP_EOL;
+			"Unsupported = installs of unsupported versions that don't get security updates".PHP_EOL.PHP_EOL;
 	}
 	
 	public function showVersions($orderBy="installs", $order="descending") {
@@ -1032,23 +1044,18 @@ class Tally {
 		}
 		
 		$aColumns = [
-			new TextCol('rank',   'Rank',    'fixed',   4, 'left',  'integer'),
-			new TextCol('name',   'Version', 'adjust', -1, 'left',  'string' ),
-			new TextCol('builds', 'Builds',  'adjust',  6, 'right', 'integer')
+			new TextCol('rank',           'Rank',      'fixed',   4, 'left',  'integer'),
+			new TextCol('name',           'Version',   'adjust', -1, 'left',  'string' ),
+			new TextCol('builds',         'Builds',    'adjust',  6, 'right', 'integer'),
+			new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 0),
+			new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer'),
+			new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['onlyShowInstalls']) {
-			$aColumns[] = new TextCol('installs', 'Installs', 'adjust',  8, 'right', 'integer');
-		} else {
-			$aColumns[] = new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 0);
-			$aColumns[] = new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer');
-			$aColumns[] = new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2);
-		}
-		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($aSort, 'LineageOS versions in active installs', $aColumns,
-				$GLOBALS['separator'], '', '', '');
+				SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($aSort, 'LineageOS versions in active installs', $aColumns);
 		}
@@ -1093,23 +1100,18 @@ class Tally {
 		}
 		
 		$aColumns = [
-			new TextCol('year',   'Year',    'adjust',  -1, 'left',  'integer'),
-			new TextCol('status', 'Status',  'adjust', -1,  'left',  'string' ),
-			new TextCol('builds', 'Builds',  'adjust',  6,  'right', 'integer')
+			new TextCol('year',           'Year',      'adjust', -1, 'left',  'integer'),
+			new TextCol('status',         'Status',    'adjust', -1, 'left',  'string' ),
+			new TextCol('builds',         'Builds',    'adjust',  6, 'right', 'integer'),
+			new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 1),
+			new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer'),
+			new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2)
 		];
 		
-		if ($GLOBALS['onlyShowInstalls']) {
-			$aColumns[] = new TextCol('installs', 'Installs', 'adjust',  8, 'right', 'integer');
-		} else {
-			$aColumns[] = new TextCol('percentBuilds',  '% Builds',  'adjust', -1, 'right', 'percent', 1);
-			$aColumns[] = new TextCol('installs',       'Installs',  'adjust',  8, 'right', 'integer');
-			$aColumns[] = new TextCol('percentInstalls','% Installs','adjust', -1, 'right', 'percent', 2);
-		}
-		
-		if ($GLOBALS['separator'] != ' | ') {
+		if (SEPARATOR != ' | ') {
 			//if non-standard data separator, then eliminate the table borders.
 			$table = new TextTable($aOutput, 'Years when devices running LineageOS were released', $aColumns,
-				$GLOBALS['separator'], '', '', '');
+				SEPARATOR, '', '', '');
 		} else {
 			$table = new TextTable($aOutput, 'Years when devices running LineageOS were released', $aColumns);
 		}
@@ -1134,11 +1136,11 @@ if ($showBuild) {
 		showOneBuild($showBuild);
 }
 
-if ($GLOBALS['updateDevices']) {
+if (UPDATE_BUILDS or FIND_BUILDS) {
 	writeBuildsToFile('buildsList.txt');
 }
 
-if (date_default_timezone_get() == 'UTC' and $GLOBALS['OS'] == 'unix-like') {
+if (date_default_timezone_get() == 'UTC' and OS == 'unix-like') {
 	print "Reported on ". trim(shell_exec('date')) .".\n";
 } else {
 	print "Reported on ".date("Y-m-d H:i:s").".\n";
@@ -1153,7 +1155,7 @@ echo "Script execution time = ".
  
 
 function showBuildList() {
-	global $countryData, $buildData, $verbose;
+	global $countryData, $buildData;
 	
 	$tally = new Tally();
 	$ctryCount = 0;
@@ -1165,11 +1167,11 @@ function showBuildList() {
 	system('stty cbreak -echo');
 	
 	print "Downloading builds from http://stats.lineageos.org" .
-		($GLOBALS['OS'] == "unix-like" ? ". Press 'b' to break downloads.\n\n": '...'.PHP_EOL.PHP_EOL);
+		(OS == "unix-like" ? ". Press 'b' to break downloads.\n\n": '...'.PHP_EOL.PHP_EOL);
 	
 	//Download info for all the builds that were collected in the buildsList.txt file in the past
 	foreach ($buildData as $buildCode => $oBuild) {
-		if ($GLOBALS['OS'] == "unix-like") {
+		if (OS == "unix-like") {
 			//check if user presses "b" to break downloading
 			$char = fgetc($stdin);
 			if ($breakDownloads or $char == 'b') {
@@ -1178,14 +1180,14 @@ function showBuildList() {
 				goto showReport;
 			}
 		}
-		if ($verbose) {  
+		if (VERBOSE) {  
 			print sprintf('%-32s', "Get build #". (count($tally->aBuilds)+1) ." $buildCode:");
 		}
 		
 		$oBuild = new LosBuild($buildCode);
 		$oBuild->downloadInfo();
 		
-		if ($verbose) {
+		if (VERBOSE) {
 			print sprintf('%8d', $oBuild->installs) . "\n";
 		}
 			
@@ -1204,11 +1206,11 @@ function showBuildList() {
 	}
 	$worldDownloads = $html->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
 	
-	if ($GLOBALS['findBuilds']) {
+	if (FIND_BUILDS) {
 		$aDivCountries  = $html->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 		
 		foreach($aDivCountries as $divCountry) {
-			if ($GLOBALS['OS'] == "unix-like") {
+			if (OS == "unix-like") {
 				//check if user presses "b" to break downloading
 				$char = fgetc($stdin);
 				if ($breakDownloads or $char == 'b') {
@@ -1234,7 +1236,7 @@ function showBuildList() {
 			$ctryPage = new simple_html_dom();
 			$url = 'https://stats.lineageos.org/country/' . $countryCode;
 			
-			if ($verbose) {
+			if (VERBOSE) {
 				print sprintf('%-32s', "Get country #$ctryCount $countryCode:");
 			}
 			
@@ -1242,14 +1244,14 @@ function showBuildList() {
 				continue;
 			}
 			
-			if ($verbose) {
+			if (VERBOSE) {
 				print sprintf('%8d', $countryInstalls).PHP_EOL;
 			}
 			
 			$aDivBuilds = $ctryPage->find('div[id=top-devices]', 0)->find('div.leaderboard-row');
 			
 			foreach ($aDivBuilds as $divBuild) {
-				if ($GLOBALS['OS'] == "unix-like") {
+				if (OS == "unix-like") {
 					//check if user presses "b" to break downloading
 					$char = fgetc($stdin);
 					if ($char == 'b') {
@@ -1264,7 +1266,7 @@ function showBuildList() {
 					continue;
 				}
 				
-				if ($verbose) {  
+				if (VERBOSE) {  
 					print sprintf('%-32s', "Get build #". (count($tally->aBuilds)+1) ." $buildCode:");
 				}
 				
@@ -1273,13 +1275,13 @@ function showBuildList() {
 				$oBuild->downloadInfo();
 				$tally->addBuild($oBuild);
 				
-				if ($verbose) {
+				if (VERBOSE) {
 					print sprintf('%8d', $oBuild->installs) . PHP_EOL;
 				}
 				
-				if ($GLOBALS['updateDevices'] and !isset($buildData[$buildCode])) {
+				if (!isset($buildData[$buildCode])) {
 					$GLOBALS['buildData'][ $buildCode ] = $oBuild;
-					if ($verbose) {
+					if (VERBOSE) {
 						print "Added new build '$buildCode' to the buildsList.txt file.".PHP_EOL;
 					}
 				}
@@ -1303,8 +1305,6 @@ function showBuildList() {
 
 function showCountryList() {
 	$countryData = $GLOBALS['countryData'];
-	$onlyShowInstalls = $GLOBALS['onlyShowInstalls'];
-	
 	$aCountries = array(); 
 	$html = new simple_html_dom();
 	
@@ -1391,14 +1391,10 @@ function showCountryList() {
 		new TextCol('countryPop',        'Pop. (000)', 'adjust', -1, 'right', 'decimal', 2)
 	];
 	
-	if ($GLOBALS['separator'] != ' | ') {
+	if (SEPARATOR != ' | ') {
 		//if non-standard data separator, then eliminate the table borders.
 		$table = new TextTable($aCountries, 'Countries by number of LineageOS installs', $aColumns,
-			$GLOBALS['separator'], '', '', '');
-		/*/don't truncate data if using non-standard separator:
-		foreach ($table->aCols as $key=> $oCol) {
-			$table->aCols[$key]->maxWidth = -1;
-		}*/
+			SEPARATOR, '', '', '');
 	} else {
 		$table = new TextTable($aCountries, 'Countries by number of LineageOS installs', $aColumns);
 	}
@@ -1433,7 +1429,7 @@ function mergeTwoCountries($countryToKeep, $countryToErase, &$aCountries) {
 }
 
 function showOneCountry($country) {
-	global $countryData, $buildData, $onlyShowInstalls;
+	global $countryData, $buildData;
 	$aProcessors = [];
 	$aMakers = [];
 	$aBuilds = [];
@@ -1550,12 +1546,6 @@ function showOneCountry($country) {
 		'percentInstalls' => 1.0
 	];
 	
-	//add "Rank" column
-	/*$rank = 1;
-	foreach ($aBuildList as $i => $aItem) {
-		$aBuildList[$i]['rank'] = (in_array($aItem['buildName'], ['Unlisted', 'Total']) ? '' : $rank++); 
-	}*/
-	
 	//add "Rank" column, but account for multiple items having same No. of installs, so same rank  
 	$rankSameNo = $rank = 1;
 	$prevRankInstalls = 0;
@@ -1582,17 +1572,16 @@ function showOneCountry($country) {
 		new TextCol('percentInstalls',  '% Installs',   'adjust', -1, 'right', 'percent', 2)
 	];
 		
-	if ($GLOBALS['separator'] != ' | ') {
+	if (SEPARATOR != ' | ') {
 		//if non-standard data separator, then eliminate the table borders.
 		$table = new TextTable($aBuildList, 'LineageOS builds by number of installs', 
-			$aColumns, $GLOBALS['separator'], '', '', '');
+			$aColumns, SEPARATOR, '', '', '');
 	} else {
 		$table = new TextTable($aBuildList, 'LineageOS builds by number of installs', $aColumns);
 	}
 	$table->output();
 	
-	echo PHP_EOL, 'Status codes: O=active official build, D=discontinued official build, U=unofficial build', 
-		PHP_EOL, PHP_EOL;
+	print 'Build status codes: O=active official, D=discontinued official, U=unofficial'.PHP_EOL.PHP_EOL;
 	
 	$tally->finalize($countryInstalls);
 	$tally->showMakers();
@@ -1603,7 +1592,7 @@ function showOneCountry($country) {
 
 
 function showOneBuild($buildCode) {
-	global $countryData, $buildData, $onlyShowInstalls;
+	global $countryData, $buildData;
 	$buildCode = preg_replace('/\s+/', ' ', trim($buildCode)); //turn all whitespace into single space
 	
 	$aStatusCodes = [
@@ -1773,10 +1762,10 @@ function showOneBuild($buildCode) {
 		new TextCol('installsPerMillion', 'Installs/M','adjust', -1, 'right', 'decimal', 1)
 	];
 		
-	if ($GLOBALS['separator'] != ' | ') {
+	if (SEPARATOR != ' | ') {
 		//if non-standard data separator, then eliminate the table borders.
 		$table = new TextTable($aCountries, 'LineageOS installs for the build per country', 
-			$aColumns, $GLOBALS['separator'], '', '', '');
+			$aColumns, SEPARATOR, '', '', '');
 	} else {
 		$table = new TextTable($aCountries, 'LineageOS installs for the build per country', $aColumns);
 	}

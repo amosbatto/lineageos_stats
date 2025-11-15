@@ -43,13 +43,13 @@ foreach ($aCountriesTabs as $countryLine) {
 	); 
 }
 
-if ($GLOBALS['verbose']) {
+if (VERBOSE) {
 	print count($countryData)." countries imported from the $countriesFilename file.".PHP_EOL;
 }
 
 $GLOBALS['countryData'] = $countryData;
 
-if ($GLOBALS['updatePop']) {
+if (UPDATE_POP) {
 	$cntUpdatedPop = 0;
 	$ch = curl_init();
 	
@@ -94,7 +94,7 @@ if ($GLOBALS['updatePop']) {
 	
 	fclose($fCountries);
 	
-	if ($GLOBALS['verbose']) {
+	if (VERBOSE) {
 		print "The population of $cntUpdatedPop countries was updated and ".
 			"written to the countriesList.txt file.".PHP_EOL.PHP_EOL; 
 	}
@@ -358,8 +358,6 @@ $GLOBALS['countryData'] = $countryData = [
 	'ZM' => ['Zambia', 21913.87, []],
 	'ZW' => ['Zimbabwe', 16950.8, []],
 	'World' => ['World', 8231613.07, ['Mundo']]
-	//LOS also uses "EA", which isn't an ISO code, but could mean "East Africa" or "Euro Area". 
-	//It only has 2 installs and an unknown carrier, so hard to figure out where it is.
 	
 	//world population data from United Nations, medium variant projection for July 1, 2025
 	//https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/EXCEL_FILES/1_General/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx
