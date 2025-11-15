@@ -1,0 +1,256 @@
+AF	Afghanistan	44504.39	["Afghanestan","افغانستان"]	Afghanistan	
+AX	Åland Islands	30.65	[]		part of Finland
+AL	Albania	2821.66	["Shqipëria"]	Albania	
+DZ	Algeria	46916.39	["Dzayer"]	Algeria	
+AS	American Samoa	46.03	[]		
+AD	Andorra	82.90	[]		
+AO	Angola	38930.92	[]	Angola	
+AI	Anguilla	14.73	[]		
+AG	Antigua and Barbuda	95.31	[]	Antigua and Barbuda	
+AR	Argentina	46333.56	[]	Argentina	
+AM	Armenia	2777.03	["Hayastán"]	Armenia	
+AW	Aruba	106.04	[]	Aruba	
+AU	Australia	26955.11	[]	Australia	
+AT	Austria	8993.88	["Österreich"]	Austria	
+AZ	Azerbaijan	10509.13	["Azərbaycan"]	Azerbaijan	
+BS	Bahamas	417.76	[]	The Bahamas	
+BH	Bahrain	1511.55	["Al-Bahrayn","البحرين"]	Bahrain	
+BD	Bangladesh	176405.11	["বাংলাদেশ"]	Bangladesh	
+BB	Barbados	282.58	[]	Barbados	
+BY	Belarus	9412.89	["Bielaruś","Беларусь"]	Belarus	
+BE	Belgium	11744.10	["België","Belgique","Belgien"]	Belgium	
+BZ	Belize	422.39	["Belice"]	Belize	
+BJ	Benin	14450.29	["Bénin"]	Benin	LOS also uses DY (Dahomey) for the same country
+DY	Benin	14450.29	["Bénin"]	Benin	
+BM	Bermuda	64.56	[]		
+BT	Bhutan	797.29	["Druk Yul","འབྲུག་ཡུལ"]	Bhutan	
+BO	Bolivia	12744.38	["Wuliwya","Volívia","Estado Plurinacional de Bolivia"]	Bolivia	
+BQ	Bonaire, Sint Eustatius and Saba	31.34	[]		
+BA	Bosnia and Herzegovina	3181.67	["Bosnia","Bosnia I Hercegovína","Босна и Херцеговина"]	Bosnia and Herzegovina	
+BW	Botswana	2762.91	[]	Botswana	
+BV	Bouvet Island		[]		No permanent residents
+BR	Brazil	218792.34	["Brasil"]	Brazil	
+IO	British Indian Ocean Territory	39.73	[]		
+BN	Brunei	459.01	["بروني","Brunei Darussalam"]	Brunei Darussalam	
+BG	Bulgaria	6565.71	["Bulgariya","България"]	Bulgaria	
+BF	Burkina Faso	24430.76	[]	Burkina Faso	
+BI	Burundi	13944.57	["Uburundi"]	Burundi	
+CV	Cape Verde	610.15	["Cabo Verde"]	Cabo Verde	
+KH	Cambodia	17291.94	["Kampuchea","កម្ពុជា"]	Cambodia	
+CM	Cameroon	30143.01	["Cameroun"]	Cameroon	
+CA	Canada	39427.32	[]	Canada	
+KY	Cayman Islands	75.84	[]		
+CF	Central African Republic	6095.40	["République Centrafricaine","Ködörösêse tî Bêafrîka"]	Central African Republic	
+TD	Chad	19419.74	["Tchad","تشاد"]	Chad	
+CL	Chile	19689.60	[]	Chile	
+CN	China	1424390.16	["Zhōngguó","中国"]	China	
+CX	Christmas Island	1.69	[]		
+CC	Cocos (Keeling) Islands	0.59	[]		
+CO	Colombia	52608.11	[]	Colombia	
+KM	Comoros	882.92	["Comores","Koromi","جزر القمر"]	Comoros	
+CG	Congo	6382.31	["Republic of the Congo","République du Congo","Republíki ya Kongó"]	Congo	
+CD	Congo, Democratic Republic	109038.95	["Democratic Republic of the Congo","DRC","République du Congo","Republíki ya Kongó"]	Dem Rep of Congo	
+CK	Cook Islands	15.04	[]		
+CR	Costa Rica	5279.88	[]	Costa Rica	
+CI	Côte d'Ivoire	30336.36	[]	Cote-d-Ivoire	
+HR	Croatia	3964.59	["Hrvatska"]	Croatia	
+CU	Cuba	11152.68	[]	Cuba	
+CW	Curaçao	193.82	[]	Curacao	
+CY	Cyprus	1276.43	["Κύπρος Kıbrıs"]	Cyprus	
+CZ	Czech Republic	10509.90	["Česko"]	Czech Republic	LOS also uses "XC" for the same country
+XC	Czech Republic	10509.90	["Česko"]	Czech Republic	
+DK	Denmark	5968.10	["Danmark"]	Denmark	
+DJ	Djibouti	1168.10	["Djibouti","جيبوتي"]	Djibouti	
+DM	Dominica	65.87	[]		
+DO	Dominican Republic	11531.12	["República Dominicana"]	Dominican Republic	
+EA	Ceuta and Melilla	169.16	["Ceuta y Melilla"]		Cueta and Melilla are part of Spain.
+EC	Ecuador	18561.53	[]	Ecuador	
+EG	Egypt	116258.11	["Misr","مصر"]	Arab Rep of Egypt	
+SV	El Salvador	6425.92	[]	El Salvador	
+GQ	Equatorial Guinea	1795.16	["Guinea Ecuatorial"]	Equatorial Guinea	
+ER	Eritrea	3888.89	["Iritriya","إرتريا","Ertra"]	Eritrea	
+EE	Estonia	1314.93	["Eesti"]	Estonia	
+SZ	Eswatini	1234.73	["Eswatini","eSwatini"]	Swaziland	
+ET	Ethiopia	132906.56	["Ityop'ia","ኢትዮጵያ"]	Ethiopia	
+FK	Falkland Islands	3.47	["Malvinas"]		
+FO	Faroe Islands	56.00	[]		
+FJ	Fiji	949.92	["Fiji","Viti","फ़िजी"]	Fiji	
+FI	Finland	5553.89	["Suomi"]	Finland	
+FR	France	64999.81	[]	France	
+GF	French Guiana	327.40	[]	French Guiana	
+PF	French Polynesia	313.78	[]	French Polynesia	
+TF	French Southern Territories	0.02	[]		Population lives in Antartica and varies from 150 people in the winter to 310 in the summer
+GA	Gabon	2532.40	["République gabonaise"]	Gabon	
+GM	Gambia	2910.51	["The Gambia"]	The Gambia	
+GE	Georgia	3709.60	["საქართველო","Sak'art'velo"]	Georgia	
+DE	Germany	83198.28	["Deutschland"]	Germany	
+GH	Ghana	35433.23	["Gaana","Gana"]	Ghana	
+GI	Gibraltar	40.13	[]		
+GR	Greece	10263.52	["Hellas","Ελλάς"]	Greece	
+GL	Greenland	55.75	[]		
+GD	Grenada	127.55	[]	Grenada	
+GP	Guadeloupe	396.83	[]	Guadeloupe	
+GU	Guam	175.24	[]	Guam	
+GT	Guatemala	18633.71	[]	Guatemala	
+GG	Guernsey	64.48	[]		
+GN	Guinea	14869.44	["Guinée","Gine","Gine"]	Guinea	
+GW	Guinea-Bissau	2243.88	["Guiné-Bissau"]	Guinea-Bissau	
+GY	Guyana	824.99	[]	Guyana	
+HT	Haiti	12008.11	["Haïti","Ayiti"]	Haiti	
+HM	Heard Island and McDonald Islands		[]		part of Australia; no permanent residents
+VA	Vatican City	0.50	["Holy See","Città del Vaticano","Civitas Vaticana"]		
+HN	Honduras	10922.38	[]	Honduras	
+HK	Hong Kong	7499.22	["Heung Gong","香港"]	Hong Kong SAR-China	
+HU	Hungary	9871.85	["Magyarország"]	Hungary	
+IS	Iceland	379.99	["Ísland"]	Iceland	LOS also uses IC for the same country
+IC	Iceland	379.99	["Ísland"]	Iceland	
+IN	India	1454478.87	["Bharôt"," ভাৰত","Bharôt","ভারত","Bhārat","ભારત","भारत","Bhārata","ಭಾರತ","Bhāratam","ഭാരതം","Bharôtô","ଭାରତ","भारतम्","Bārata","பாரதம்","Bhāratadēsam","భారత దేశం"]	India	
+ID	Indonesia	281983.28	[]	Indonesia	
+IR	Iran	90405.43	["Īrān","ایران"]	Islamic Republic of Iran	
+IQ	Iraq	47539.33	["Al-'Iraq","العراق"]	Iraq	
+IE	Ireland	5120.51	["Éire"]	Ireland	
+IM	Isle of Man	84.12	[]		
+IL	Israel	9447.25	["Israʼiyl","إسرائيل","Yisra'el","ישראל"]	Israel	
+IT	Italy	58519.30	["Italia"]	Italy	
+JM	Jamaica	2823.22	[]	Jamaica	
+JP	Japan	121956.35	["Nippon","日本"]	Japan	
+JE	Jersey	103.99	[]		
+JO	Jordan	11441.48	["Al-'Urdun","الأردن"]	Jordan	
+KZ	Kazakhstan	20053.76	["Qazaqstan","Қазақстан","Kazakhstán","Казахстан"]	Kazakhstan	
+KE	Kenya	57312.36	[]	Kenya	
+KI	Kiribati	137.96	["Tungaru"]	Kiribati	
+KR	South Korea	51690.17	["Hanguk","한국","Namhan","남한"]	Rep of Korea	
+XK	Kosovo	1671.32	["Kosova","Косово"]	Kosovo	
+KW	Kuwait	4386.76	["Dawlat ul-Kuwayt","دولة الكويت"]	Kuwait	
+KG	Kyrgyzstan	6941.72	["Кыргызстан","Kirgizija","Киргизия"]	Kyrgyz Republic	
+LA	Laos	7837.33	["Lao","ປະເທດລາວ"]	Lao PDR	
+LV	Latvia	1790.95	["Latvija"]	Latvia	
+LB	Lebanon	5098.76	["Lubnān","Liban","لبنان"]	Lebanon	
+LS	Lesotho	2381.11	[]	Lesotho	
+LR	Liberia	5655.95	[]	Liberia	
+LY	Libya	7037.69	["Lībiyā","ليبيا"]	Libya	
+LI	Liechtenstein	40.13	[]		
+LT	Lithuania	2668.64	["Lietuva"]	Lithuania	
+LU	Luxembourg	668.03	["Luxemburg","Lëtezebuerg"]	Luxembourg	
+MO	Macao	721.83	[]	Macao SAR China	
+MK	Macedonia	2082.43	[]	FYR Macedonia	
+MG	Madagascar	31789.88	["Madagasikara"]	Madagascar	
+MW	Malawi	22028.28	["Malaŵi"]	Malawi	
+MY	Malaysia	35024.61	["Mǎláixīyà","马来西亚"," மலேசியா"]	Malaysia	
+MV	Maldives	515.25	["Dhivehi Raajje"]	Maldives	
+ML	Mali	24750.68	[]	Mali	
+MT	Malta	538.26	[]	Malta	
+MH	Marshall Islands	36.28	["Aorōkin M̧ajeļ"]		
+MQ	Martinique	365.80	[]	Martinique	
+MR	Mauritania	5126.76	["Muritan","Agawec","Mūrītānyā","موريتانيا"]	Mauritania	
+MU	Mauritius	1303.19	["Maurice","Moris"]	Mauritius	
+YT	Mayotte	355.92	[]	Mayotte	
+MX	Mexico	130292.20	["Mēxihco","México"]	Mexico	
+FM	Micronesia	554.68	["Federated States of Micronesia"]	Micronesia	
+MC	Monaco	38.34	["Monaca","Múnegu"]		
+MN	Mongolia	3537.56	["Mongol Uls","Монгол Улс"]	Mongolia	
+ME	Montenegro	625.62	["Crna Gora","Црна Гора"]	Montenegro	
+MS	Montserrat	4.36	[]		
+MA	Morocco	38567.99	["Al-maɣréb","المغرب","Amerruk","Elmeɣrib"]	Morocco	
+MZ	Mozambique	35824.40	["Moçambique"]	Mozambique	
+MM	Myanmar	55333.30	["Myanma","မြန်မာ"]	Myanmar	
+NA	Namibia	2689.84	[]	Namibia	
+NR	Nauru	12.03	["Naoero"]		
+NP	Nepal	31574.21	["Nepāl","नेपाल"]	Nepal	
+NL	Netherlands	17721.71	["The Netherlands","Nederland","Nederlân"]	The Netherlands	
+NC	New Caledonia	298.84	[]	New Caledonia	
+NZ	New Zealand	5310.18	["Aotearoa"]	New Zealand	
+NI	Nicaragua	7236.41	[]	Nicaragua	
+NE	Niger	29304.37	[]	Niger	
+NG	Nigeria	234515.28	["Nijeriya","Naigeria","Nàìjíríà"]	Nigeria	
+NU	Niue	1.82	[]		
+KP	North Korea	26319.28	["Chosŏn","조선","Bukchosŏn","북조선"]	Dem Peoples Rep of Korea	
+NF	Norfolk Island		[]		
+MP	Northern Mariana Islands	43.54	[]		
+NO	Norway	5554.01	["Norge"]	Norway	
+OM	Oman	4780.10	["‘Umān","عُمان"]	Oman	
+PK	Pakistan	249900.67	["Pākistān","پاکستان"]	Pakistan	
+PW	Palau	17.66	["Belau"]		
+PS	Palestine	5619.37	["Filasṭīn","فلسطين"]	West Bank and Gaza	
+PA	Panama	4586.02	["Panamá"]	Panama	
+PG	Papua New Guinea	10699.30	["Papua Niugini","Papua Giugini"]	Papua New Guinea	
+PY	Paraguay	7030.51	["Paraguái"]	Paraguay	
+PE	Peru	35012.63	["Piruw","Perú"]	Peru	
+PH	Philippines	120847.21	["Pilipinas"]	Philippines	
+PN	Pitcairn	0.05	[]		Part of British Overseas Territory 
+PL	Poland	39621.54	["Polska"]	Poland	
+PT	Portugal	10198.22	[]	Portugal	
+PR	Puerto Rico	3274.95	[]	Puerto Rico	
+QA	Qatar	2757.03	["Qaṭar","قطر"]	Qatar	
+MD	Moldova	3255.60	[]	Moldova	
+RE	Réunion	996.65	[]	Reunion	
+RO	Romania	19426.02	["România"]	Romania	
+RU	Russian Federation	143498.10	["Rossiâ","Россия"]	Russian Federation	
+RW	Rwanda	14734.02	[]	Rwanda	
+BL	Saint Barthélemy	11.41	[]		
+SH	Saint Helena, Ascension and Tristan da Cunha	5.20	[]		
+KN	Saint Kitts and Nevis	46.92	[]		
+LC	Saint Lucia	181.31	[]	St-Lucia	
+MF	Saint Martin (French part)	24.94	[]		
+PM	Saint Pierre and Miquelon	5.57	[]		
+VC	Saint Vincent and the Grenadines	103.82	[]	St-Vincent and the Grenadines	
+WS	Samoa	232.20	["Sāmoa"]	Samoa	
+SM	San Marino	33.57	[]		
+ST	Sao Tome and Principe	240.93	["São Tomé e Principe"]	Sao Tome and Principe	
+SA	Saudi Arabia	37985.18	["Al-‘Arabiyyah as Sa‘ūdiyyah","المملكة العربية السعودية"]	Saudi Arabia	
+SN	Senegal	18683.12	["Sénégal"]	Senegal	
+RS	Serbia	7056.76	["Srbija","Србија"]	Serbia	
+SC	Seychelles	108.83	["Sesel"]	Seychelles	
+SL	Sierra Leone	9163.40	[]	Sierra Leone	
+SG	Singapore	6089.12	["Singapura","新加坡","சிங்கப்பூர்"]	Singapore	
+NN	Sint Maarten (Dutch part)	43.92	[]		Really SX, but LOS uses NN
+SX	Sint Maarten (Dutch part)	43.92	[]		
+SK	Slovakia	5635.58	["Slovensko"]	Slovak Republic	
+SI	Slovenia	2117.76	["Slovenija"]	Slovenia	
+SB	Solomon Islands	772.86	["Solomon Aelan","الصومال"]	Solomon Islands	
+SO	Somalia	19275.68	["Soomaaliya aş-Şūmāl"]	Somalia	
+ZA	South Africa	61666.72	["Suid-Afrika","iNingizimu Afrika","uMzantsi Afrika","Afrika-Borwa","Aforika Borwa","Afurika Tshipembe","Afrika Dzonga","iNingizimu Afrika","iSewula Afrika"]	South Africa	
+GS	South Georgia and the South Sandwich Islands		[]		
+SS	South Sudan	11471.29	["Paguot Thudän","Sudan Kusini"]	South Sudan	
+ES	Spain	47419.65	["España","Espanya","Espainia"]	Spain	
+LK	Sri Lanka	21999.75	["Sri Lankā","ශ්‍රී ලංකාව"," இலங்கை"]	Sri Lanka	
+SD	Sudan	50602.05	["As-Sudan","السودان"]	Sudan	
+SR	Suriname	634.16	["Surinam"]	Suriname	
+SJ	Svalbard and Jan Mayen	2.60	[]		Part of Norway
+SE	Sweden	10733.17	["Sverige"]	Sweden	
+CH	Switzerland	8904.03	["Suisse","Schweiz","Svizzera","Svizra"]	Switzerland	
+SY	Syria	25416.53	["Suriyah","سورية"]	Syrian Arab Rep	
+TW	Taiwan	23112.79	[]		
+TJ	Tajikistan	10515.17	["Tojikistan","Тоҷикистон"]	Tajikistan	
+TZ	Tanzania	71407.49	[]	Tanzania	
+TH	Thailand	71948.72	["Mueang Thai","Prathet Thai","Ratcha-anachak Thai","เมืองไทย, ประเทศไทย","ราชอาณาจักรไทย"]	Thailand	
+TL	Timor-Leste	1398.99	[]	Timor-Leste	
+TG	Togo	9721.61	[]		
+TK	Tokelau	2.61	[]		
+TO	Tonga	109.58	[]	Tonga	
+TT	Trinidad and Tobago	1540.90	[]	Trinidad and Tobago	
+TN	Tunisia	12664.91	["Tunes","تونس"]	Tunisia	
+TR	Turkey	86692.40	["Türkiye"]	Turkey	
+TM	Turkmenistan	6676.25	["Türkmenistan"]	Turkmenistan	
+TC	Turks and Caicos Islands	46.86	[]		
+TV	Tuvalu	9.49	[]		
+UG	Uganda	51271.05	[]	Uganda	
+UA	Ukraine	38752.76	["Ukraїna","Україна"]	Ukraine	
+AE	United Arab Emirates	9664.64	["UAE","Al-’Imārat Al-‘Arabiyyah Al-Muttaḥidah","الإمارات العربيّة المتّحدة"]	United Arab Emirates	
+GB	United Kingdom	68176.94	["Y Deyrnas Unedig","Rìoghachd Aonaichte","Ríocht Aontaithe"]	United Kingdom	LOS also uses UK for same country
+UK	United Kingdom	68176.94	["Y Deyrnas Unedig","Rìoghachd Aonaichte","Ríocht Aontaithe"]	United Kingdom	
+US	United States	343578.37	["Estados Unidos","USA","United States of America"]	United States	
+UM	United States Minor Outlying Islands	84.14	[]		
+UY	Uruguay	3423.13	[]	Uruguay	
+UZ	Uzbekistan	36154.81	["O‘zbekiston","Ўзбекистон"]	Uzbekistan	
+VU	Vanuatu	350.13	[]	Vanuatu	
+VE	Venezuela	29921.20	[]	RB-de-Venezuela	
+VN	Vietnam	100098.11	["Viet Nam","Việt Nam"]	Vietnam	
+VG	Virgin Islands, British	39.73	[]		
+VI	Virgin Islands, U.S.	97.33	[]	US Virgin Islands	
+WF	Wallis and Futuna	11.19	[]		
+EH	Western Sahara	609.28	[]	Western Sahara	
+YE	Yemen	35992.72	["Al-Yaman","اليمن"]	Rep of Yemen	
+ZM	Zambia	21701.09	[]	Zambia	
+ZW	Zimbabwe	17371.73	[]	Zimbabwe	
+World	World	8191217.93	["Mundo"]	World	
