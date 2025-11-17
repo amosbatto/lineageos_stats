@@ -632,12 +632,18 @@ class Tally {
 		}
 		
 		$this->aStatuses[$status]['builds']++;
-		$this->aStatuses['O']['installs'] += $aInstallsByStatus['O']['installs'];
-		$this->aStatuses['D']['installs'] += $aInstallsByStatus['D']['installs'];
-		$this->aStatuses['U']['installs'] += $aInstallsByStatus['U']['installs'];
-		$this->aStatuses['O']['unsupported'] += $aInstallsByStatus['O']['unsupported'];
-		$this->aStatuses['D']['unsupported'] += $aInstallsByStatus['D']['unsupported'];
-		$this->aStatuses['U']['unsupported'] += $aInstallsByStatus['U']['unsupported'];
+		
+		if (empty($oBuild->aVersions)) {
+			$this->aStatuses[$status]['installs'] += $oBuild->installs;
+		}
+		else {
+			$this->aStatuses['O']['installs'] += $aInstallsByStatus['O']['installs'];
+			$this->aStatuses['D']['installs'] += $aInstallsByStatus['D']['installs'];
+			$this->aStatuses['U']['installs'] += $aInstallsByStatus['U']['installs'];
+			$this->aStatuses['O']['unsupported'] += $aInstallsByStatus['O']['unsupported'];
+			$this->aStatuses['D']['unsupported'] += $aInstallsByStatus['D']['unsupported'];
+			$this->aStatuses['U']['unsupported'] += $aInstallsByStatus['U']['unsupported'];
+		}
 		
 		if (empty($oBuild->modelReleaseDate)) {
 			if (!isset($this->aYears['unknown'])) {
