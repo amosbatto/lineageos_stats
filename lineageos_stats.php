@@ -1175,6 +1175,13 @@ function showBuildList() {
 	print "Downloading builds from http://stats.lineageos.org" .
 		(OS == "unix-like" ? ". Press 'b' to break downloads.\n\n": '...'.PHP_EOL.PHP_EOL);
 	
+	$html = new simple_html_dom();
+	
+	while ($html->load_file('https://stats.lineageos.org/') === false) {
+		continue;
+	}
+	$worldDownloads = $html->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
+	
 	//Download info for all the builds that were collected in the buildsList.txt file in the past
 	foreach ($buildData as $buildCode => $oBuild) {
 		if (OS == "unix-like") {
@@ -1205,13 +1212,6 @@ function showBuildList() {
 	
 	
 	//Go through all the countries, looking for new builds:
-	$html = new simple_html_dom();
-	
-	while ($html->load_file('https://stats.lineageos.org/') === false) {
-		continue;
-	}
-	$worldDownloads = $html->find('div[id=total-download]', 0)->find('div.aside-value', 0)->innertext();
-	
 	if (FIND_BUILDS) {
 		$aDivCountries  = $html->find('div[id=top-countries]', 0)->find('div.leaderboard-row');
 		
@@ -1804,7 +1804,7 @@ function percentString($percent, $precision = 2) {
 	];
 	$percent = $percent * 100;
 	
-	while ($percent < $aMinNumbers[$precision] and $precision < 10) {
+	while ($precision < 10 and $percent < $aMinNumbers[$precision]) {
 		$precision++;
 	}
 	 
@@ -1834,7 +1834,7 @@ function decimalString($num, $precision = 2) {
 		9 => 0.000000001
 	];
 	
-	while ($num < $aMinNumbers[$precision] and $precision < 10) {
+	while ($precision < 10 and $num < $aMinNumbers[$precision]) {
 		$precision++;
 	}
 	 

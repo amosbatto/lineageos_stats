@@ -1307,24 +1307,40 @@ wseries					U
 enzo					U				
 androidbox					U				
 treble					U				
-K2					U				
+K2					U				May be for the Blackberry Key2
 tenet					U				
 hulkbuster					U				
-Z1					U				
-X3					U				
-2036					U				
-2027					U				
+Z1	Sony	Xperia Z1	Snapdragon 800 (28nm)	2013-09-01	U				
+X3					U				Can find custom ROMs for "x3" (Realme X3), but not for "X3" in uppercase.
+1904					U				
+1906					U				
+1907					U				
+1909					U				
+1910					U				
+1915					U				
+1917					U				
+1919					U				
+1920					U				
+1925					U				
 2026					U				
+2027					U				
+2036					U				
+2037					U				
+2040					U				
+2045					U				
+2046					U				
+2050					U				
+2055					U				
 p10bio					U				
 paros					U				
 scale					U				
-x1					U				
+x1	AGM	X1	Snapdragon 617 (MSM8952) (28nm)	2016-06-01	U			https://xdaforums.com/t/rooting-and-installing-lineage-os-on-agm-x1.3657795/	Possibly the Huawei MediaPad X1, but no ROM available for it.
 Nightmare					U				
 j1minivelte	Samsung	Galaxy J1 Mini Prime (SM-J106M)	Spreadtrum SC9830	2016-12-01	U				
-f41	Samsung	F41	Exynos 9611 (10 nm)	2020-10-16	U				https://xdaforums.com/t/rom-unofficial-lineage-os-21-for-galaxy-m31-f41-m21s-a51-m31s-m21.4679799/
-ef65	Pantech	Vega Pop-Up Note	Snapdragon 800	2014-11-01	U				https://kongjak.tistory.com/24 , https://dl.kongjak.com/ef65/LineageOS/
+f41	Samsung	F41	Exynos 9611 (10 nm)	2020-10-16	U			https://xdaforums.com/t/rom-unofficial-lineage-os-21-for-galaxy-m31-f41-m21s-a51-m31s-m21.4679799/	
+ef65	Pantech	Vega Pop-Up Note	Snapdragon 800	2014-11-01	U			https://kongjak.tistory.com/24 , https://dl.kongjak.com/ef65/LineageOS/	
 KJ7	TECNO	SPARK 20 Pro+	Helio G99 Ultimate	2024-02-09	U				
 surfna	Motorola	Moto E6	Snapdragon 435 (MSM8940)	2019-08-01	U				
 j5xn3g	Samsung	Galaxy J5 (2016)	Snapdragon 410 (MSM8916) (28nm)	2016-04-01	U				
-idol347	Alcatel	Onetouch Idol 3 (5.5)	Snapdragon 615 (MSM8939) (28nm)	2015-06-01	U	7 			https://xdaforums.com/t/rom-aosp-lineageos-for-idol3-idol347-with-close-to-mainline-kernel.4533061/#post-88990481
-bkav_b60	BKAV	Bphone B60	Snapdragon 660	2020-05-01	U	2 			
+idol347	Alcatel	Onetouch Idol 3 (5.5)	Snapdragon 615 (MSM8939) (28nm)	2015-06-01	U	7		https://xdaforums.com/t/rom-aosp-lineageos-for-idol3-idol347-with-close-to-mainline-kernel.4533061/#post-88990481	
+bkav_b60	BKAV	Bphone B60	Snapdragon 660	2020-05-01	U	2			
